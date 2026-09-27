@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<project name="LinTim" default="build-min-changes" basedir=".">
+    <include file="../../base.xml"/>
+	<target name="build-ptntools">
+        <ant target="build-sl-helper" inheritall="false" dir="../../essentials/sl-helper/PTNTools"/>
+	</target>
+	<target name="init">
+		<mkdir dir="build"/>
+	</target>
+	<target name="build-min-changes" depends="base-lintim.build-core,build-ptntools, init">
+		<javac srcdir="src"
+		       destdir="build"
+		       classpath="${core-jar}:${jgrapht-jar}:${jheap-jar}:../../essentials/sl-helper/PTNTools" encoding="UTF-8" />
+	</target>
+</project>

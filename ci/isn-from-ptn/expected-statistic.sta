@@ -1,0 +1,6 @@
+isn_average_modalities_per_link; 1
+isn_max_modalities_per_link; 1
+isn_min_modalities_per_link; 1
+isn_prop_edges; 17
+isn_prop_modalities; [green, nonscheduled, red]
+isn_prop_nodes; 5

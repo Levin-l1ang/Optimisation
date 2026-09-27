@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="lintim-ptn-load-generator">
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <property name="build-dir" value="build" />
+    <property name="doc-dir" value="docs" />
+    <property name="core-folder" value="../../core/java" />
+    <property name="cost-folder" value="../../line-planning/cost-model"/>
+    <property name="lib-folder" value="../../../libs"/>
+    <path id="lintim-ptn-load-generator.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-folder}/lintim-core.jar"/>
+        <pathelement location="${cost-folder}/cost-model.jar"/>
+        <pathelement location="${lib-folder}/jgrapht/jgrapht-core-1.5.0.jar"/>
+    </path>
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <target name="init-docs">
+        <mkdir dir="${doc-dir}"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-dependencies,build-project" name="build"/>
+    <target name="build-dependencies">
+        <ant target="build" dir="${core-folder}"/>
+        <ant target="build-jar" dir="${cost-folder}"/>
+    </target>
+    <target name="build-project" depends="init">
+        <javac includeantruntime="true" debug="true" destdir="${build-dir}" source="${source}" target="${target}" encoding="UTF-8">
+            <src path="src"/>
+            <classpath refid="lintim-ptn-load-generator.classpath"/>
+        </javac>
+    </target>
+    <target name="build-documentation" depends="init-docs">
+        <echo message="Building documentation" />
+        <javadoc sourcepath="." destdir="${doc-dir}"/>
+    </target>
+
+</project>

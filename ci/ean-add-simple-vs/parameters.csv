@@ -1,0 +1,3 @@
+TARGET_DATASET; BOMHarbour
+COMMANDS_TO_RUN; make ean-add-simple-vs && make ean-evaluate
+ADDITIONAL_FILES_TO_COMPARE; 

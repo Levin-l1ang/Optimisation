@@ -1,0 +1,14 @@
+lpool_average_distance; 173.6505818199175
+lpool_average_edges; 2.4
+lpool_average_length; 2.3
+lpool_cost; 515.0
+lpool_feasible_circles; true
+lpool_feasible_od; true
+lpool_min_distance; 100.0
+lpool_min_edges; 2.0
+lpool_min_length; 1.8
+lpool_prop_directed_lines; 20
+lpool_time_average; 5.55301296720061
+lpool_var_distance; 1845.475433604137
+lpool_var_edges; 0.2400000000000002
+lpool_var_length; 0.2500000000000009

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project name="LinTim" default="build-direct-travelers" basedir=".">
+    <include file="../../base.xml"/>
+    <property name="build-dir" value="build" />
+    <property name="src-dir" value="src" />
+    <property name="doc-dir" value="docs" />
+    <path id="lintim-lineplanning-direct.classpath">
+        <pathelement location="${core-jar}"/>
+    </path>
+	<!-- Clean -->
+	<target name="clean">
+		<delete>
+			<fileset dir="." includes="**/*.class"/>
+		</delete>
+	</target>
+	<target depends="clean" name="cleanall"/>
+	<!-- Create necessary folders -->
+	<target name="init">
+		<mkdir dir="${build-dir}"/>
+	</target>
+	<target name="init-docs">
+		<mkdir dir="${doc-dir}"/>
+	</target>
+	<!-- Build tasks -->
+	<target depends="base-lintim.build-core,build-project" name="build-direct-travelers"/>
+	<target name="build-project" depends="build-solver-independent,build-with-gurobi" />
+	<target name="build-documentation" depends="init-docs">
+		<echo message="Building documentation" />
+		<javadoc sourcepath="." destdir="${doc-dir}"/>
+	</target>
+	<target name="build-solver-independent" depends="init">
+		<pathconvert property="classpathInName" refid="lintim-lineplanning-direct.classpath" />
+        <javac srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-lineplanning-direct.classpath"/>
+            <exclude name="net/lintim/algorithm/lineplanning/DirectGurobi.java"/>
+        </javac>
+	</target>
+    <!-- Solver specific build targets, will only be used if the respective solvers are installed -->
+    <target name="build-with-gurobi" depends="init" if="${gurobi.installed}">
+        <echo>Gurobi installed</echo>
+        <javac srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-lineplanning-direct.classpath"/>
+            <include name="net/lintim/algorithm/lineplanning/DirectGurobi.java"/>
+        </javac>
+    </target>
+</project>

@@ -1,0 +1,7 @@
+lpool_costs_fixed; 20
+lpool_costs_length; 2
+lpool_adapt_method; trim_all
+lpool_nb_edges_to_trim; 2
+rpool_costs_fixed; 20
+mm_lc_rc_model; cost
+mm_lc_rc_evaluation_extended; false

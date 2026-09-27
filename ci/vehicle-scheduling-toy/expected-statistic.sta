@@ -1,0 +1,17 @@
+vs_average_waiting_time; 150
+vs_circulations; 5
+vs_cost; 500494.73333
+vs_empty_cost; 500343.76667
+vs_empty_distance_with_depot; 206.4
+vs_empty_distance_without_depot; 12
+vs_empty_duration_driving_with_depot; 4620
+vs_empty_duration_driving_without_depot; 1140
+vs_empty_duration_standing; 300
+vs_empty_trips_with_depot; 11
+vs_empty_trips_without_depot; 1
+vs_feasible; true
+vs_full_distance; 91.2
+vs_full_duration; 2040
+vs_maximal_waiting_time; 180
+vs_minimal_waiting_time; 120
+vs_vehicles; 5

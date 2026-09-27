@@ -1,0 +1,9 @@
+# tim_model value; src subdirectory
+"network_simplex"; "periodic/modulo-simplex"
+"ns_improve"; "periodic/modulo-simplex"
+"con_prop"; "periodic/constraint-prop"
+"csp"; "periodic/csp"
+"csp_ns"; "periodic/csp","periodic/modulo-simplex"
+"javatools"; "../essentials/javatools"
+"con_ns"; "periodic/csp","periodic/modulo-simplex"
+"matching"; "periodic/matching"

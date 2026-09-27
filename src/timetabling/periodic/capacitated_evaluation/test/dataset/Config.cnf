@@ -1,0 +1,10 @@
+console_log_level; WARN
+time_units_per_minute; 1
+gen_conversion_length; 1
+gen_conversion_coordinates; 1
+gen_passengers_per_vehicle; 2
+period_length; 6
+ean_change_penalty; 0
+tim_cap_eval_tt; true
+tim_cap_eval_integer_flow; true
+tim_cap_eval_accumulate_on_links; false

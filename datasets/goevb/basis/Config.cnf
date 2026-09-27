@@ -1,0 +1,56 @@
+setting-name; setting-value
+include; "../../Global-Config.cnf"
+# ===========================================================================
+# === LOCAL_ONLY from Global-Config.cnf =====================================
+# ===========================================================================
+ptn_name; "GoVB"
+period_length; 60
+time_units_per_minute; 1
+ptn_stop_waiting_time; 1
+ptn_draw_conversion_factor; 0.005
+loads_draw_conversion_factor; 0.005
+lpool_coordinate_factor; 0.35
+# speed of the vehicles in km/h
+gen_vehicle_speed; 180
+gen_conversion_length; 1
+gen_conversion_coordinates; 0.001
+ean_change_penalty; 5
+ean_default_minimal_waiting_time; 1
+ean_default_maximal_waiting_time; 3
+ean_default_minimal_change_time; 3
+ean_default_maximal_change_time; 62
+# interpolated from Load.giv.nominal
+gen_passengers_per_vehicle; 50
+od_nominal_overall_directed_load; 4600
+# ===========================================================================
+# === Network Specific Settings =============================================
+# ===========================================================================
+lpool_evaluate_average_traveling_time_lower_bound; true
+ptn_is_undirected; false
+# ===========================================================================
+# === Optimized Visualization  ==============================================
+# ===========================================================================
+lpool_opt_visualisation_max_opt_time; 1800
+# the scale of the plotted image
+lpool_opt_visualisation_plot_scale; 1
+lpool_opt_visualisation_plot_margins; 0.1
+# whether or not a background (in white) gets plotted
+lpool_opt_visualiation_background; false
+lpool_opt_visualisation_line_distance; 0
+lpool_opt_visualisation_line_width; 3
+# if true, scales nodes depending on number of lines they have
+lpool_opt_visualisation_scale_nodes; true
+lpool_opt_visualisation_node_scaling; 1.01
+# min size when scaling is on
+lpool_opt_visualisation_min_node_size; 50
+# size for nodes when scaling is off
+lpool_opt_visualisation_def_node_size; 500
+lpool_opt_visualisation_node_labels; false
+# font size of node labels
+lpool_opt_visualisation_node_label_size; 10
+# ===========================================================================
+# === State / Experiments / Automatization ==================================
+# ===========================================================================
+include_if_exists; "State-Config.cnf"
+include_if_exists; "Private-Config.cnf"
+include_if_exists; "After-Config.cnf"

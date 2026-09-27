@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project name="LinTim-create-od" default="build-create-od" basedir=".">
+    <include file="../../base.xml"/>
+    <property name="ptn-tools-src" value="../sl-helper/PTNTools" />
+    <property name="shortest-path-src" value="../shortest-paths/src" />
+    <property name="shortest-path" value="../shortest-paths" />
+    <path id="lintim-create-id.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-folder}/lintim-core.jar"/>
+        <pathelement location="${ptn-tools-src}"/>
+        <pathelement location="${shortest-path-src}"/>
+        <pathelement location="${jgrapht-jar}"/>
+        <pathelement location="${jheap-jar}"/>
+    </path>
+	<target depends="base-lintim.build-core,build-slhelper,build-create-od,build-shortest-paths" name="build-all"/>
+	<target name="build-slhelper" depends="build-shortest-paths">
+        <ant target="build-sl-helper" dir="${ptn-tools-src}" inheritAll="false"/>
+	</target>
+	<target name="build-shortest-paths">
+        <ant target="build" dir="${shortest-path}" inheritAll="false"/>
+	</target>
+	<target name="build-create-od" depends="base-lintim.build-core,build-slhelper,build-shortest-paths">
+		<javac srcdir="."
+		       destdir="." encoding="UTF-8">
+            <classpath refid="lintim-create-id.classpath"/>
+		</javac>
+	</target>
+</project>

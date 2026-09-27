@@ -1,0 +1,316 @@
+clc
+clear all
+close all
+zeitfenster=6000 %das heißt wir lassen n Sekunden lang Fälle probieren und in einer Sekunde schaffen wir ca 1000 fälle
+
+tic
+%Wir lesen zwar die LineIDs aber werden intern selber durchnummerieren
+
+[activityId, edgetype, tailEventId, headEventId, lowerBound, upperBound, passengers] = textread('.\athen\cost\Activities-periodic.giv','%u %s %u %u %u %u %u','delimiter' ,';','endofline','\r\n', 'commentstyle'	,'shell');
+Activity=[activityId tailEventId headEventId lowerBound upperBound passengers];
+
+[eventId, ~, stopId, lineId, passengers]=textread('.\athen\cost\Events-periodic.giv','%u %s %u %u %u','delimiter' ,';','endofline','\r\n', 'commentstyle'	,'shell');
+Event=[eventId stopId lineId passengers];
+Event=[Event, zeros(size(Event,1),1) , 1.*ones(size(Event,1),1)];
+%%=> Event(:,6) == frequenz
+%%=> Event(:,5) == Länge der ausgehenden Kante
+
+
+
+
+
+%Um die Linien sauber zu trennen, wird jede Rücklinien inkrementiert und
+%zwar um den Wert der größten Linien, => rueckfahrt 1 entspricht 1+max
+
+maxline=size(unique(lineId),1);
+%%hier nummerieren wir neu durch:
+NEW_lineIDs=zeros(size(lineId));
+OLD_IDs=unique(lineId);
+
+for i=1:maxline;
+   NEW_LineIDs(find(lineId==OLD_IDs(i)))=i;
+end
+Event(:,3)=NEW_LineIDs
+
+%pause
+
+rueck=0;
+for i=1: size(Event,1)-1
+    if(lineId(i)==lineId(i+1)) %Wir also noch in der gleichen Linie sind
+        thisedge=ismember([tailEventId headEventId],[i i+1],'rows');
+        
+        if(isempty(find(thisedge, 1)))%Wir keine Kante gefunden haben=> also die rückfahrt betrachten
+            rueck=maxline;
+        else %Also zwischen zwei Events eine Kante besteht
+            
+            Event(i+1,5) =Event(i,5)+ Activity(thisedge, 4);%Hier summieren wir die Fahrzeit auf, somit wissen wann welche Linie wo ist
+        end
+        Event(i+1,3)=Event(i+1,3)+rueck;
+        
+    else %Wir also eine neue Linie betrachten
+        rueck=0;
+    end
+end
+%Event
+
+%Wir suchen alle Changekanten mit mehr als 0 Passagieren raus:
+changeedges=ismember(edgetype,'"change"');
+Changes=Activity(changeedges,:);
+Changes=Changes(find(Changes(:,6)),:);
+
+%Als nächstes bestimmen wir die zugehörigen Linien und Zeitpunkte der
+%passenden Event:
+%In Changes spalte 7 und 8 stehen somit die Linien und Arrival Zeiten
+%In Changes spalte 9 und 10 stehen somit die Linien und Departure Zeiten
+Changes= [Changes Event(Changes(:,2),3) Event(Changes(:,2),5) Event(Changes(:,3),3) Event(Changes(:,3),5)];
+%Die benötigten Zeiten für den Umstieg befinden sich in der 4ten Spalte
+
+%Somit können wir bereits unsere Rechenkonstante bestimmen:
+%Departure - (Arrival+Change) und diese Landet in Spalte 11
+Konstanten=Changes(:,10) - (Changes(:,8)+Changes(:,4));
+Changes=[Changes Konstanten];
+
+%Wenn zwischen zwei Linien mehr als eine Changekante liegt, dann kann
+%durchaus ein x beide Changekanten minimieren und dann sollten diese auch
+%zusammengefasst werden.
+Changelines=unique([Changes(:,7); Changes(:,9)]);
+for i=1:size(Changelines,1)
+    for j=i+1:size(Changelines,1)
+        Temp1= ismember([Changes(:,7) Changes(:,9)],[Changelines(i) Changelines(j)],'rows');
+        Temp2=  ismember([Changes(:,7) Changes(:,9)],[Changelines(j) Changelines(i)],'rows');
+        ActualChanges=Changes(Temp1 | Temp2,:);
+        
+        if(size(ActualChanges,1) > 1)
+           % ActualChanges
+            for m=1:size(ActualChanges,1)
+                for n=m+1:size(ActualChanges,1)
+                    if (ActualChanges(m,7)==ActualChanges(n,7))%Fall I
+                        if(mod(ActualChanges(m,11),60)==mod(ActualChanges(n,11),60)) %Also ein x beide Werte minimiert:
+                            %Fasse Zusammen:
+                           % ActualChanges
+                            index1=ismember(Changes,ActualChanges(m,:),'rows');
+                            index2=ismember(Changes,ActualChanges(n,:),'rows');
+                            if(sum(index1)~=1 ||sum(index2)~=1)
+                                disp('panic')
+                            pause
+                            end
+                            Changes(index1,6)=Changes(index1,6)+Changes(index2,6);
+                            Changes(index2,:)=[];
+                            
+                        end
+                    elseif(ActualChanges(m,7)==ActualChanges(n,9))%Fall II
+                        if(mod(ActualChanges(m,11)+ActualChanges(n,11),60)==0)
+                            %Fasse Zusammen:
+                           % ActualChanges
+                            index1=ismember(Changes,ActualChanges(m,:),'rows');
+                            index2=ismember(Changes,ActualChanges(n,:),'rows');
+                            if(sum(index1)~=1 ||sum(index2)~=1)
+                                disp('panic')
+                            pause
+                            end
+                            Changes(index1,6)=Changes(index1,6)+Changes(index2,6);
+                            Changes(index2,:)=[];
+                            
+                        end
+                    end 
+                end
+            end
+        end
+    end
+end
+ChangeAll=Changes;
+
+
+
+%%Aussortieren:
+%Es gibt Kanten, welche Nachjustiert werden können, das sind eben Solche,
+%welche nur durch genau eine ChangeKante mit dem Netz verbunden sind. Also
+%all jene Linie, die genau eine Changeaktivität aufweisen. Diese Linien
+%können immer perfekt abgestimmt werden. Das Heißt wenn in der Changekanten
+%Sammlung ein Wert genau einmal auftaucht entfernen wir diese Kante.
+Suspends=[];
+Linenumbers=[Changes(:,7); Changes(:,9)];
+for i=1:size(Changelines,1)
+   
+   if(sum(Linenumbers==Changelines(i))==1)
+      [row col data]= find([Changes(:,7) Changes(:,9)]==Changelines(i));
+      Suspends=[Suspends ; Changes(row,:)];
+      Changes(row,:)=[];
+       disp('got YA')
+       %Diese Linie brauchen wir also nur am Ende der Situation anpassen da sie keine Abhängigkeiten besitzt
+   end
+end
+
+
+
+
+%Wir werden unsere Liste an Umsteigekanten umsortieren in ein Cell Array
+%Dabei werden im ersten Fach alle Umstiege zwischen 1 und 2 landen
+%im nächsten alle zwischen 1 und 3 sowei 2 und 3, also zählen wir hoch und
+%wenn das maximum des counters passt, nehmen wir sie auf.
+
+Array= cell(1, size(Changelines,1)-1);
+
+for i=2:size(Changelines,1)
+    for j=1:size(Changes,1)
+        if(max(Changes(j,7),Changes(j,9))==Changelines(i))
+        Array{1,i-1}=[Array{1,i-1} ; Changes(j,:)];
+        end
+    end
+end
+
+index = ~cellfun(@isempty, Array);%nicht leere indices sammeln
+Array=Array(index);%Und somit leere Array löschen
+
+%for i=1:size(Array,2)
+%   Array{1,i} 
+%end
+%Array ist noch viel zu grpß was die Kombinationsmöglichkeiten anbelangt,
+%deswegen müssen wir es beschneiden:
+%Array=Cutarray(Array,zeitfenster);
+
+
+
+% %Einen Timer der mir die While schleife nach einer Gewissen Zeit abbricht:
+ t = timer('TimerFcn', 'Control=false; disp(''Timer!'')',... 
+                  'StartDelay',zeitfenster);
+ start(t)
+
+Control=true;
+zaehler=0;
+Bestwait=Inf;
+
+Counter= ones(size(Array,2),1);
+Timer=zeros(size(Changelines,1),1)
+%pause
+
+
+
+while(Control)
+%Über Counter wissen wir, welche Umsteigekanten relevant sind für die
+%Bestimmung der Variablen "Timer"
+%Bei der Bestimmung der Variablen lesen wir den Wert der Kleineren Linie
+%aus und bestimmen in der entstehenden Abhängigkeit den Größeren
+Counter;
+
+Timer=zeros(size(Changelines,1),1); %wir Nullen für alle Fälle die Timer bei jedem Durchlauf, nicht das uns alte Werte etwas versauen
+for i=1:size(Array,2)
+    AcChange=Array{1,i}(Counter(i),:);
+    Changelines;
+    %Bestimmen wir zunächst in welchem Fall wir sind
+    if(max(AcChange(1,7),AcChange(1,9))==AcChange(1,7))%Wir sind in Fall 2
+     
+        Index1=find(Changelines==AcChange(1,9));
+        Index2=find(Changelines==AcChange(1,7));
+        TempTimer=mod(AcChange(1,11)+Timer(Index1),60);
+        Timer(Index2)=TempTimer;
+       % disp('case2')
+        %pause
+    else%max(AcChange(1,7),AcChange(1,9))==AcChange(1,9)%Also Fall 1
+      
+        Index1=find(Changelines==AcChange(1,9));
+        Index2=find(Changelines==AcChange(1,7));
+        TempTimer=60-mod((AcChange(1,11)-Timer(Index2)),60);
+        Timer(Index1)=TempTimer;
+        %disp('case1')
+        %pause
+    end
+end
+%Timer;
+%Jetzt haben wir für alle stark Zusammenhängenden (mehr als eine Changekante für eine Linie)
+%Changekanten Zeitwerte bestimmt und müssen noch Suspends anhängen
+for i=1:size(Suspends, 1)
+   %Bestimmen wir zunächst, welche Linie wir dranhängen,=> Fall 1 oder 2
+   if(sum(Linenumbers==Suspends(i,7))==1)%Wir sind in Fall 2
+       %Suspends(i,:);
+        Index1=find(Changelines==Suspends(i,9));
+        Index2=find(Changelines==Suspends(i,7));
+        TempTimer=mod(Suspends(i,11)+Timer(Index1),60);
+        Timer(Index2)=TempTimer;
+       % disp('case2');
+       % pause
+   else
+      % Suspends(i,:);
+        Index1=find(Changelines==Suspends(i,9));
+        Index2=find(Changelines==Suspends(i,7));
+        TempTimer=60-mod((Suspends(i,11)-Timer(Index2)),60);
+        Timer(Index1)=TempTimer;
+       % disp('case1');
+       % pause
+   end
+end
+%Array
+%Changelines
+%Timer
+% pause
+%Zu diesem Zeitpunkt wissen wir also welche Linien zu welchen Zeiten fahren
+%müssen um die vorher Betrachteten Changekanten mit 0 Wartezeit zu
+%erfüllen.
+%Als Nächstes Berechnen wir die Gesamtwartezeit und Vergleichen sie mit den
+%kommenden Fällen. Insb. sei angemerkt, dass wir bereits einen Fahrplan
+%gestalten könnten!
+%Das Spielbeispiel lässt sich aller Wahrscheinlichkeit nach mit 0 Wartezeit
+%lösen!
+
+%Wir bestimmen nun die Gesamtwartezeit und wenn sie uns gefällt, speichern
+%wir den entsprechenden Counter:
+Waittime=0;
+%Hier verliere ich unmengen an Zeit: also nur neu berechnen was sich
+%wirklich geändert hat!
+%Changelines
+%Timer
+for i=1:size(ChangeAll,1)
+   
+   Waittime=Waittime+ ChangeAll(i,6)*mod(ChangeAll(i,11)+Timer(find(ChangeAll(i,9)==Changelines))-Timer(find(ChangeAll(i,7)==Changelines)),60);
+end
+if(Waittime<Bestwait)
+    Bestwait=Waittime;
+    Endtimer=Timer;
+end
+
+
+%Hier kümmern wir uns nur um unseren Counter   
+%disp('inkrement')
+zaehler=zaehler+1;
+Counter(end)=Counter(end)+1;
+for i=size(Counter,1):-1:1
+    %Überschuß abfangen:
+    if(i==1&&Counter(i)>size(Array{1,i},1))
+        disp('Ende')
+        Control=0;
+        break
+    end
+    if(Counter(i)>size(Array{1,i},1))
+        Counter(i)=1;
+        Counter(i-1)=Counter(i-1)+1;
+    end
+end
+
+end
+delete(t) %das timerobjekt muss wieder weg
+% zaehler
+% Bestwait
+% Endtimer
+toc
+disp('time for a timetable')
+
+%Event(2:end,5)=Event(1:end-1,5);
+%Event(1,5)=0;
+for i=1:size(Endtimer,1)
+    index_line_i=find(Event(:,3)==(Changelines(i)));
+    Event(index_line_i,5)=Event(index_line_i,5)+mod(Endtimer(i),60);
+end
+Event
+Changelines
+Endtimer
+%Event(:,5)=mod(Event(:,5),60);
+timetable=[Event(:,1) Event(:,5)];
+
+%Dateien schreiben:
+
+fileID1 = fopen('.\athen\cost\table_testall.txt','w')
+for i=1:size(timetable,1)
+   fprintf(fileID1, '%u ; %u \n', timetable(i,1), timetable(i,2));
+end
+
+fclose('all')

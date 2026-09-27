@@ -1,0 +1,3 @@
+TARGET_DATASET; grid-multimodal
+COMMANDS_TO_RUN; make isn-regenerate-load
+ADDITIONAL_FILES_TO_COMPARE; basis/Infrastructure-Load.giv

@@ -1,0 +1,5 @@
+lc_eval_extended; true
+ean_eval_extended; true
+lpool_ratio_shortest_paths; 0
+ean_max_nonscheduled_transfer_length; 5000
+ean_multimodal_distribute_passengers_with_timetable; true

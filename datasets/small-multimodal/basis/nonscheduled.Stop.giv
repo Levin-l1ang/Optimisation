@@ -1,0 +1,6 @@
+# stop-id; short-name; long-name; x-coordinate; y-coordinate
+1; 1; One; 100; 100
+2; 2; Two; 100; 200
+3; 3; Three; 200; 200
+4; 4; Four; 200; 100
+5; 5; Five; 260; 260

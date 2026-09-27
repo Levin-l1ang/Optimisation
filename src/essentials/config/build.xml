@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<project name="config" default="build" basedir=".">
+<include file="../../base.xml"/>
+  <target name="build">
+    <javac srcdir="." destdir="." encoding="UTF-8"/>
+  </target>
+</project>

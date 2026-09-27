@@ -1,0 +1,3 @@
+TARGET_DATASET;toy
+COMMANDS_TO_RUN;make ptn-regenerate-load && make lpool-line-pool
+ADDITIONAL_FILES_TO_COMPARE;basis/Pool.giv

@@ -1,0 +1,3 @@
+TARGET_DATASET; grid
+COMMANDS_TO_RUN; make tim-timetable && make tim-timetable-evaluate
+ADDITIONAL_FILES_TO_COMPARE;

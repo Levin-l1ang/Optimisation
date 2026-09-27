@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<project name="LinTim-stop-location-evaluation" default="build-stop-location-evaluation" basedir=".">
+    <include file="../../base.xml"/>
+    <property name="shortest-path-src" value="../../essentials/shortest-paths/src" />
+    <property name="shortest-path" value="../../essentials/shortest-paths"/>
+    <property name="sl-helper" value="../../essentials/sl-helper/PTNTools"/>
+	<target depends="build-slhelper,build-stop-location-evaluation,build-shortest-paths" name="build-all"/>
+    <target name="build-slhelper">
+        <ant target="build-sl-helper" dir="${sl-helper}" inheritAll="false"/>
+    </target>
+    <target name="build-shortest-paths">
+        <ant target="build" dir="${shortest-path}" inheritAll="false"/>
+    </target>
+	<target name="build-stop-location-evaluation" depends="build-slhelper,build-shortest-paths,base-lintim.build-core">
+		<javac srcdir="."
+		       destdir="."
+		       classpath="${shortest-path-src}:${sl-helper}:${jheap-jar}:${jgrapht-jar}:${core-folder}/lintim-core.jar"
+		       includeAntRuntime="true" encoding="UTF-8"/>
+	</target>
+</project>

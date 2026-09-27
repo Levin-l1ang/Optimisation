@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<project name="LinTim-linepool-helper" default="build" basedir=".">
+    <include file="../../base.xml"/>
+    <target depends="build" name="build-all"/>
+    <target name="build" depends="base-lintim.build-core">
+        <javac srcdir="."
+               destdir="."
+               classpath="${jgrapht-jar}:${jheap-jar}:${core-jar}" encoding="UTF-8">
+        </javac>
+    </target>
+</project>

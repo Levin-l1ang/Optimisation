@@ -1,0 +1,19 @@
+# activity_index;type;from_event;to_event;lower_bound;upper_bound;passengers
+1;drive;1;2;1;1;2
+2;drive;3;4;1;1;2
+3;change;2;5;2;7;2
+4;change;2;9;2;7;0
+5;change;4;5;2;7;2
+6;change;4;9;2;7;0
+7;drive;5;6;1;1;4
+8;wait;6;7;0;1;4
+9;drive;7;8;1;1;4
+10;drive;9;10;1;1;0
+11;change;10;11;2;7;0
+12;drive;11;12;1;1;0
+13;change;8;13;2;7;2
+14;change;8;15;2;7;2
+15;change;12;13;2;7;0
+16;change;12;15;2;7;0
+17;drive;13;14;1;1;2
+18;drive;15;16;1;1;2

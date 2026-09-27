@@ -1,0 +1,113 @@
+setting-name; setting-value
+include; "../../Global-Config.cnf"
+# ===========================================================================
+# === LOCAL_ONLY from Global-Config.cnf =====================================
+# ===========================================================================
+ptn_name; helsinki
+ptn_is_undirected; False
+# period length in time units
+period_length; 60
+# conversion factor to draw the ptn
+ptn_draw_conversion_factor; 1
+# the number of time units per minute
+time_units_per_minute; 1
+# the time to wait at each stop
+ptn_stop_waiting_time; 1
+# conversion factor to convert length in Edge.giv to kilometers
+gen_conversion_length; 1
+# conversion factor to convert the distance between two stations from coordinates to meters
+gen_conversion_coordinates; 1
+# lower bound on wait activities in the ean
+ean_default_minimal_waiting_time; 1
+# upper bound on wait acitivies in the ean
+ean_default_maximal_waiting_time; 3
+# lower bound on change activities in the ean
+ean_default_minimal_change_time; 3
+# upper bound on change activities in the ean
+ean_default_maximal_change_time; 62
+# the penalty for each change in the ean
+ean_change_penalty; 5
+# generic infrastructure capacity weight, set modality specific values if needed
+gen_infrastructure_capacity_weight; 1
+# ===========================================================================
+# === Multimodal Settings =============================================
+# ===========================================================================
+modalities_all; [bus, tram, rail, subway, ferry, walk]
+fixed_timetable_modalities; []
+bus.modality_category; line-based
+bus.gen_vehicle_speed; 50
+tram.modality_category; line-based
+tram.gen_vehicle_speed; 50
+rail.modality_category; line-based
+rail.gen_vehicle_speed; 150
+subway.modality_category; line-based
+subway.gen_vehicle_speed; 75
+ferry.modality_category; line-based
+ferry.gen_vehicle_speed; 40
+walk.modality_category; nonscheduled
+walk.gen_vehicle_speed; 5
+bus.ptn_is_undirected; false
+tram.ptn_is_undirected; false
+rail.ptn_is_undirected; false
+subway.ptn_is_undirected; false
+ferry.ptn_is_undirected; false
+walk.ptn_is_undirected; false
+bus.gen_passengers_per_vehicle; 80
+tram.gen_passengers_per_vehicle; 150
+rail.gen_passengers_per_vehicle; 300
+subway.gen_passengers_per_vehicle; 200
+ferry.gen_passengers_per_vehicle; 225
+walk.gen_passengers_per_vehicle; 1
+# Line costs
+bus.lpool_costs_fixed; 68
+bus.lpool_costs_length; 0.6
+bus.lpool_costs_edges; 0
+bus.lpool_costs_vehicles; 0
+tram.lpool_costs_fixed; 160
+tram.lpool_costs_length; 4.5
+tram.lpool_costs_edges; 0
+tram.lpool_costs_vehicles; 0
+rail.lpool_costs_fixed; 220
+rail.lpool_costs_length; 10
+rail.lpool_costs_edges; 0
+rail.lpool_costs_vehicles; 0
+subway.lpool_costs_fixed; 300
+subway.lpool_costs_length; 14
+subway.lpool_costs_edges; 0
+subway.lpool_costs_vehicles; 0
+ferry.lpool_costs_fixed; 250
+ferry.lpool_costs_length; 6
+ferry.lpool_costs_edges; 0
+ferry.lpool_costs_vehicles; 0
+# ===========================================================================
+# === Optimized Visualization  ==============================================
+# ===========================================================================
+# the scale of the plotted image
+lpool_opt_visualisation_plot_scale; 2
+lpool_opt_visualisation_plot_margins; 0.1
+lpool_opt_visualisation_line_distance; 1
+lpool_opt_visualisation_line_width; 3
+lpool_opt_visualisation_merge_lines; true
+lpool_opt_visualisation_draw_legend; true
+# the scale of the legend in plotted image
+lpool_opt_visualisation_legend_scaling; 0.4
+# location of legend (best, upper/center/lower right/center/left)
+lpool_opt_visualisation_legend_location; best
+# if true, scales nodes depending on number of lines they have
+lpool_opt_visualisation_scale_nodes; true
+lpool_opt_visualisation_node_scaling; 1.001
+# min size when scaling is on
+lpool_opt_visualisation_min_node_size; 50
+# size for nodes when scaling is off
+lpool_opt_visualisation_def_node_size; 500
+lpool_opt_visualisation_node_labels; false
+# font size of node labels
+lpool_opt_visualisation_node_label_size; 10
+#multimodal
+lpool_opt_visualisation_same_color_modality; false
+# ===========================================================================
+# === State / Experiments / Automatization ==================================
+# ===========================================================================
+include_if_exists; "State-Config.cnf"
+include_if_exists; "Private-Config.cnf"
+include_if_exists; "After-Config.cnf"

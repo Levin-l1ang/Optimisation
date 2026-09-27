@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="lintim-core">
+    <include file="../../base.xml"/>
+    <property name="src-dir" value="src" />
+    <property name="test-dir" value="test/src" />
+    <property name="build-dir" value="build" />
+    <property name="doc-dir" value="docs" />
+    <property name="lib-folder" value="../../../libs"/>
+    <property name="jar-file" value="lintim-core.jar" />
+    <property name="jgrapht-jar" value="${lib-folder}/jgrapht/jgrapht-core-1.5.0.jar" /> <!-- Pfad zur JGraphT JAR-Datei -->
+    <path id="lintim-core.classpath">
+        <pathelement location="."/>
+        <pathelement location="${jgrapht-jar}"/> <!-- JGraphT JAR zum Classpath hinzufügen -->
+    </path>
+    <path id="lintim-core-testing.classpath">
+        <pathelement location="${junit-jar}"/>
+        <pathelement location="${hamcrest-jar}"/>
+        <pathelement location="build/" />
+        <pathelement location="${jgrapht-jar}"/> <!-- Auch hier die JGraphT JAR hinzufügen, wenn nötig -->
+    </path>
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+            <file name="${jar-file}" />
+        </delete>
+    </target>
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <target name="init-docs">
+        <mkdir dir="${doc-dir}"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-project,build-jar" name="build"/>
+    <target name="build-project" depends="build-solver-independent, build-xpress, build-gurobi, build-cplex, build-scip, build-glpk" />
+    <target name="build-solver-independent" depends="init">
+        <javac destdir="${build-dir}" srcdir="${src-dir}" encoding="UTF-8">
+            <classpath refid="lintim-core.classpath"/>
+            <exclude name="net/lintim/solver/impl/"/>
+        </javac>
+    </target>
+    <target name="build-glpk" depends="init">
+        <javac destdir="${build-dir}" srcdir="${src-dir}" encoding="UTF-8">
+            <classpath refid="lintim-core.classpath"/>
+            <include name="net/lintim/solver/impl/GLPKSolver.java"/>
+            <include name="net/lintim/solver/impl/NativeConstraint.java"/>
+            <include name="net/lintim/solver/impl/GLPKModel.java"/>
+            <include name="net/lintim/solver/impl/NativeLinearExpression.java"/>
+            <include name="net/lintim/solver/impl/NativeVariable.java"/>
+        </javac>
+    </target>
+    <target name="build-tests" depends="build">
+        <javac destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-core-testing.classpath"/>
+            <src path="${test-dir}"/>
+        </javac>
+    </target>
+    <target name="test" depends="build-tests">
+        <junit printsummary="yes">
+            <classpath refid="lintim-core-testing.classpath"/>
+        </junit>
+    </target>
+    <target name="build-xpress" if="${xpress.installed}" depends="init">
+        <echo>Xpress installed</echo>
+        <javac srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-core.classpath"/>
+            <include name="net/lintim/solver/impl/XpressSolver.java"/>
+            <include name="net/lintim/solver/impl/XpressHelper.java"/>
+            <include name="net/lintim/solver/impl/XpressModel.java"/>
+            <include name="net/lintim/solver/impl/XpressVariable.java"/>
+            <include name="net/lintim/solver/impl/XpressLinearExpression.java"/>
+            <include name="net/lintim/solver/impl/XpressConstraint.java"/>
+        </javac>
+    </target>
+    <target name="build-cplex" if="${cplex.installed}" depends="init">
+        <echo>Cplex installed</echo>
+        <javac srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-core.classpath"/>
+            <include name="net/lintim/solver/impl/CplexSolver.java"/>
+            <include name="net/lintim/solver/impl/CplexConstraint.java"/>
+            <include name="net/lintim/solver/impl/CplexModel.java"/>
+            <include name="net/lintim/solver/impl/CplexLinearExpression.java"/>
+            <include name="net/lintim/solver/impl/CplexVariable.java"/>
+        </javac>
+    </target>
+    <target name="build-gurobi" if="${gurobi.installed}" depends="init">
+        <echo>Gurobi installed</echo>
+        <javac srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-core.classpath"/>
+            <include name="net/lintim/solver/impl/GurobiSolver.java"/>
+            <include name="net/lintim/solver/impl/GurobiConstraint.java"/>
+            <include name="net/lintim/solver/impl/GurobiModel.java"/>
+            <include name="net/lintim/solver/impl/GurobiLinearExpression.java"/>
+            <include name="net/lintim/solver/impl/GurobiVariable.java"/>
+            <include name="net/lintim/solver/impl/GurobiHelper.java"/>
+        </javac>
+    </target>
+    <target name="build-scip" if="${scip.installed}" depends="init">
+        <echo>Scip installed</echo>
+        <javac includeantruntime="true" debug="true" destdir="${build-dir}" source="${source}" target="${target}" encoding="UTF-8">
+            <classpath refid="lintim-core.classpath"/>
+            <src path="${src-dir}"/>
+            <include name="net/lintim/solver/impl/SCIPSolver.java"/>
+            <include name="net/lintim/solver/impl/SCIPConstraint.java"/>
+            <include name="net/lintim/solver/impl/SCIPModel.java"/>
+            <include name="net/lintim/solver/impl/SCIPLinearExpression.java"/>
+            <include name="net/lintim/solver/impl/SCIPVariable.java"/>
+        </javac>
+    </target>
+    <target name="build-jar" depends="build-project">
+        <jar destfile="${jar-file}" basedir="${build-dir}"/>
+    </target>
+    <target name="build-documentation" depends="init-docs, build-documentation-without-solver">
+    </target>
+    <target name="build-documentation-without-solver" depends="init-docs">
+        <echo message="Building documentation" />
+        <javadoc sourcepath="${src-dir}" destdir="${doc-dir}">
+        <excludepackage name="net.lintim.solver.impl.*"/>
+        </javadoc>
+    </target>
+
+</project>

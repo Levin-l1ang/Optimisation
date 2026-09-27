@@ -1,0 +1,22 @@
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines without a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = false
+# Set default charset
+charset = utf-8
+# 4 space indentation
+indent_style = space
+indent_size = 4
+# remove whitespaces after last character and before newline
+trim_trailing_whitespace = true
+spaces_around_operators = true
+
+# Tab indentation (no size specified)
+[Makefile]
+indent_style = tab
+
+[Base-Makefile]
+indent_style = tab

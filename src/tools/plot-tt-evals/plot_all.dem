@@ -1,0 +1,15 @@
+set terminal postscript color
+set output "plot.ps"
+set pointsize 3
+set title "Omega - OD" font "Arial, 20"
+set grid 
+set tics scale 2
+set tics font "Arial, 20"
+plot "Plot_1_1/sall.txt" with lines lw 3 title 'Average + Formula 1', \
+"Plot_1_2/sall.txt" with lines lw 3 title 'Average + Formula 2', \
+"Plot_2_1/sall.txt" with lines lw 3 title 'Lower + Formula 1', \
+"Plot_2_2/sall.txt" with lines lw 3 title 'Lower + Formula 2', \
+"Plot_3_1/sall.txt" with lines lw 3 title 'Upper + Formula 1', \
+"Plot_3_2/sall.txt" with lines lw 3 title 'Upper + Formula 2', \
+"Plot_4_1/sall.txt" with lines lw 3 title 'Length + Formula 1', \
+"Plot_4_2/sall.txt" with lines lw 3 title 'Length + Formula 2'

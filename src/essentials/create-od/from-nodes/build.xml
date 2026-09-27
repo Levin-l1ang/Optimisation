@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="lintim-od-from-nodes">
+    <include file="../../../base.xml"/>
+    <property name="build-dir" value="build" />
+    <property name="doc-dir" value="docs" />
+    <path id="lintim-od-from-nodes.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-jar}"/>
+    </path>
+    <!-- Clean -->
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <!-- Create necessary folders -->
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <!-- Build tasks -->
+    <target depends="build-project" name="build"/>
+    <target name="build-project" depends="init,base-lintim.build-core" >
+        <javac includeantruntime="true" debug="true" destdir="${build-dir}" source="${source}" target="${target}" encoding="UTF-8">
+            <src path="."/>
+            <classpath refid="lintim-od-from-nodes.classpath"/>
+        </javac>
+    </target>
+
+</project>

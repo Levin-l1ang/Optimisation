@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="lintim-timetabling-periodic-ip">
+    <include file="../../../base.xml"/>
+    <property name="build-dir" value="build" />
+    <property name="src-dir" value="src" />
+    <property name="doc-dir" value="docs" />
+    <path id="lintim-timetabling-periodic-ip.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-folder}/lintim-core.jar"/>
+    </path>
+    <!-- Clean -->
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <!-- Create necessary folders -->
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <target name="init-docs">
+        <mkdir dir="${doc-dir}"/>
+    </target>
+    <!-- Build tasks -->
+    <target depends="base-lintim.build-core,build-project" name="build"/>
+    <target name="build-project" depends="build-with-xpress, build-with-gurobi, build-with-core" />
+    <target name="build-documentation" depends="init-docs">
+        <echo message="Building documentation" />
+        <javadoc sourcepath="." destdir="${doc-dir}"/>
+    </target>
+    <!-- Solver specific build targets, will only be used if the respective solvers are installed -->
+    <target name="build-with-xpress" depends="init" if="${xpress.installed}">
+        <echo>Xpress installed</echo>
+        <javac srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-timetabling-periodic-ip.classpath"/>
+            <exclude name="net/lintim/algorithm/timetabling/periodic/PespIpGurobi.java" />
+        </javac>
+    </target>
+    <target name="build-with-gurobi" depends="init" if="${gurobi.installed}">
+        <echo>Gurobi installed</echo>
+        <javac srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-timetabling-periodic-ip.classpath"/>
+            <exclude name="net/lintim/algorithm/timetabling/periodic/PespIpXpress.java" />
+        </javac>
+    </target>
+    <target name="build-with-core" depends="init">
+        <javac srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-timetabling-periodic-ip.classpath"/>
+            <exclude name="net/lintim/algorithm/timetabling/periodic/PespIpXpress.java" />
+            <exclude name="net/lintim/algorithm/timetabling/periodic/PespIpGurobi.java" />
+        </javac>
+    </target>
+
+</project>

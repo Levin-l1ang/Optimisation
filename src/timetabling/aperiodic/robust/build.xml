@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<project name="LinTim-robust-aperioric-timetabling" default="build-robust-timetabling" basedir=".">
+	<property name="enable_debug" value="false"/>
+	<property name="enable_optimize" value="true"/>
+	<target depends="build-config,build-statistic,build-javalib-Tools,build-javalib-EAN,build-robust-timetabling" name="build-all"/>
+	<target name="build-config">
+		<javac srcdir="../../../essentials/config"
+		       destdir="../../../essentials/config"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+	</target>
+	<target name="build-statistic">
+		<javac srcdir="../../../essentials/statistic"
+		       destdir="../../../essentials/statistic"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+        </target>
+	<target name="build-javalib-Tools">
+		<javac srcdir="../../../essentials/dm-helper/Tools"
+		       destdir="../../../essentials/dm-helper/Tools"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+	</target>
+	<target name="build-javalib-EAN" depends="build-config,build-javalib-Tools">
+		<javac srcdir="../../../essentials/dm-helper/EAN"
+		       destdir="../../../essentials/dm-helper/EAN"
+		       classpath="../../../essentials/config:../../../essentials/dm-helper/Tools"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+	</target>
+	<target name="build-robust-timetabling" depends="build-config,build-statistic,build-javalib-Tools,build-javalib-EAN">
+		<javac srcdir="."
+		       destdir="."
+		       classpath="../../../essentials/config:../../../essentials/dm-helper/Tools:../../../essentials/dm-helper/EAN"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+	</target>
+</project>

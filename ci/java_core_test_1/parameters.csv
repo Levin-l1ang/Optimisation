@@ -1,0 +1,3 @@
+TARGET_DATASET; lowersaxony
+COMMANDS_TO_RUN; make ptn-regenerate-load && make lpool-line-pool && make lc-line-concept && make ean && make tim-timetable && make ro-rollout && make ro-trips && make vs-vehicle-schedules && make ro-trips-evaluate && make vs-vehicle-schedules-evaluate && make tim-transform-to-visum && make ptn-draw
+ADDITIONAL_FILES_TO_COMPARE; timetabling/Timetable-visum-nodes.tim, graphics/ptn-graph.dot

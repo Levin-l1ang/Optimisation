@@ -1,0 +1,3 @@
+TARGET_DATASET; template
+COMMANDS_TO_RUN; make config-fill-config-from-visum && make ptn-read-infrastructure-from-visum && make ptn-read-system-routes-from-visum && make od-read-node-od-from-visum && make od-distribute-from-nodes  && make ptn-regenerate-load && make lpool-line-pool && make lc-line-concept && make ean && make tim-timetable && make tim-transform-to-visum && make ptn-evaluate
+ADDITIONAL_FILES_TO_COMPARE; 

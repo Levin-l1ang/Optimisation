@@ -1,0 +1,3 @@
+TARGET_DATASET; mandl-multimodal
+COMMANDS_TO_RUN; make mm-data modality=line && make lpool-adapt-line-pool && rm basis/State-Config.cnf && make mm-lc-rc-concept && make mm-lc-rc-concept-evaluate
+ADDITIONAL_FILES_TO_COMPARE; line-planning/ridepooling.Ridepooling-Concept.lin, line-planning/line.Line-Concept.lin

@@ -1,0 +1,3 @@
+TARGET_DATASET; mandl-multimodal
+COMMANDS_TO_RUN; make mm-ptn-regenerate-load && make mm-data modality=ridepooling && make rpool-ridepooling-pool && make rc-ridepooling-concept && make rc-ridepooling-concept-evaluate
+ADDITIONAL_FILES_TO_COMPARE; basis/ridepooling.Ridepooling-Pool.giv, line-planning/ridepooling.Ridepooling-Concept.lin, line-planning/ridepooling.Ridepooling-Concept-Vehicle-Frequencies.lin, statistic/ridepooling.statistic.sta

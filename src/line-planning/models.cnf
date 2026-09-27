@@ -1,0 +1,9 @@
+# lc_model value; src subdirectory
+"cost"; "cost-model"
+"cost_H6"; "cost-model"
+"cost_H7"; "cost-model"
+"direct"; "direct-travellers"
+"cuttingdown"; "matching"
+"cost_olpe"; "cost-model"
+"mult-cost-direct"; "cost-model-direct-travellers"
+"mult-cost-direct-relax"; "cost-model-direct-travellers"

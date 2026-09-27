@@ -1,0 +1,141 @@
+draw-ptn:
+Plots a graph of the PTN data.
+
+evaluate-ptn:
+Evaluates the PTN data.
+
+directify-ptn:
+Converts undirected lines to directed ones.
+
+_directify-ptn:
+Removes line orientation.
+
+evaluate-od:
+Evaluates the OD matrix.
+
+asymmetrize-od:
+?
+
+randomize-od:
+Randomizes entries of the OD matrix.
+
+dependencies-line-concept:
+
+full-dependencies-line-concept:
+
+line-concept:
+Calculates a line concept.
+
+line-pool:
+
+regenerate-load:
+Calculates edge loads from OD data.
+
+draw-line-graph:
+Plots a graph of the PTN data with edges for served lines.
+
+#line-evaluation:
+
+eval-lines:
+Evaluates the line concept.
+
+evaluate-lines:
+Evaluates the line concept (different version).
+
+dependencies-periodic-timetable:
+
+full-dependencies-periodic-timetable:
+
+periodic-timetable:
+Calculates a periodic timetable.
+
+ptn2ean:
+Converts a PTN with line concept to an EAN.
+
+reroute-passengers:
+Recalculates EAN activity weights based on the periodic timetable.
+
+draw-timetable:
+Plots the timetable.
+
+periodic-timetable-odpesp:
+
+periodic-rollout:
+
+periodic-rollin:
+
+evaluate-timetable:
+Evaluates the periodic timetable (different version).
+
+evaluate-ean:
+Evaluates the EAN data.
+
+eval-timetable:
+Evaluates the periodic timetable
+
+eval-timetable-maxtrains:
+
+robust-all-robust-timetabling:
+
+robust-activities-proportional:
+
+robust-activities-exponential:
+
+robust-activities-random:
+
+dependencies-disposition-timetable:
+
+full-dependencies-disposition-timetable:
+
+disposition-timetable:
+Calculates a disposition timetable.
+
+rollout:
+Transforms the EAN with periodic timetable to an EAN with aperiodic timetable.
+
+delays:
+Generates delays on the aperiodic EAN.
+
+draw-delay-graph:
+
+delay-management-simulation:
+
+dependencies-eval-disposition-timetable:
+
+eval-disposition-timetable:
+
+batch-eval-disposition-timetable:
+
+dependencies-vehicle-schedules:
+
+full-dependencies-vehicle-schedules:
+
+vehicle-schedules:
+Calculates a vehicle schedule.
+
+add-circulations-to-ean:
+Adds vehicle circulation activities to the aperiodic EAN.
+
+trips:
+Finds vehicle trips in the aperiodic EAN.
+
+eval-vs:
+Evaluates the vehicle schedule.
+
+terminate-solver:
+
+kill-solver:
+
+clone:
+
+# Currently out of order due to possible loops in lines
+cut-stations:
+
+gui:
+Compiles the LinTim graphical user interface.
+
+update-makefiles:
+
+clean:
+
+all-clean:

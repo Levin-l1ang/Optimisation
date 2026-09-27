@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="lintim-export-gtfs">
+    <include file="../../base.xml"/>
+    <property name="build-dir" value="build" />
+    <property name="src-dir" value="src" />
+    <path id="lintim-export-gtfs.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-jar}"/>
+    </path>
+    <!-- Clean -->
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <!-- Create necessary folders -->
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <!-- Build tasks -->
+    <target depends="base-lintim.build-core,init" name="build">
+        <javac includeantruntime="true" debug="true" srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-export-gtfs.classpath"/>
+        </javac>
+    </target>
+
+</project>

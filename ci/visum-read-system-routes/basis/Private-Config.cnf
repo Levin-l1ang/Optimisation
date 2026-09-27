@@ -1,0 +1,5 @@
+sl_model; all
+sl_max_walking_time; 3600
+lpool_restrict_terminals; true
+ean_respect_change_stations; true
+visum_respect_nodes_when_reading_ptn; true

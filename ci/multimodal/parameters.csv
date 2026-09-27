@@ -1,0 +1,3 @@
+TARGET_DATASET; small-multimodal
+COMMANDS_TO_RUN; make mm-ptn-regenerate-load && make mm-data modality=red && make ptn-regenerate-load && make lpool-line-pool && make lc-line-concept && make ean && make tim-timetable && make mm-data modality=green && make ptn-regenerate-load && make lpool-line-pool && make lc-line-concept && make ean && make tim-timetable && rm basis/State-Config.cnf && make mm-ean && make mm-tim-timetable && make mm-ptn-evaluate && make mm-lc-rc-concept-evaluate && make mm-ean-evaluate && make mm-tim-timetable-evaluate
+ADDITIONAL_FILES_TO_COMPARE; 

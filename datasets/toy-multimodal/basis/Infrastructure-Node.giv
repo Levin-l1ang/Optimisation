@@ -1,0 +1,9 @@
+# node-id; name; x-coordinate; y-coordinate; possible-stop-for-modalities
+1; 1; 100; 200; [bus, tram]
+2; 2; 200; 300; [bus, tram]
+3; 3; 200; 200; [bus, tram]
+4; 4; 200; 100; [bus]
+5; 5; 300; 100; [bus, tram]
+6; 6; 300; 200; [bus, tram]
+7; 7; 300; 300; [bus, tram]
+8; 8; 400; 200; [bus, tram]

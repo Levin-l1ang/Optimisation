@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Derived from an Eclipse auto generated build.xml file. -->
+<project basedir="." default="build" name="JavaTools">
+    <include file="../../base.xml"/>
+    <property environment="env" />
+    <property name="sourcedir" value="src" />
+    <path id="JavaTools.classpath">
+        <pathelement location="bin" />
+        <pathelement location="${jgrapht-jar}" />
+        <pathelement location="${jheap-jar}" />
+        <pathelement location="${apache-commons-jar}" />
+        <pathelement location="${supercsv-jar}" />
+        <pathelement location="${core-jar}"/>
+    </path>
+    <target name="build-gurobi" if="gurobi.installed">
+        <echo message="Gurobi installed!" />
+        <javac destdir="bin" sourcepath="" srcdir="${sourcedir}" encoding="UTF-8">
+            <include name="net/lintim/callback/DefaultCallbackGurobi.java" />
+            <include name="net/lintim/generator/PeriodicTimetableGeneratorGurobi.java" />
+            <classpath refid="JavaTools.classpath" />
+        </javac>
+    </target>
+    <target name="build-cplex" if="cplex.installed">
+        <echo message="Cplex installed!" />
+        <javac destdir="bin" sourcepath="" srcdir="${sourcedir}" encoding="UTF-8">
+            <include name="net/lintim/callback/DefaultCallbackCplex.java" />
+            <include name="net/lintim/generator/LineConceptGeneratorCplex.java" />
+            <include name="net/lintim/generator/PeriodicTimetableOdpespGeneratorCplex.java"/>
+            <include name="net/lintim/generator/PeriodicTimetableGeneratorCplex.java" />
+            <classpath refid="JavaTools.classpath" />
+        </javac>
+    </target>
+    <target name="build-xpress" if="xpress.installed">
+        <echo message="Xpress installed!" />
+        <javac destdir="bin" sourcepath="" srcdir="${sourcedir}" encoding="UTF-8" >
+            <include name="net/lintim/generator/PeriodicTimetableGeneratorXpress.java" />
+            <classpath refid="JavaTools.classpath" />
+        </javac>
+    </target>
+    <target name="main-build" depends="base-lintim.build-core">
+        <mkdir dir="bin" />
+        <javac destdir="bin" includeantruntime="true" encoding="UTF-8" >
+            <src path="${sourcedir}" />
+            <exclude name="net/lintim/callback/DefaultCallbackCplex.java" />
+            <exclude name="net/lintim/callback/DefaultCallbackGurobi.java" />
+            <exclude name="net/lintim/generator/LineConceptGeneratorCplex.java" />
+            <exclude name="net/lintim/generator/PeriodicTimetableOdpespGeneratorCplex.java"/>
+            <exclude name="net/lintim/generator/PeriodicTimetableGeneratorCplex.java" />
+            <exclude name="net/lintim/generator/PeriodicTimetableGeneratorGurobi.java" />
+            <exclude name="net/lintim/generator/PeriodicTimetableGeneratorXpress.java" />
+            <classpath refid="JavaTools.classpath" />
+        </javac>
+    </target>
+    <target name="clean">
+        <delete dir="bin" />
+    </target>
+    <target name="build" depends="main-build,build-gurobi,build-cplex,build-xpress">
+    </target>
+</project>

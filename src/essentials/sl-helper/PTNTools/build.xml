@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<project name="LinTim-sl-helper" default="build-sl-helper" basedir=".">
+    <include file="../../../base.xml"/>
+    <property name="shortest-path-src" value="../../shortest-paths/src" />
+    <property name="shortest-path" value="../../shortest-paths"/>
+	<target depends="build-shortest-paths,build-sl-helper" name="build-all"/>
+    <target name="build-shortest-paths">
+        <ant target="build" dir="${shortest-path}" inheritAll="false"/>
+    </target>
+	<target name="build-sl-helper" depends="build-shortest-paths">
+		<javac srcdir="."
+		       destdir="."
+               classpath="${jgrapht-jar}:${jheap-jar}:${shortest-path-src}" encoding="UTF-8" />
+	</target>
+</project>

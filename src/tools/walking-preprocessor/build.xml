@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="lintim-walking-preprocessor">
+    <include file="../../base.xml"/>
+    <property name="build-dir" value="build" />
+    <property name="src-dir" value="src" />
+    <path id="lintim-walking-preprocessor.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-jar}"/>
+    </path>
+    <!-- Clean -->
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <!-- Create necessary folders -->
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <!-- Build tasks -->
+    <target depends="build-project" name="build"/>
+    <target name="build-project" depends="init,base-lintim.build-core" >
+        <javac destdir="${build-dir}" srcdir="${src-dir}" encoding="UTF-8">
+            <classpath refid="lintim-walking-preprocessor.classpath"/>
+        </javac>
+    </target>
+
+</project>

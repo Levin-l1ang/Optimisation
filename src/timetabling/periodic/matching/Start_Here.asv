@@ -1,0 +1,136 @@
+function timetable = Start_Here(configfile)
+
+clear all
+close all
+clc
+%Diese Datei bild den Rumpf der Verfahren und wird als einzige direkt aufgerufen%
+%Angefangen mit der Verarbeitung der Eingabedaten, werden danach
+%sequentiell alle 9 Möglichkeiten zur Fahrplangenerierung angestoßen um
+%schließlich die Fahrpläne in txt dateien umzulenken.
+
+%% Datenverarbeitung:
+
+[configparam, value] = textread(configfile,'%q %q','delimiter',';','endofline','\r\n', 'commentstyle','shell');
+Config = contains.Map(configparam,value);
+
+%Wir lesen zwar die LineIDs aber werden sie intern selber durchnummerieren
+
+[activityId, edgetype, tailEventId, headEventId, lowerBound, upperBound, passengers] = textread(strcat('./',Config('default_activities_periodic_file')),'%u %s %u %u %u %u %f','delimiter' ,';','endofline','\r\n', 'commentstyle'	,'shell');
+passengers=round(passengers);
+Activity=[activityId tailEventId headEventId lowerBound upperBound passengers];
+
+
+[eventId, ~, stopId, lineId, passengers]=textread(strcat('./',Config('default_events_periodic_file')),'%u %s %u %u %f','delimiter' ,';','endofline','\r\n', 'commentstyle'	,'shell');
+passengers=round(passengers);
+
+Event=[eventId, stopId, lineId, passengers, zeros(size(eventId,1),1), ones(size(eventId,1),1)];
+%In Spalte 5 werden wir den Startzeitpunkt des Events ablegen
+%Spalte 6 dient als Platzhalter, falls wir doch mit den Frequenzen arbeiten
+%wollen
+
+
+%% Umnummerierung
+
+%Um die Linien sauber zu trennen, wird jede Rücklinien inkrementiert und
+%zwar um den Wert der größten Linien, => rueckfahrt 1 entspricht 1+max
+
+maxline=size(unique(lineId),1); 
+%%hier nummerieren wir neu durch:
+NEW_lineIDs=zeros(size(lineId));
+OLD_IDs=unique(lineId);
+
+for i=1:maxline;
+   NEW_LineIDs(find(lineId==OLD_IDs(i)))=i;
+end
+Event(:,3)=NEW_LineIDs;
+
+rueck=0;
+for i=1: size(Event,1)-1
+    if(lineId(i)==lineId(i+1)) %Wir also noch in der gleichen Linie sind
+        thisedge=ismember([tailEventId headEventId],[i i+1],'rows');
+        
+        if(isempty(find(thisedge, 1)))%Wir keine Kante gefunden haben=> also die rückfahrt betrachten
+            rueck=maxline;
+        else %Also zwischen zwei Events eine Kante besteht
+            
+            Event(i+1,5) =Event(i,5)+ Activity(thisedge, 4);%Hier summieren wir die Fahrzeit auf, somit wissen wann welche Linie wo ist
+        end
+        Event(i+1,3)=Event(i+1,3)+rueck;
+        
+    else %Wir also eine neue Linie betrachten
+        rueck=0;
+    end
+end
+%% Verarbeitung der Changekanten aus der Activity Matrix:
+%Wir suchen alle Changekanten mit mehr als 0 Passagieren raus:
+changeedges=ismember(edgetype,'"change"');
+Changes=Activity(changeedges,:);
+Changes=Changes(find(Changes(:,6)),:);
+
+%Als nächstes bestimmen wir die zugehörigen Linien und Zeitpunkte der
+%passenden Event:
+%In Changes spalte 7 und 8 stehen somit die Linien und Arrival Zeiten
+%In Changes spalte 9 und 10 stehen somit die Linien und Departure Zeiten
+Changes= [Changes Event(Changes(:,2),3) Event(Changes(:,2),5) Event(Changes(:,3),3) Event(Changes(:,3),5)];
+%Die benötigten Zeiten für den Umstieg befinden sich in der 4ten Spalte
+
+%Somit können wir bereits unsere Rechenkonstante bestimmen:
+%Departure - (Arrival+Change) und diese Landet in Spalte 11
+Konstanten=Changes(:,10) - (Changes(:,8)+Changes(:,4));
+Changes=[Changes Konstanten];
+Changelines=unique([Changes(:,7); Changes(:,9)]);
+
+
+%% Aufruf vom Rumpf:
+%Der Aufruf findet jeweils pro Gewicht statt und iteriert dann über die 3
+%Verfahren
+if(strmatch(Config('match-weight'),'w1')==1)
+    matchweight = 1;
+elseif(strmatch(Config('match-weight'),'w2')==1)
+    matchweight = 1;
+elseif(strmatch(Config('match-weight'),'w3')==1)
+    fprintf('No valid value specified for parameter ''match-weight''. Process stopped.');
+    return;
+else
+    
+end
+pause
+timetable1 = [];
+if(strmatch(Config('line-matching'),'greedy')==1)
+    timetable1= begin4(1,matchweight, Event,Changes);
+    fileID = fopen('.\timetabling\table_greedy.txt','w');
+    for i=1:size(timetable1,1)
+       fprintf(fileID, '%u ; %u \n', timetable1(i,1), timetable1(i,2));
+    end
+elseif(strmatch(Config('line-matching'),'matchgreedy')==1)
+    timetable1= begin4(2,matchweight, Event,Changes);
+    fileID = fopen('.\timetabling\table_matchgreedy.txt','w');
+    for i=1:size(timetable1,1)
+       fprintf(fileID, '%u ; %u \n', timetable1(i,1), timetable1(i,2));
+    end
+elseif(strmatch(Config('line-matching'),'matchperfect')==1)
+    timetable1= begin4(3,matchweight, Event,Changes);
+    fileID = fopen('.\timetabling\table_matchperfect.txt','w');
+    for i=1:size(timetable1,1)
+       fprintf(fileID, '%u ; %u \n', timetable1(i,1), timetable1(i,2));
+    end
+else
+    fprintf('No valid value specified for parameter ''line-matching''. Process stopped.');
+    return;
+end
+
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+

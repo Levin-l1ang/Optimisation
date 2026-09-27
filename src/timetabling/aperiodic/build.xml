@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project name="LinTim-aperioric-timetabling" default="build-aperiodic-timetabling" basedir=".">
+	<property name="enable_debug" value="false"/>
+	<property name="enable_optimize" value="true"/>
+	<target depends="build-helpers,build-aperiodic-timetabling" name="build-all"/>
+	<target name="build-helpers">
+		<javac srcdir="../../essentials/eigenmodell-helper"
+		       destdir="../../essentials/eigenmodell-helper"
+		       classpath="../../essentials/eigenmodell-helper/lib/annotations.jar"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+	</target>
+	<target name="build-aperiodic-timetabling" depends="build-helpers">
+		<javac srcdir="src"
+		       destdir="src"
+		       classpath="../../essentials/eigenmodell-helper"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+	</target>
+</project>

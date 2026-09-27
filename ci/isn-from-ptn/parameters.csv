@@ -1,0 +1,3 @@
+TARGET_DATASET; small-multimodal
+COMMANDS_TO_RUN; make isn-from-ptns && make isn-evaluate
+ADDITIONAL_FILES_TO_COMPARE; basis/Infrastructure-Node.giv, basis/Infrastructure-Link.giv, basis/Infrastructure-OD.giv, basis/red.PTN-Infrastructure-Map.giv, basis/green.PTN-Infrastructure-Map.giv, basis/nonscheduled.PTN-Infrastructure-Map.giv

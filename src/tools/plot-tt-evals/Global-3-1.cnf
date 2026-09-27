@@ -1,0 +1,171 @@
+setting-name; setting-value
+# ==============================================================================
+# It's useless to change the config_header since it is needed before anything
+# else can be read and has to be build-in therefore. The entry here is just for
+# look-up purposes.
+# ------------------------------------------------------------------------------
+# Default PTN-atributes
+ptn_name; "Default-Network"
+# ------------------------------------------------------------------------------
+# Headers
+config_header; "setting-name; setting-value"
+stops_header; "stop-id; short-name; long-name"
+edges_header; "edge-id; left-stop-id; right-stop-id; length; lower-bound; upper-bound"
+headways_header; "edge-id; headway"
+lines_header; "line-id; edge-order; edge-id; frequency"
+events_header; "event-id; type; stop-id; vehicle-id; passengers"
+events_header_periodic; "event_id; type; stop-id; line-id; passengers"
+activities_header; "activity-id; type; tail-event-id; head-event-id; lower-bound; upper-bound; passengers"
+activities_header_periodic; "activity-id; type; tail-event-id; head-event-id; lower-bound; upper-bound; passengers"
+timetable_header; "event-id; time"
+timetable_header_periodic; "event-id; time"
+loads_header; "edge-id; load; lower-frequency; upper-frequency"
+od_header; "left-stop-id; right-stop-id; customers"
+cngstops_header; "stop-id; line-id; frequency-id"
+cngedges_header; "tail-stop-id; head_stop-id; weight; customers"
+line_stops_header; "stop-id; line-id; frequency-id"
+line_edges_header; "tail-stop-id; head-stop-id; lower-bound; upper-bound; passengers"
+# ------------------------------------------------------------------------------
+# Default filenames
+default_stops_file; "basis/Stop.giv"
+default_od_file; "basis/OD.giv"
+default_pool_file; "basis/Pool.giv"
+default_pool_cost_file; "basis/Pool-Cost.giv"
+default_edges_file; "basis/Edge.giv"
+default_headways_file; "basis/Headway.giv"
+default_loads_file; "basis/Load.giv"
+default_lines_file; "line-planning/Line-Concept.lin"
+default_line_composition_file; "line-planning/Line-composition.lin"
+default_pool_evaluation_file; "line-planning/Concept-Evaluation.txt"
+default_events_file; "timetabling/Events.giv"
+default_events_periodic_file; "timetabling/Events-periodic.giv"
+default_activities_file; "timetabling/Activities.giv"
+default_activities_periodic_file; "timetabling/Activities-periodic.giv"
+default_timetable_file; "timetabling/Timetable.tim"
+default_timetable_periodic_file; "timetabling/Timetable-periodic.tim"
+default_ptn_graph_file; "Zeichnung/ptn-graph.dot"
+default_ptn_graphviz_file; "Zeichnung/Public-transportation-network.dot"
+default_ean_graphviz_file; "Zeichnung/Event-activity-network.dot"
+default_ean_cycles_file; "timetabling/Event-activity-cycles.dat"
+default_ean_cycles_graphviz_file; "Zeichnung/Event-activity-network-cycles.dot"
+default_line_graph_file; "Zeichnung/Line-graph.dot"
+default_cng_graph_file; "Zeichnung/Change-and-go.dot"
+default_delayed_stops_file; "Delay_Management/delayedstops.txt"
+default_delay_graph_file; "Zeichnung/delay-graph.dot"
+default_evaluation_lines_file; "line-planning/Evaluation.txt"
+default_evaluation_timetable_file; "timetabling/Evaluation.txt"
+# ------------------------------------------------------------------------------
+# Event-activity-network (EAN) settings
+ean_algorithm_shortest_paths; "JOHNSON"
+#ean_algorithm_shortest_paths; "FLOYD"
+ean_model_waiting_time; "GLOBAL_WAITING_TIMES"
+ean_model_change_time; "GLOBAL_CHANGE_TIMES"
+ean_model_frequency; "FREQUENCY_AS_ATTRIBUTE"
+# -- UNTESTED -- ean_model_frequency; "FREQUENCY_AS_MULTIPLICITY"
+ean_model_change_edge_cut_off; "NO_CUT_OFF"
+# ean_model_change_edge_cut_off; "NO_CUSTOMERS_ONLY"
+# ean_model_change_edge_cut_off; "GLOBAL_THRESHOLD"
+# -- NOT YET IMPLEMENTED -- ean_model_change_edge_cut_off; "LOCAL_THRESHOLD"
+ean_model_customer; "SHORTEST_PATHS"
+# -- NOT YET IMPLEMENTED -- ean_model_customer; "N_SHORTEST_PATHS"
+# ean_model_weight_drive; "AVERAGE_DRIVING_TIME"
+# ean_model_weight_drive; "MINIMAL_DRIVING_TIME"
+ean_model_weight_drive; "MAXIMAL_DRIVING_TIME"
+# ean_model_weight_drive; "EDGE_LENGTH"
+# ean_model_weight_change; "FORMULA_2"
+ean_model_weight_change; "FORMULA_1"
+ean_model_weight_wait; "ZERO_COST"
+ean_model_weight_sync; "PERIOD_DIV_FREQUENCY"
+ean_model_enable_headways; true
+ean_change_penalty; 15
+ean_change_edge_cut_off_threshold; 0
+ean_default_minimal_waiting_time; 1
+ean_default_maximal_waiting_time; 3
+ean_default_minimal_change_time; 3
+ean_default_maximal_change_time; 62
+ean_old_ean_events_filename; "timetabling/Events-periodic-old.giv"
+ean_old_ean_activities_filename; "timetabling/Activities-periodic-old.giv"
+ean_old_timetable_filename; "timetabling/Timetable-periodic-old.tim"
+ean_iterate; false
+period_length; 60
+number_of_rollouts; 10
+# ------------------------------------------------------------------------------
+# Line Concept (LC) Settings
+lc_init_bus_price; 1
+gen_passengers_per_vehicle; 100
+lc_changetime; 4
+lc_cuttingdown_size; 3
+lc_budget; 27
+#lc_model; "cost_H7"
+#lc_model; "cost_H6"
+lc_model; "cost"
+#lc_model; "game"
+#lc_model; "frequenzen"
+#lc_model; "cuttingdown"
+lc_minimal_global_frequency; 0
+lc_maximal_global_frequency; 6
+# ------------------------------------------------------------------------------
+# Timetable settings (TIM)
+tim_ignore_frequencies; true
+tim_ignore_passengers; false
+tim_ignore_unused_change_edges; false
+tim_lp_relaxiation; false
+tim_modulo_parameters_bounds_enabled; true
+tim_modulo_parameters_dynamic_bounds; false
+tim_modulo_parameters_lower_bound; 0
+tim_modulo_parameters_upper_bound; 1
+#tim_model; "basic"
+#tim_model; "cyclebase"
+#tim_model; "network_simplex"
+#tim_model; "con_prop"
+tim_model; "con_ns"
+tim_verbose; false
+# Network Simplex Settings
+# ------------------------
+#headway usage
+tim_nws_headways; true
+# local methods
+#tim_nws_loc_search; "SINGLE_NODE_CUT"
+tim_nws_loc_search; "RANDOM_CUT"
+#tim_nws_loc_search; "WAITING_CUT"
+# fundamental methods
+#tim_nws_tab_search; "TAB_FULL"
+#tim_nws_tab_search; "TAB_SIMPLE_TABU_SEARCH"
+#tim_nws_tab_search; "TAB_SIMULATED_ANNEALING"
+#tim_nws_tab_search; "TAB_STEEPEST_SA_HYBRID"
+tim_nws_tab_search; "TAB_PERCENTAGE"
+#tim_nws_tab_search; "TAB_FASTEST"
+# parameters
+tim_nws_ts_memory; 40
+tim_nws_ts_max_iterations; 150
+tim_nws_sa_init; 50000
+tim_nws_sa_cooldown; 0.95
+tim_nws_percentage; 85
+tim_nws_min_pivot; 0.1
+tim_nws_dyn_pivot; 0.5
+# ------------------------------------------------------------------------------
+# Delay settings
+delays_events; false
+delays_activities; true
+delays_count; 15
+delays_min_delay; 30
+delays_max_delay; 900
+delays_min_time; 28800
+delays_max_time; 43200
+DM_earliest_time; 28800
+DM_latest_time; 43200
+DM_method_prio_percentage; 0
+DM_method; exact
+rollout_whole_trips; false
+# ------------------------------------------------------------------------------
+# Vehicle Scheduling settings
+#vs_model; MDM1
+#vs_model; MDM2
+#vs_model; ASSIGNMENT_MODEL
+#vs_model; TRANSPORTATION_MODEL
+#vs_model; NETWORK_FLOW_MODEL
+vs_model; CANAL_MODEL
+vs_vehicle_costs; 100
+vs_min_distance; 60
+vs_penalty_costs; 50000
+vs_depot_index; 1

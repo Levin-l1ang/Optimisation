@@ -1,0 +1,4 @@
+# edge-id; left-stop-id; right-stop-id; length; lower-bound; upper-bound
+1; 1; 2; 15; 15; 25
+2; 2; 3; 10; 10; 20
+3; 3; 4; 5; 5; 15

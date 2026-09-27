@@ -1,0 +1,152 @@
+model "line_game"
+uses "mmxprs"
+uses "mmquad"
+
+parameters
+	DATAFILE='line-planning/Moseldaten'
+	lc_minimal_global_frequency=0
+end-parameters
+
+declarations
+	Linienzahl: integer
+	Kantenzahl: integer
+	ODsize: integer
+	timelimit: integer
+	threadlimit: integer
+	outputMessages: boolean
+	mipGap: real
+	writeLpFile: boolean
+end-declarations
+
+initializations from DATAFILE
+	Linienzahl
+	Kantenzahl
+	ODsize
+	timelimit
+	threadlimit
+	outputMessages
+	mipGap
+	writeLpFile
+end-initializations
+
+declarations
+	Linien = 1..Linienzahl
+	Kanten = 1..Kantenzahl
+	ODarray = 1..ODsize
+	f_l: array(Linien) of mpvar
+	f_e: array(Kanten) of mpvar
+	cost: array(Linien) of real
+	H: array(Linien, Kanten) of integer
+	Min: array(Kanten) of integer
+	Max: array(Kanten) of integer
+	K: array(ODarray, Linien) of integer
+	OD: array(ODarray) of real
+end-declarations
+
+initializations from DATAFILE
+	H
+	cost
+	Min
+	Max
+	K
+	OD
+end-initializations
+
+  procedure print_status
+    declarations
+      status: string
+    end-declarations
+
+    case getprobstat of
+      XPRS_OPT: status:="Optimal solution found."
+      XPRS_UNF: status:="Problem is unfinished."
+      XPRS_INF: status:="Problem is infeasible."
+      XPRS_UNB: status:="Problem is unbounded."
+      XPRS_OTH: status:="Failed."
+      else status:="Unknown problem status."
+    end-case
+
+    writeln("Problem Status: ", status)
+  end-procedure
+	
+!z := sum(e in Kanten) sum(l in Linien) H(l,e)*f_l(l)*cost(l)
+z := sum(e in Kanten) f_e(e)*f_e(e)
+
+forall(i in Linien) do
+	f_l(i) is_integer
+	f_l(i) >= lc_minimal_global_frequency
+end-do
+
+forall(i in Kanten) do
+	f_e(i) is_integer
+	f_e(i) >= 0
+end-do
+
+forall(e in Kanten) do
+	f_e(e)>=Min(e)
+!	f_e(e)<=Max(e)
+end-do
+
+forall(e in Kanten) do
+	sum(l in Linien) H(l,e)*f_l(l) = f_e(e)
+end-do
+
+forall(i in ODarray) do
+	sum(l in Linien) K(i,l)*f_l(l) >= OD(i)
+end-do
+
+! Set solver parameters
+if timelimit > 0 then
+    setparam("XPRS_MAXTIME", timelimit);
+end-if
+if threadlimit > 0 then
+    setparam("XPRS_THREADS", threadlimit);
+end-if
+if outputMessages then
+    setparam("XPRS_VERBOSE", true)
+else
+    setparam("XPRS_VERBOSE", false)
+end-if
+if mipGap > 0 then
+    setparam("XPRS_MIPRELSTOP", mipGap)
+end-if
+if writeLpFile then
+    exportprob("line-planning/game.lp")
+end-if
+
+	
+minimize(z)
+
+forall(l in Linien)
+	if getsol(f_l(l)) >= 1 and outputMessages then
+	writeln("Line ", l, " is used with frequency ",getsol(f_l(l)))
+	end-if
+
+if outputMessages then
+writeln("Total cost: ",getobjval)
+
+
+writeln("Writing to file...")
+end-if
+
+
+fopen("line-planning/xpresssol",F_OUTPUT)
+
+forall(l in Linien)
+	 writeln(l,";",getsol(f_l(l)))
+
+fclose(F_OUTPUT)
+
+if outputMessages then
+writeln("To format, start SolConv.")
+end-if
+
+if outputMessages then
+print_status
+end-if
+
+if not getprobstat = XPRS_OPT then
+	exit(1)
+end-if
+
+end-model

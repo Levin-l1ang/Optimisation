@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/javalib-EAN"/>
+	<classpathentry kind="lib" path="/usr/local/xpressmp/lib/xprb.jar"/>
+	<classpathentry kind="lib" path="/usr/local/xpressmp/lib/xprm.jar"/>
+	<classpathentry kind="lib" path="/usr/local/xpressmp/lib/xprs.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

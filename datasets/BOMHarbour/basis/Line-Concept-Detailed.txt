@@ -1,0 +1,13 @@
+#lineID,nameFrom-nameTO,fromStop;toStop;freq;edges
+1; CST-PNVL; 	1; 9; 	5;	1,4,5,6,7,8 
+2; CST-BEPR; 	1; 8; 	3;	1,4,5,6,7
+3; CST-VSH; 	1; 7; 	2;	1,4,5,6
+4; CST-ADH; 	1; 11; 	3; 	1,2,3
+5; CST-BA; 	1; 10; 	2; 	1,2
+6; PNVL-ADH; 	9; 11; 	1; 	8,7,6,5,4,2,3
+7; VDLR-PNVL; 	2; 9; 	2; 	4,5,6,7,8
+8; VDLR-BEPR; 	2; 8; 	1; 	4,5,6,7
+9; VDLR-VSH; 	2; 7; 	1; 	4,5,6
+10; TNA-PNVL; 	3; 9; 	2; 	11,10,7,8
+11; TNA-NER; 	3; 8; 	3; 	11,10
+12; TNA-VSH; 	3; 6; 	5; 	11,9

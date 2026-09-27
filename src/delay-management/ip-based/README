@@ -1,0 +1,14 @@
+Please make sure that your shell's CLASSPATH and PATH variables
+are set properly to include the java interface and the executables
+of the Xpress and/or Gurobi solvers.
+
+For example, the following code can be added to ~/.profile
+to achieve this:
+
+  source /usr/local/xpressmp/bin/xpvars.sh
+
+  export GUROBI_HOME="/home/user/gurobi"
+  export PATH="${PATH}:${GUROBI_HOME}/bin"
+  export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+  export GRB_LICENSE_FILE="${GUROBI_HOME}/gurobi.lic"
+  export CLASSPATH="${CLASSPATH}:${GUROBI_HOME}/lib/gurobi.jar"

@@ -1,0 +1,15 @@
+# activity_index; type; from_event; to_event; lower_bound; upper_bound; passengers
+1; "drive"; 1; 2; 5; 7; 0
+2; "drive"; 3; 4; 5; 7; 10
+3; "drive"; 5; 6; 2; 2; 10
+4; "drive"; 7; 8; 2; 2; 0
+5; "drive"; 9; 10; 6; 8; 12
+6; "drive"; 11; 12; 6; 8; 0
+7; "drive"; 13; 14; 4; 6; 0
+8; "drive"; 15; 16; 4; 6; 0
+9; "change"; 6; 9; 3; 62; 10
+10; "change"; 6; 13; 3; 62; 0
+11; "change"; 12; 7; 3; 62; 0
+12; "change"; 12; 13; 3; 62; 0
+13; "change"; 16; 7; 3; 62; 0
+14; "change"; 16; 9; 3; 62; 0

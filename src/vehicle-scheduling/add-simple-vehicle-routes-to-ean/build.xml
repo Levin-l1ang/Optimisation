@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="lintim-vehicle-scheduling-simple-routes">
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <property name="build-dir" value="build" />
+    <property name="src-dir" value="src" />
+    <property name="doc-dir" value="docs" />
+    <property name="core-folder" value="../../core/java" />
+    <path id="lintim-vehicle-scheduling-simple-routes.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-folder}/lintim-core.jar"/>
+    </path>
+    <!-- Clean -->
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <!-- Create necessary folders -->
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <target name="init-docs">
+        <mkdir dir="${doc-dir}"/>
+    </target>
+    <!-- Build tasks -->
+    <target depends="build-dependencies,build-project" name="build"/>
+    <target name="build-dependencies">
+        <ant target="build" dir="${core-folder}"/>
+    </target>
+    <target name="build-project" depends="init">
+        <javac includeantruntime="true" debug="true" destdir="${build-dir}" source="${source}" target="${target}" encoding="UTF-8">
+            <src path="${src-dir}"/>
+            <classpath refid="lintim-vehicle-scheduling-simple-routes.classpath"/>
+        </javac>
+    </target>
+    <target name="build-documentation" depends="init-docs">
+        <echo message="Building documentation" />
+        <javadoc sourcepath="." destdir="${doc-dir}"/>
+    </target>
+
+
+</project>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="robust-acitivities">
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <property name="build-dir" value="bin" />
+    <property name="src-dir" value="src/java" />
+    <property name="lib-dir" value="../../../libs" />
+    <property name="javatools-dir" value="../../essentials/javatools" />
+    <path id="robust-acitivities.classpath">
+        <pathelement location="${build-dir}"/>
+        <pathelement location="${lib-dir}/super-csv/super-csv-2.4.0.jar"/>
+        <pathelement location="${javatools-dir}/bin"/>
+    </path>
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <target name="clean">
+        <delete dir="${build-dir}"/>
+    </target>
+    <target depends="build-dependencies,build-project" name="build"/>
+    <target depends="init" name="build-project">
+        <javac includeantruntime="true" debug="true" destdir="${build-dir}" source="${source}" target="${target}" srcdir="${src-dir}" encoding="UTF-8">
+            <classpath refid="robust-acitivities.classpath"/>
+        </javac>
+    </target>
+    <target name="build-dependencies">
+        <ant antfile="custom-build.xml" target="build" dir="${javatools-dir}" inheritAll="false"/>
+    </target>
+    <target name="BufferActivities">
+        <java classname="net.lintim.main.BufferActivities" failonerror="true" fork="yes">
+            <classpath refid="robust-acitivities.classpath"/>
+        </java>
+    </target>
+</project>

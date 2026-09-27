@@ -1,0 +1,36 @@
+run_tests:
+    rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    script:
+        - bash ci/run_all_tests.sh || TEST_RESULT=$?
+        - mkdir -p failed_tests && find datasets/ -maxdepth 1 -name "*_$(date +%Y-%m-%d)*" -type d -exec cp -r {} failed_tests/ \;
+        - "[ -z \"$(ls -A failed_tests/)\" ] && echo 'No failed tests' > failed_tests/.placeholder"
+        - "[ -n \"$TEST_RESULT\" ] && exit $TEST_RESULT || exit 0"
+    artifacts:
+      name: "failed-tests-$CI_JOB_ID"
+      when: always
+      expire_in: 7 days
+      paths:
+        - failed_tests/
+compile_docs:
+  rules:
+      # $CI_COMMIT_TITLE !~ /\[CI\] .*/ excludes commits starting with [CI], namely the ones made by this job
+      - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE !~ /\[CI\] .*/
+  script:
+    - cd doc/documentation # Go to the folder of the .tex-file to avoid issues with relative paths
+    - latexmk documentation
+    - cd ../..  # Return to root folder
+    - cp doc/documentation/documentation.pdf doc/
+    # Change config to bot account for committing
+    - git config user.name "${server_bot_username}"
+    - git config user.email "${server_bot_email}"
+    - git add -f doc/documentation.pdf # Force add PDF since we will .gitignore it
+    - git commit -m "[CI] Compiled PDF from $CI_COMMIT_SHORT_SHA" || echo "No changes, nothing to commit!"
+    - git push https://${automatic_documentation_build_token_name}:${automatic_documentation_build_token_value}@version.aalto.fi/gitlab/lintim/lintim.git HEAD:$CI_COMMIT_REF_NAME # Pushes to the same branch as the trigger
+    # Return to default config
+    - git config user.name "${server_default_username}"
+    - git config user.email "${server_default_email}"
+  artifacts:
+    paths:
+      - doc/documentation.pdf

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="VehicleSchedulingEvaluation">
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <property name="build-dir" value="build" />
+    <property name="doc-dir" value="docs" />
+    <property name="core-folder" value="../../core/java" />
+    <path id="VehicleSchedulingEvaluation.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-folder}/lintim-core.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <target name="init-docs">
+        <mkdir dir="${doc-dir}"/>
+    </target>
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-dependencies,build-project" name="build"/>
+    <target name="build-dependencies">
+        <ant target="build" dir="${core-folder}"/>
+    </target>
+    <target name="build-project" depends="init">
+        <javac includeantruntime="true" debug="false" destdir="${build-dir}" source="${source}" target="${target}" encoding="UTF-8">
+            <src path="."/>
+            <classpath refid="VehicleSchedulingEvaluation.classpath"/>
+        </javac>
+    </target>
+</project>

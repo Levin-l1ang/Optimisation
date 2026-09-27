@@ -1,0 +1,30 @@
+not-working:
+The input could not be read. Try again or restart program or prompt.
+
+no-valid-input:
+No valid input. The input pattern is "maincommand subcommand", where the main commands are "make", "help" and "param". For further guidance type "help".
+
+no-valid-instance:
+# Instance is added internaly
+is not a valid working instance.
+
+no-valid-make-target:
+# Make-target is added internaly.
+is not a valid make-target.
+
+no-valid-help-call:
+# Help call is added internaly.
+is not a valid help call.
+
+no-valid-param-call:
+# Param call is added internaly
+is not a valid param call.
+
+no-valid-use-call:
+# Use call is added internaly
+is not a valid use call.
+
+no-valid-param-read-write-call:
+# Input pattern is not valid.
+is not a valid param call. Either the parameter does not exist or the parameter value is missing.
+

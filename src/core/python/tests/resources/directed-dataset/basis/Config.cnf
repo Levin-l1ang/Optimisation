@@ -1,0 +1,36 @@
+setting-name; setting-value
+include; "../../Global-Config.cnf"
+# ===========================================================================
+# === LOCAL_ONLY from Global-Config.cnf =====================================
+# ===========================================================================
+ptn_name; "GoVB"
+period_length; 60
+time_units_per_minute; 1
+ptn_stop_waiting_time; 1
+ptn_draw_conversion_factor; 5
+lpool_coordinate_factor; 0.001
+# speed of the vehicles in km/h
+gen_vehicle_speed; 180
+gen_conversion_length; 1
+gen_conversion_coordinates; 0.001
+ean_change_penalty; 5
+ean_default_minimal_waiting_time; 1
+ean_default_maximal_waiting_time; 3
+ean_default_minimal_change_time; 3
+ean_default_maximal_change_time; 62
+# interpolated from Load.giv.nominal
+gen_passengers_per_vehicle; 50
+gen_passengers_per_vehicle; 50
+od_nominal_overall_directed_load; 4600
+# ===========================================================================
+# === Network Specific Settings =============================================
+# ===========================================================================
+stops_header; "stop-id; short-name; long-name; x-coordinate; y-coordinate"
+lpool_evaluate_average_traveling_time_lower_bound; true
+ptn_is_undirected; false
+# ===========================================================================
+# === State / Experiments / Automatization ==================================
+# ===========================================================================
+include_if_exists; "State-Config.cnf"
+include_if_exists; "Private-Config.cnf"
+include_if_exists; "After-Config.cnf"

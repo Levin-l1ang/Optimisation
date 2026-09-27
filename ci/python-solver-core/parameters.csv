@@ -1,0 +1,3 @@
+TARGET_DATASET; toy
+COMMANDS_TO_RUN; bash ../../src/line-planning/cost-model/python/run.sh basis/Config.cnf && make lc-line-concept-evaluate
+ADDITIONAL_FILES_TO_COMPARE; 

@@ -1,0 +1,67 @@
+setting-name; setting-value
+include; "../../Global-Config.cnf"
+# ===========================================================================
+# === LOCAL_ONLY from Global-Config.cnf =====================================
+# ===========================================================================
+ptn_name; "small-multimodal"
+period_length; 60
+time_units_per_minute; 1
+ptn_stop_waiting_time; 1
+ptn_draw_conversion_factor; 6
+loads_draw_conversion_factor; 1
+od_draw_conversion_factor; 1
+lpool_coordinate_factor; 1
+gen_conversion_length; 12
+gen_conversion_coordinates; 0.12
+ean_change_penalty; 5
+ean_default_minimal_waiting_time; 1
+ean_default_maximal_waiting_time; 3
+ean_default_minimal_change_time; 3
+ean_default_maximal_change_time; 62
+od_nominal_overall_directed_load; 4600
+# ===========================================================================
+# === Network Specific Settings =============================================
+# ===========================================================================
+odptn_missing_values; "GLOBAL_MEAN_VALUE"
+lpool_evaluate_average_traveling_time_lower_bound; true
+# ===========================================================================
+# === Multimodal Settings ===================================================
+# ===========================================================================
+modalities_all; [red, green, nonscheduled]
+fixed_timetable_modalities; []
+red.modality_category; "line-based"
+green.modality_category; "line-based"
+nonscheduled.modality_category; "nonscheduled"
+red.gen_passengers_per_vehicle; 70
+green.gen_passengers_per_vehicle; 70
+nonscheduled.gen_passengers_per_vehicle; 1
+red.load_generator_fixed_upper_frequency; 100
+green.load_generator_fixed_upper_frequency; 100
+nonscheduled.load_generator_fixed_upper_frequency; 1000
+red.gen_infrastructure_capacity_weight; 2
+green.gen_infrastructure_capacity_weight; 1
+nonscheduled.gen_infrastructure_capacity_weight; 0
+# speed of the vehicles in km/h
+red.gen_vehicle_speed; 70
+green.gen_vehicle_speed; 40
+nonscheduled.gen_vehicle_speed; 5
+#===========================================================================
+# === Optimized Visualization  ==============================================
+# ===========================================================================
+lpool_opt_visualisation_plot_scale; 6
+lpool_opt_visualisation_plot_margins; 0.1
+lpool_opt_visualisation_line_distance; 4
+lpool_opt_visualisation_line_width; 6
+lpool_opt_visualisation_legend_scaling; 1.4
+lpool_opt_visualisation_legend_location; best
+lpool_opt_visualisation_min_node_size; 500
+lpool_opt_visualisation_def_node_size; 1400
+lpool_opt_visualisation_node_labels; true
+lpool_opt_visualisation_node_label_size; 20
+lpool_opt_visualisation_draw_legend; true
+# ===========================================================================
+# === State / Experiments / Automatization ==================================
+# ===========================================================================
+include_if_exists; "State-Config.cnf"
+include_if_exists; "Private-Config.cnf"
+include_if_exists; "After-Config.cnf"

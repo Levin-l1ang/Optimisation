@@ -1,0 +1,4 @@
+gen_passengers_per_vehicle; 1
+ean_model_weight_change; "FORMULA_3"
+lc_eval_extended; true
+ean_model_weight_drive; "MINIMAL_DRIVING_TIME"

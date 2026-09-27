@@ -1,0 +1,3 @@
+rpool_model; node_based
+rc_model; cost-beta
+rpool_costs_fixed; 4

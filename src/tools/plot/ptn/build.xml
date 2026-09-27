@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="lintim-transform-ptn-to-dot">
+    <include file="../../../base.xml"/>
+    <property name="src-dir" value="src" />
+    <property name="build-dir" value="build" />
+    <property name="doc-dir" value="docs" />
+    <path id="lintim-transform-ptn-to-dot.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-jar}"/>
+    </path>
+    <!-- Clean -->
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <!-- Create necessary folders -->
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <target name="init-docs">
+        <mkdir dir="${doc-dir}"/>
+    </target>
+    <!-- Build tasks -->
+    <target depends="base-lintim.build-core,build-project" name="build"/>
+    <target name="build-project" depends="init">
+        <javac
+                srcdir="${src-dir}"
+                destdir="${build-dir}"
+                classpathref="lintim-transform-ptn-to-dot.classpath" encoding="UTF-8"
+        />
+    </target>
+    <target name="build-documentation" depends="init-docs">
+        <echo message="Building documentation" />
+        <javadoc sourcepath="${src-dir}" destdir="${doc-dir}"/>
+    </target>
+
+</project>

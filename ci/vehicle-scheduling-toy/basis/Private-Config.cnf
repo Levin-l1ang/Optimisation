@@ -1,0 +1,5 @@
+DM_earliest_time; 0
+DM_latest_time; 3600
+rollout_whole_trips; true
+vs_model; NETWORK_FLOW_MODEL
+vs_vehicle_speed_level; fast

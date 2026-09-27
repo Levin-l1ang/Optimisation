@@ -1,0 +1,6 @@
+lc_model; cost
+tim_model; MATCH
+lpool_model; "tree_based"
+rollout_whole_trips; true
+lc_solver; GUROBI
+ean_model_weight_change; "FORMULA_1"

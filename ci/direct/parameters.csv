@@ -1,0 +1,3 @@
+TARGET_DATASET; grid
+COMMANDS_TO_RUN; make lc-line-concept && make lc-line-concept-evaluate
+ADDITIONAL_FILES_TO_COMPARE; 

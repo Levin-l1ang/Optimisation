@@ -1,0 +1,3 @@
+"""
+Contains LinTim-specific exceptions.
+"""

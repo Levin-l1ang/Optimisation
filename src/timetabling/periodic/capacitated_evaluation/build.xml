@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="lintim-timetabling-capacitated-eval">
+    <property name="build-dir" value="build" />
+    <property name="src-dir" value="src" />
+    <property name="test-dir" value="test/src" />
+    <property name="core-folder" value="../../../core/java" />
+    <path id="timetabling-testing.classpath">
+        <pathelement location="../../../../libs/junit/junit-4.13.2.jar"/>
+        <pathelement location="${core-folder}/lintim-core.jar"/>
+        <pathelement location="build/" />
+    </path>
+
+    <path id="lintim-timetabling-capacitated-eval.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-folder}/lintim-core.jar"/>
+    </path>
+
+    <condition property="gurobi.installed" id="gurobi.installed">
+        <available classname="com.gurobi.gurobi.GRBEnv" />
+    </condition>
+
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <!-- Create necessary folders -->
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+
+    <target name="build-dependencies">
+        <ant target="build" dir="${core-folder}" inheritAll="false"/>
+    </target>
+
+    <target depends="build-dependencies, build-no-solver, build-gurobi" name="build">
+    </target>
+
+    <target depends="init" name="build-no-solver">
+        <javac includeantruntime="true" debug="true" srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-timetabling-capacitated-eval.classpath"/>
+            <exclude name="net/lintim/algorithm/timetabling/CapacitatedRoutingGurobi.java"/>
+        </javac>
+    </target>
+
+    <target depends="init" name="build-gurobi">
+        <echo>Gurobi installed</echo>
+        <javac includeantruntime="true" debug="true" srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-timetabling-capacitated-eval.classpath"/>
+            <include name="net/lintim/algorithm/timetabling/CapacitatedRoutingGurobi.java"/>
+        </javac>
+    </target>
+
+    <target name="build-tests" depends="build">
+        <javac includeantruntime="false" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="timetabling-testing.classpath"/>
+            <src path="${test-dir}"/>
+        </javac>
+    </target>
+
+</project>

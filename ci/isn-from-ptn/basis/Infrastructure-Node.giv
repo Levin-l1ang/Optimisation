@@ -1,0 +1,6 @@
+# node-id; name; x-coordinate; y-coordinate; possible-stop-for-modalities
+1; 1; 100; 100; [green, nonscheduled]
+2; 2; 100; 200; [red, green, nonscheduled]
+3; 3; 200; 200; [red, nonscheduled]
+4; 4; 200; 100; [red, green, nonscheduled]
+5; 5; 260; 260; [red, nonscheduled]

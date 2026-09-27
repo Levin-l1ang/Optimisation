@@ -1,0 +1,13 @@
+ean_prop_activities; 3352
+ean_prop_activities_change; 2762
+ean_prop_activities_drive; 228
+ean_prop_activities_headway; 0
+ean_prop_activities_od; 0
+ean_prop_activities_od_change; 0
+ean_prop_activities_od_drive; 0
+ean_prop_activities_od_wait; 0
+ean_prop_activities_wait; 168
+ean_prop_events; 456
+ean_prop_events_arrival; 228
+ean_prop_events_departure; 228
+ean_time_average; NaN

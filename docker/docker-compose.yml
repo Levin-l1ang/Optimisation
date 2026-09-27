@@ -1,0 +1,15 @@
+services:
+  lintim:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: lintim-env
+    working_dir: /workspace/lintim
+    volumes:
+      - ./../../gurobi_lic:/opt/gurobi_lic:ro
+      - lintim-workspace:/workspace
+    tty: true
+    stdin_open: true
+
+volumes:
+  lintim-workspace:

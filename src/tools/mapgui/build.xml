@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project name="LinTim-mapgui" default="build-mapgui" basedir=".">
+    <include file="../../base.xml"/>
+    <property name="sl-helper-path" value="../../essentials/sl-helper/PTNTools"/>
+    <property name="dm-tools-path" value="../../essentials/dm-helper/Tools"/>
+    <property name="dm-ean-path" value="../../essentials/dm-helper/EAN"/>
+    <property name="essentials-config-path" value="../../essentials/config"/>
+    <path id="mapgui.classpath">
+        <pathelement location="${core-jar}"/>
+        <pathelement location="${sl-helper-path}"/>
+        <pathelement location="${dm-ean-path}"/>
+        <pathelement location="${dm-tools-path}"/>
+        <pathelement location="${processing-jar}"/>
+        <pathelement location="${processing-jogl-jar}"/>
+        <pathelement location="${processing-jogl-natives-jar}"/>
+        <pathelement location="${processing-gluegen-jar}"/>
+        <pathelement location="${processing-gluegen-natives-jar}"/>
+        <pathelement location="${log4j-jar}"/>
+        <pathelement location="${g4p-jar}"/>
+        <pathelement location="${unfolding-jar}"/>
+        <pathelement location="${unfolding-json-jar}"/>
+    </path>
+    <target name="build-sl-helper">
+        <ant target="build-sl-helper" dir="../../essentials/sl-helper/PTNTools" inheritAll="false"/>
+    </target>
+    <target name="build-config">
+        <ant target="build" dir="${essentials-config-path}" inheritAll="false"/>
+    </target>
+
+    <target name="build-ean-tools" depends="build-config,build-dm-tools">
+        <javac srcdir="${dm-ean-path}"
+               destdir="${dm-ean-path}"
+               classpath="${essentials-config-path}:${dm-tools-path}" encoding="UTF-8"/>
+    </target>
+    <target name="build-dm-tools">
+        <javac srcdir="${dm-tools-path}"
+               destdir="${dm-tools-path}" encoding="UTF-8" />
+    </target>
+    <target name="build-mapgui" depends="base-lintim.build-core,build-sl-helper,build-ean-tools,build-dm-tools">
+        <javac srcdir="."
+               destdir="." encoding="UTF-8" >
+        <classpath refid="mapgui.classpath"/>
+        </javac>
+    </target>
+</project>

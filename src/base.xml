@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<project name="base-lintim" basedir=".">
+    <dirname property="included.basedir" file="${ant.file.base-lintim}"/>
+    <property name="release" value="11"/>
+    <presetdef name="javac">
+        <!-- Explicitly include the ant runtime to allow the usage of system level jar files, such as solver libraries -->
+        <javac includeantruntime="true" debug="true" release="${release}" encoding="UTF-8"/>
+    </presetdef>
+    <property name="jgrapht-jar" value="${included.basedir}/../libs/jgrapht/jgrapht-core-1.5.0.jar" />
+    <property name="jheap-jar" value="${included.basedir}/../libs/jgrapht/jheaps-0.13.jar" />
+    <property name="junit-jar" value="${included.basedir}/../libs/junit/junit-4.13.2.jar" />
+    <property name="hamcrest-jar" value="${included.basedir}/../libs/hamcrest/hamcrest-core-1.3.jar" />
+    <property name="supercsv-jar" value="${included.basedir}/../libs/super-csv/super-csv-2.4.0.jar" />
+    <property name="unfolding-jar" value="${included.basedir}/../libs/Unfolding/Unfolding.jar" />
+    <property name="unfolding-json-jar" value="${included.basedir}/../libs/Unfolding/json4processing.jar" />
+    <property name="processing-jar" value="${included.basedir}/../libs/Processing/core.jar" />
+    <property name="processing-jogl-jar" value="${included.basedir}/../libs/Processing/jogl-all.jar" />
+    <property name="processing-gluegen-jar" value="${included.basedir}/../libs/Processing/gluegen-rt.jar" />
+    <property name="processing-gluegen-natives-jar" value="${included.basedir}/../libs/Processing/gluegen-rt-natives-linux-amd64.jar" />
+    <property name="processing-jogl-natives-jar" value="${included.basedir}/../libs/Processing/jogl-all-natives-linux-amd64.jar" />
+    <property name="log4j-jar" value="${included.basedir}/../libs/log4j/log4j-1.2.17.jar" />
+    <property name="g4p-jar" value="${included.basedir}/../libs/G4P/G4P.jar" />
+    <property name="apache-commons-jar" value="${included.basedir}/../libs/apache-commons/commons-math-2.1.jar" />
+    <property name="core-jar" value="${included.basedir}/core/java/lintim-core.jar"/>
+    <property name="core-folder" value="${included.basedir}/core/java"/>
+    <!-- Conditions for the possible solvers -->
+    <condition property="xpress.installed" id="xpress.installed">
+        <available classname="com.dashoptimization.XPRS" />
+    </condition>
+    <condition property="gurobi.installed" id="gurobi.installed">
+        <available classname="com.gurobi.gurobi.GRBEnv" />
+    </condition>
+    <condition property="cplex.installed" id="cplex.installed">
+        <available classname="ilog.cplex.IloCplexModeler"/>
+    </condition>
+    <condition property="scip.installed" id="scip.installed">
+        <available classname="jscip.Scip"/>
+    </condition>
+    <condition property="no-solver.installed" id="no-solver.installed">
+        <and>
+            <not>
+                <available classname="com.gurobi.gurobi.GRBEnv" />
+            </not>
+            <not>
+                <available classname="com.dashoptimization.XPRS" />
+            </not>
+            <not>
+                <available classname="ilog.cplex.IloCplexModeler" />
+            </not>
+            <not>
+                <available classname="jscip.Scip" />
+            </not>
+        </and>
+    </condition>
+    <!-- Base builds -->
+    <target name="build-core">
+        <ant target="build" dir="${core-folder}" inheritAll="false"/>
+    </target>
+</project>

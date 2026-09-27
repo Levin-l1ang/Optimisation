@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="lintim-lineplanning-cost">
+    <include file="../../base.xml"/>
+    <property name="build-dir" value="build" />
+    <property name="src-dir" value="src" />
+    <property name="doc-dir" value="docs" />
+    <property name="jar-file" value="cost-model.jar" />
+    <path id="lintim-lineplanning-cost.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-jar}"/>
+    </path>
+    <!-- Clean -->
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <!-- Create necessary folders -->
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <target name="init-docs">
+        <mkdir dir="${doc-dir}"/>
+    </target>
+    <!-- Build tasks -->
+    <target depends="base-lintim.build-core,build-solver-independent,build-xpress,build-gurobi" name="build"/>
+    <target name="build-solver-independent" depends="init">
+        <javac includeantruntime="true" debug="true" srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-lineplanning-cost.classpath"/>
+            <exclude name="net/lintim/algorithm/lineplanning/CostGurobi.java"/>
+            <exclude name="net/lintim/algorithm/lineplanning/CostXpress.java"/>
+        </javac>
+    </target>
+    <target name="build-xpress" if="${xpress.installed}" depends="init">
+        <echo>Xpress installed</echo>
+        <javac includeantruntime="true" debug="true" srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-lineplanning-cost.classpath"/>
+            <include name="net/lintim/algorithm/lineplanning/CostXpress.java"/>
+        </javac>
+    </target>
+    <target name="build-gurobi" if="${gurobi.installed}" depends="init">
+        <echo>Gurobi installed</echo>
+        <javac includeantruntime="true" debug="true" srcdir="${src-dir}" destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-lineplanning-cost.classpath"/>
+            <include name="net/lintim/algorithm/lineplanning/CostGurobi.java"/>
+        </javac>
+    </target>
+    <target name="build-documentation" depends="init-docs">
+        <echo message="Building documentation" />
+        <javadoc sourcepath="." destdir="${doc-dir}"/>
+    </target>
+    <target name="build-jar" depends="build">
+        <jar basedir="${build-dir}" destfile="${jar-file}"/>
+    </target>
+
+</project>

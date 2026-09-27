@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<project name="LinTim" default="build-direct-travelers-restricting-frequencies" basedir=".">
+    <include file="../../base.xml"/>
+    <property name="build-dir" value="build" />
+    <property name="src-dir" value="src" />
+	<property name="doc-dir" value="docs" />
+	<path id="build-direct-travelers-restricting-frequencies.classpath">
+		<pathelement location="."/>
+		<pathelement location="${core-folder}/lintim-core.jar"/>
+	</path>
+	<!-- Clean -->
+	<target name="clean">
+		<delete>
+			<fileset dir="." includes="**/*.class"/>
+		</delete>
+	</target>
+	<target depends="clean" name="cleanall"/>
+	<!-- Create necessary folders -->
+	<target name="init">
+		<mkdir dir="${build-dir}"/>
+	</target>
+	<target name="init-docs">
+		<mkdir dir="${doc-dir}"/>
+	</target>
+	<!-- Build tasks -->
+	<target depends="base-lintim.build-core,build-project" name="build-direct-travelers-restricting-frequencies"/>
+	<target name="build-project" depends="build-with-gurobi, build-without-gurobi" />
+	<target name="build-documentation" depends="init-docs">
+		<echo message="Building documentation" />
+		<javadoc sourcepath="." destdir="${doc-dir}"/>
+	</target>
+	<!-- Solver specific build targets, will only be used if the respective solvers are installed -->
+	<target name="build-with-gurobi" depends="init" if="${gurobi.installed}">
+		<echo>Gurobi installed</echo>
+		<javac destdir="${build-dir}" srcdir="${src-dir}" encoding="UTF-8">
+			<classpath refid="build-direct-travelers-restricting-frequencies.classpath"/>
+            <include name="net/lintim/algorithm/lineplanning/DirectRestrictingFrequenciesGurobi.java"/>
+		</javac>
+	</target>
+	<!-- Gurobi is necessary, fail if not present -->
+	<target name="build-without-gurobi">
+        <javac destdir="${build-dir}" srcdir="${src-dir}" encoding="UTF-8">
+            <classpath refid="build-direct-travelers-restricting-frequencies.classpath"/>
+            <exclude name="net/lintim/algorithm/lineplanning/DirectRestrictingFrequenciesGurobi.java"/>
+        </javac>
+	</target>
+</project>

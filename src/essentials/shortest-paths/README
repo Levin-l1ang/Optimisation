@@ -1,0 +1,32 @@
+shortest_paths
+==============
+
+Calculates shortest paths. 
+
+Basic graph implementation to efficiently compute shortest paths. The design
+goals are:
+
+1. Speed.
+2. No learning curve.
+3. Manual control possible.
+
+There are three interfaces at the moment: a C++, a Java and a shell interface.
+
+For more info on the C++ interface, see "shortest_paths.h".
+
+For more info on the shell interface, type
+
+make shortest_paths_sh
+shortest_paths_sh -h
+
+Example:
+
+shortest_paths_sh -n nodes.csv -e edges.csv -d distances.csv -p paths.csv
+
+For the Java interface, see ./src directory, especially 
+ShortestPathsTest.java, should be self explaining, especially with a proper
+IDE like eclipse (buy yourself more RAM, it's cheap those days!). Consult
+shortest_paths.h for ideologic help. If you want to get it run, see Makefile
+and/or try
+
+make shortest_paths_java_test

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project name="LinTim-delay-management" default="build-delay-management" basedir=".">
+    <include file="../../base.xml"/>
+	<target depends="build-config,build-statistic,build-javalib-Tools,build-javalib-EAN,build-delay-management" name="build-all"/>
+	<target name="build-config">
+		<javac srcdir="../../essentials/config"
+		       destdir="../../essentials/config" encoding="UTF-8" />
+	</target>
+	<target name="build-statistic">
+		<javac srcdir="../../essentials/statistic"
+		       destdir="../../essentials/statistic" encoding="UTF-8" />
+        </target>
+	<target name="build-javalib-Tools">
+		<javac srcdir="../../essentials/dm-helper/Tools"
+		       destdir="../../essentials/dm-helper/Tools" encoding="UTF-8" />
+	</target>
+	<target name="build-javalib-EAN" depends="build-config,build-javalib-Tools">
+		<javac srcdir="../../essentials/dm-helper/EAN"
+		       destdir="../../essentials/dm-helper/EAN"
+		       classpath="../../essentials/config:../../essentials/dm-helper/Tools" encoding="UTF-8" />
+	</target>
+	<target name="build-delay-management" depends="base-lintim.build-core,build-config,build-javalib-Tools,build-javalib-EAN">
+		<fail message="File ip-based/Solve/Solve.java does not exist, should be created by ip-based/Solve/update_solver.sh">
+			<condition>
+				<not><available file="Solve/Solve.java" /></not>
+			</condition>
+		</fail>
+		<fail message="Gurobi solver selected (Solve/Solve.java is containing gurobi code), but not available on this system">
+			<condition>
+				<and>
+					<isfileselected file="Solve/Solve.java">
+						<contains text="import gurobi" />
+					</isfileselected>
+					<not>
+						<available classname="gurobi.GRBEnv" />
+					</not>
+				</and>
+			</condition>
+		</fail>
+		<fail message="Xpress solver selected (Solve/Solve.java is containing xpress code), but not available on this system">
+			<condition>
+				<and>
+					<isfileselected file="Solve/Solve.java">
+						<contains text="import com.dashoptimization" />
+					</isfileselected>
+					<not>
+						<available classname="com.dashoptimization.XPRS" />
+					</not>
+				</and>
+			</condition>
+		</fail>
+		<javac srcdir="Solve"
+		       destdir="Solve"
+		       classpath="${core-jar}:../../essentials/config:../../essentials/dm-helper/Tools:../../essentials/dm-helper/EAN:../../essentials/statistic" encoding="UTF-8"  />
+	</target>
+</project>

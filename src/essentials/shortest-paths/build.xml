@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<project name="config" default="build" basedir=".">
+    <include file="../../base.xml"/>
+  <target name="build">
+   <javac srcdir="src"
+   	   classpath="${jgrapht-jar}:${jheap-jar}" encoding="UTF-8" />
+  </target>
+</project>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project name="LinTim" default="build" basedir=".">
+    <include file="../../../base.xml"/>
+    <property name="src-dir" value="src"/>
+    <property name="build-dir" value="build" />
+    <path id="lintim-lineplanning-cost-direct.classpath">
+        <pathelement location="."/>
+        <pathelement location="${core-jar}"/>
+        <pathelement location="${jgrapht-jar}"/>
+        <pathelement location="${jheap-jar}"/>
+    </path>
+    <!-- Create necessary folders -->
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+	<target name="build" depends="init, base-lintim.build-core">
+		<javac srcdir="${src-dir}"
+		       destdir="${build-dir}" encoding="UTF-8" >
+            <classpath refid="lintim-lineplanning-cost-direct.classpath"/>
+        </javac>
+	</target>
+</project>

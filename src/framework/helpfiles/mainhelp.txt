@@ -1,0 +1,32 @@
+##### Surrounding help messages #######
+entry-help:
+Hello, you are now working in LinTim. You have the options to access the help base by typing "help".@newline
+To be able to work in LinTim you need to choose an instance, which is executed by the command "use". @newline
+Subsequently you can start internal processes using the "make" commands. To view and write the parameters, that are associated with processes use "param" commands.
+
+main-help:
+The LinTim prompt has four main targets. These are "make", "param", "use" and "help".@newline
+1. With the target "make" processes can be started. Which processes are available can seen with auto-complete.@newline
+2. The target "param" reads and writes the instance-particular parameters. Use auto-complete to obtain all possible parameters.@newline
+3. With the target "use" the user can change the instance to be working on.@newline
+4. The "help"-target gives more specific help to make- and param-targets. Use auto-complete to access all possible commands.
+
+make-help:
+The make call can just be processed if a working instances is already set.@newline
+The call takes one option and has the following pattern: "make [make-target]".@newline
+It returns all the output from the processed make-target.
+
+param-help:
+The param call takes two options, which are "read" and "write". Both can be applied on any parameter.@newline
+Then the patterns are the following: @newline
+Using "param read [parameter]" the user must introduce a "parameter" and the specified value is returned.@newline
+If there no working instance set, then the value of this parameter, specified in the file "Global-Config.cnf" is returned.@newline
+Using "param write [parameter] [value]" the user must introduce a "parameter" which then takes the "value".@newline
+This can just be processed if a working instance is already set!!
+
+use-help:
+The use call defines the instance to be worked on!@newline
+Take care of choosing such instance before working with other commands, otherwise strange error messages might occur.
+
+exit-help:
+You just left LinTim, to restart type "./lintim".

@@ -1,0 +1,37 @@
+
+This README file describes the JavaTools file organization.
+
+The directory src/ contains the JavaTools source, which, as the name says, is
+written in Java and thus consists of packages.
+
+net.lintim.callback
+    Callback functions for gurobi and cplex solvers.
+net.lintim.csv
+    semiColon Separated Value readers/writers.
+net.lintim.debug
+    Initial duration assumption, event activity resp. public transportation
+    network paths access.
+net.lintim.dump
+    Write progress to console.
+net.lintim.evaluator
+    Evaluate different quantities for the PTN, OD, LC, line pool, EAN and
+    timetable.
+net.lintim.exception
+    DataInconsistentException class, the standard exception within JavaTools.
+net.lintim.generator
+    Contains the main logic for event activity network and passenger
+    distribution generation as well as all solver interfaces.
+net.lintim.graph
+    Customized in-JavaTools graph library.
+net.lintim.graphviz
+    Draw event activity networks and timetables.
+net.lintim.main
+    All main methods. When a makefile target is called that uses JavaTools,
+    it redirects to runner.sh and latter runs the main method from the
+    respective class.
+net.lintim.model
+    Stations, Links (a.k.a. edges), the PTN, OD, line pool/concept, Events,
+    Activities, the EAN, roughly said all network modeling relevant classes.
+net.lintim.util
+    Custom container classes like Bi- and TriLinkedHashMap as well as some
+    miscellaneous helper classes.

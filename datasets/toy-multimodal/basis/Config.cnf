@@ -1,0 +1,54 @@
+setting-name; setting-value
+include; "../../Global-Config.cnf"
+# ===========================================================================
+# === LOCAL_ONLY from Global-Config.cnf =====================================
+# ===========================================================================
+ptn_name; "toy-multimodal"
+period_length; 60
+time_units_per_minute; 1
+ptn_stop_waiting_time; 1
+ptn_draw_conversion_factor; 2
+loads_draw_conversion_factor; 1
+od_draw_conversion_factor; 1
+lpool_coordinate_factor; 1
+gen_conversion_length; 12
+gen_conversion_coordinates; 0.12
+ean_change_penalty; 5
+ean_default_minimal_waiting_time; 1
+ean_default_maximal_waiting_time; 3
+ean_default_minimal_change_time; 3
+ean_default_maximal_change_time; 62
+# ===========================================================================
+# === Multimodal Settings ===================================================
+# ===========================================================================
+modalities_all; [bus, tram]
+fixed_timetable_modalities; []
+bus.modality_category; "line-based"
+tram.modality_category; "line-based"
+bus.gen_passengers_per_vehicle; 60
+tram.gen_passengers_per_vehicle; 50
+bus.load_generator_fixed_upper_frequency; 50
+tram.load_generator_fixed_upper_frequency; 40
+# speed of the vehicles in km/h
+bus.gen_vehicle_speed; 180
+tram.gen_vehicle_speed; 20
+bus.gen_infrastructure_capacity_weight; 1
+tram.gen_infrastructure_capacity_weight; 1
+# ===========================================================================
+# === Optimized Visualization  ==============================================
+# ===========================================================================
+lpool_opt_visualisation_plot_scale; 3
+lpool_opt_visualisation_plot_margins; 0.3
+lpool_opt_visualisation_line_distance; 2
+lpool_opt_visualisation_line_width; 5
+lpool_opt_visualisation_legend_scaling; 12
+lpool_opt_visualisation_legend_location; best
+lpool_opt_visualisation_def_node_size; 1000
+lpool_opt_visualisation_node_labels; true
+lpool_opt_visualisation_node_label_size; 15
+# ===========================================================================
+# === State / Experiments / Automatization ==================================
+# ===========================================================================
+include_if_exists; "State-Config.cnf"
+include_if_exists; "Private-Config.cnf"
+include_if_exists; "After-Config.cnf"

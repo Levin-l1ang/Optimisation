@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<project name="LinTim-stop-location" default="build-project" basedir=".">
+    <include file="../../base.xml"/>
+    <property name="src-dir" value="src"/>
+    <property name="build-dir" value="build" />
+    <property name="shortest-path-src" value="../../essentials/shortest-paths/src" />
+    <property name="shortest-path" value="../../essentials/shortest-paths" />
+    <property name="ptn-tools-src" value="../../essentials/sl-helper/PTNTools" />
+    <path id="lintim-stoplocation-algorithms.classpath">
+        <pathelement location="build"/>
+        <pathelement location="${core-jar}"/>
+        <pathelement location="${jgrapht-jar}"/>
+        <pathelement location="${jheap-jar}"/>
+        <pathelement location="${shortest-path-src}"/>
+        <pathelement location="${ptn-tools-src}"/>
+    </path>
+	<target depends="build-without-xpress,build-with-xpress" name="build-project"/>
+	<target name="build-slhelper">
+        <ant target="build-sl-helper" dir="${ptn-tools-src}" inheritAll="false"/>
+	</target>
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+    <target name="build-shortest-paths">
+        <ant target="build" dir="${shortest-path}" inheritAll="false"/>
+    </target>
+	<target name="build-without-xpress" unless="${xpress.installed}">
+		<fail message="Xpress is not installed"/>
+	</target>
+	<target name="build-with-xpress"  if="${xpress.installed}" depends="init,base-lintim.build-core,build-slhelper,build-shortest-paths">
+		<javac srcdir="${src-dir}"
+		       destdir="${build-dir}" encoding="UTF-8">
+            <classpath refid="lintim-stoplocation-algorithms.classpath"/>
+		</javac>
+	</target>
+</project>

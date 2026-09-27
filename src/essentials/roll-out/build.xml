@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project name="LinTim" default="build-rollout" basedir=".">
+	<property name="enable_debug" value="true"/>
+	<property name="enable_optimize" value="true"/>
+
+	<target name="build-config">
+		<javac srcdir="../config"
+		       destdir="../config"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+	</target>
+	<target name="build-javalib-Tools" depends="build-config">
+		<javac srcdir="../dm-helper/Tools"
+		       destdir="../dm-helper/Tools"
+			   classpath="../config"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+	</target>
+	<target name="build-javalib-EAN" depends="build-config,build-javalib-Tools">
+		<javac srcdir="../dm-helper/EAN"
+		       destdir="../dm-helper/EAN"
+			   classpath="../config:../dm-helper/Tools"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+	</target>
+	<target name="build-rollout" depends="build-config,build-javalib-EAN,build-javalib-Tools">
+        <ant inheritAll="false" antfile="../statistic/build.xml" target="build"/>
+		<javac srcdir="."
+		       destdir="."
+		       classpath="../config:../dm-helper/Tools:../dm-helper/EAN"
+		       debug="${enable_debug}"
+		       optimize="${enable_optimize}"
+		       includeAntRuntime="true" encoding="UTF-8" />
+	</target>
+
+</project>

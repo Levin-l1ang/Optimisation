@@ -1,0 +1,12 @@
+# stop-id; short-name; long-name; x-coordinate; y-coordinate
+1; 1; CST; 100; 100
+2; 2; VDL; 200; 100
+3; 3; TNA; 550; 200
+4; 4; TRBH; 450; 200
+5; 5; MNKD; 300; 100
+6; 6; VSH; 400; 100
+7; 7; NERL; 500; 100
+8; 8; BLPR; 600; 100
+9; 9; PNVL; 700; 100
+10; 10; BA; 200; 200
+11; 11; ADH; 200; 300

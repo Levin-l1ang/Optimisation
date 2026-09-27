@@ -1,0 +1,14 @@
+
+The files of this folder cannot be run directly from here, but have to be copied to the right 
+places. That is in case of Bahn klein:
+
+The Configuration files into datasets/
+plotskript.sh into datasets/bahn-01/
+run.sh, evskript.sh, shorten.cpp into datasets/bahn-01/Plot_skript/
+
+Compile shorten.cpp to the executable shorten.
+Create datasets/bahn-01/Plot_skript/Plot_x_y/ for x=1,..,4, y=1,..,2
+Run plotskript.sh first to get the timetable data, then run.sh to format it appropriately.
+
+As writing out the timetable of every iteration is not a standard feature of the modulo network 
+simplex algorithm, use the altered modulo_network_simplex.cpp of this folder instead.

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project name="LinTim" default="build-circulations-to-ean" basedir=".">
+    <include file="../../base.xml"/>
+    <property name="src-dir" value="src" />
+    <property name="build-dir" value="build" />
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+    </target>
+    <target name="init">
+        <mkdir dir="${build-dir}"/>
+    </target>
+
+	<target name="build-circulations-to-ean" depends="init,base-lintim.build-core">
+		<javac srcdir="${src-dir}"
+		       destdir="${build-dir}"
+		       classpath="${core-jar}" encoding="UTF-8" />
+	</target>
+
+
+</project>
