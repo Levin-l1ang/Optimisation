@@ -1,0 +1,89 @@
+{
+  "dataset": "datasets/germany-rail",
+  "periods": 2,
+  "seed": 2023,
+  "penalty": 1.0,
+  "edges": 326,
+  "lines": 132,
+  "demand": "Deterministic monotone demand generated with seed 2023; final period equals datasets/germany-rail/basis/Load.giv.",
+  "generation": {
+    "network_source": "TimPassLib long-distance (LinTim Germany long-distance network)",
+    "network_source_url": "https://timpasslib.aalto.fi/data/long-distance.zip",
+    "od_source": "src/simulation/data/bahn-01/OD.giv",
+    "od_identity": "repository Bahn-01 matrix; statistics match TimPassLib/PESPlib R1L1",
+    "stops": 250,
+    "edges": 326,
+    "official_seed_lines": 42,
+    "pool_lines": 132,
+    "pool_algorithm": "official-line seeds plus demand-ranked one-shortest-path augmentation",
+    "minimum_line_edges": 2,
+    "raw_positive_od_pairs": 48842,
+    "raw_total_demand": 3147382.0,
+    "nominal_total_demand": 5000.0,
+    "vehicle_capacity": 70.0,
+    "fixed_upper_frequency": 20,
+    "maximum_lower_frequency": 9,
+    "line_cost": {
+      "fixed": 50.0,
+      "travel_time_factor": 0.05,
+      "edge_count_factor": 0.05
+    }
+  },
+  "parameter_grid": {
+    "MP-F": [
+      0,
+      2,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      32
+    ],
+    "MP-B_family": [
+      0,
+      1,
+      2,
+      4,
+      6,
+      8,
+      12,
+      16
+    ],
+    "MP-W": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      32,
+      40
+    ]
+  },
+  "solve_count": 44,
+  "optimal_solve_count": 44,
+  "lower_bound_objective": 8752.25,
+  "upper_bound_objective": 9759.5,
+  "plateau": {
+    "MP-F": {
+      "best_objective": 8932.25,
+      "first_best_K": 20.0
+    },
+    "MP-B": {
+      "best_objective": 8852.8,
+      "first_best_K": 8.0
+    },
+    "MP-B_ext": {
+      "best_objective": 8752.25,
+      "first_best_K": 16.0
+    },
+    "MP-W": {
+      "best_objective": 8752.25,
+      "first_best_K": 24.0
+    }
+  },
+  "paper_reproduction_limit": "The original implementation, exact candidate pools, random demand vectors, and seed are unavailable. This reconstruction combines the repository's Bahn-01/R1L1 OD matrix with the public TimPassLib long-distance topology and tests qualitative rather than point-for-point numerical agreement."
+}

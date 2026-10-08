@@ -1,0 +1,23 @@
+{
+  "network_source": "TimPassLib long-distance (LinTim Germany long-distance network)",
+  "network_source_url": "https://timpasslib.aalto.fi/data/long-distance.zip",
+  "od_source": "src/simulation/data/bahn-01/OD.giv",
+  "od_identity": "repository Bahn-01 matrix; statistics match TimPassLib/PESPlib R1L1",
+  "stops": 250,
+  "edges": 326,
+  "official_seed_lines": 42,
+  "pool_lines": 132,
+  "pool_algorithm": "official-line seeds plus demand-ranked one-shortest-path augmentation",
+  "minimum_line_edges": 2,
+  "raw_positive_od_pairs": 48842,
+  "raw_total_demand": 3147382.0,
+  "nominal_total_demand": 5000.0,
+  "vehicle_capacity": 70.0,
+  "fixed_upper_frequency": 20,
+  "maximum_lower_frequency": 9,
+  "line_cost": {
+    "fixed": 50.0,
+    "travel_time_factor": 0.05,
+    "edge_count_factor": 0.05
+  }
+}
