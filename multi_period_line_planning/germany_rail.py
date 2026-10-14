@@ -1,14 +1,17 @@
-"""Reconstruct the public Germany-rail/Bahn instance and generate a line pool.
+"""Reconstruct a traceable Germany-rail/Bahn instance and generate a line pool.
 
-The repository contains the 250-by-250 Bahn-01 OD matrix but not the physical
-network. TimPassLib's public ``long-distance`` instance contains an event-
-activity representation of the same 250-stop, 326-edge LinTim network. This
-module deterministically reconstructs the PTN, combines it with the checked-in
-OD matrix, and creates a compact demand-ranked shortest-path line pool.
+OpenLinTim publishes the 250-by-250 Bahn-01 OD matrix in its simulation test
+data, but not the complete Bahn-01 basis directory. TimPassLib's public
+``long-distance`` instance contains an event-activity representation of the
+same-size 250-stop, 326-edge LinTim network. This module deterministically
+reconstructs the PTN, combines it with an explicitly supplied OD file, and
+creates a demand-ranked shortest-path line pool. The result is a reconstructed
+research instance, not the unpublished original benchmark files.
 """
 
 from __future__ import annotations
 
+import hashlib
 import heapq
 import json
 import math
@@ -36,6 +39,42 @@ def _write_rows(path: Path, header: str, rows: Iterable[Sequence[object]]) -> No
         stream.write(f"# {header}\n")
         for row in rows:
             stream.write("; ".join(str(value) for value in row) + "\n")
+
+
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def _write_standalone_config(path: Path, vehicle_capacity: float) -> None:
+    """Create the minimum LinTim configuration required by local readers.
+
+    Existing dataset configurations are preserved.  A freshly reconstructed
+    directory must not depend on a repository-level ``Global-Config.cnf`` just
+    to establish directionality and travel-time units.
+    """
+
+    if path.exists():
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        "\n".join(
+            [
+                "setting-name; setting-value",
+                'ptn_name; "Bahn-01 reconstructed (not official benchmark files)"',
+                "ptn_is_undirected; true",
+                "period_length; 60",
+                "time_units_per_minute; 1",
+                'ean_model_weight_drive; "AVERAGE_DRIVING_TIME"',
+                f"gen_passengers_per_vehicle; {vehicle_capacity:g}",
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
 
 
 @dataclass(frozen=True)
@@ -168,8 +207,13 @@ def _read_od(path: Path) -> Dict[Tuple[int, int], float]:
         if len(fields) < 3:
             raise ValueError(f"Expected three columns in {path}")
         value = float(fields[2])
+        pair = (int(fields[0]), int(fields[1]))
+        if value < 0:
+            raise ValueError(f"Negative demand for OD pair {pair} in {path}")
         if value > 0:
-            demand[(int(fields[0]), int(fields[1]))] = value
+            if pair in demand:
+                raise ValueError(f"Duplicate positive OD pair {pair} in {path}")
+            demand[pair] = value
     return demand
 
 
@@ -286,7 +330,7 @@ def prepare_germany_rail(
     time_cost: float = 0.05,
     edge_cost: float = 0.05,
 ) -> PreparedGermanyRail:
-    """Build a reproducible LinTim dataset from public and checked-in sources."""
+    """Build a reproducible reconstructed LinTim dataset from public sources."""
 
     dataset = Path(dataset)
     source_od = Path(source_od)
@@ -306,6 +350,23 @@ def prepare_germany_rail(
         )
 
     demand = _read_od(source_od)
+    stop_set = set(stops)
+    unknown_od_stops = {
+        stop for pair in demand for stop in pair if stop not in stop_set
+    }
+    if unknown_od_stops:
+        raise ValueError(
+            f"OD matrix references unknown stops: {sorted(unknown_od_stops)[:10]}"
+        )
+    self_pairs = [pair for pair in demand if pair[0] == pair[1]]
+    if self_pairs:
+        raise ValueError(f"Positive self-demand is not supported: {self_pairs[:10]}")
+    raw_total = sum(demand.values())
+    if len(demand) != 48_842 or not math.isclose(raw_total, 3_147_382.0):
+        raise ValueError(
+            "Expected the public Bahn-01 OD identity (48,842 positive pairs, "
+            f"total 3,147,382); got {len(demand)} pairs and total {raw_total:g}"
+        )
     shortest_paths = _all_shortest_paths(stops, edges)
     official_lines = _official_lines(drives, pair_to_edge)
     lines = _generate_line_pool(
@@ -316,7 +377,6 @@ def prepare_germany_rail(
         minimum_line_edges,
     )
 
-    raw_total = sum(demand.values())
     scale = nominal_total_demand / raw_total
     edge_loads = {edge.edge_id: 0.0 for edge in edges}
     for pair, value in demand.items():
@@ -334,6 +394,7 @@ def prepare_germany_rail(
         )
 
     basis = dataset / "basis"
+    _write_standalone_config(basis / "Config.cnf", vehicle_capacity)
     _write_rows(
         basis / "Stop.giv",
         "stop-id; short-name; long-name; x-coordinate; y-coordinate",
@@ -400,7 +461,19 @@ def prepare_germany_rail(
         "network_source": "TimPassLib long-distance (LinTim Germany long-distance network)",
         "network_source_url": "https://timpasslib.aalto.fi/data/long-distance.zip",
         "od_source": str(source_od),
-        "od_identity": "repository Bahn-01 matrix; statistics match TimPassLib/PESPlib R1L1",
+        "canonical_od_source_url": (
+            "https://gitlab.com/lintim/openlintim/-/raw/2026.08/"
+            "src/simulation/data/bahn-01/OD.giv"
+        ),
+        "od_identity": (
+            "public OpenLinTim Bahn-01 matrix identity; positive rows exactly "
+            "match TimPassLib R1L1"
+        ),
+        "source_files": {
+            "events_sha256": _sha256(events_path),
+            "activities_sha256": _sha256(activities_path),
+            "od_sha256": _sha256(source_od),
+        },
         "stops": len(stops),
         "edges": len(edges),
         "official_seed_lines": len(official_lines),

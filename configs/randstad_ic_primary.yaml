@@ -1,0 +1,28 @@
+# Primary experiment configuration (handoff §3, §5, §12).  Every value that affects
+# results is explicit; there are no hidden defaults (in particular for M).
+benchmark:
+  repository: https://github.com/rn-van-lieshout/line-planning-benchmark
+  commit: 5d0aae68588701285c42ba47e593fbeb600cbc5c
+  network: Randstad-IC
+  od_matrix: dense            # all 416 OD pairs, single-period base demand
+  line_generation: small      # detour ratio 1.1 -> 93 lines (official LinePoolGenerator)
+  route_generation: medium    # +15 min relative to the shortest realizable route
+  transfer_penalty: medium    # 15 min
+  fixed_cost: medium          # 1 per activated line
+  budget: medium              # 60 (per period, B_1 = B_2 = 60)
+
+model:
+  periods: 2
+  budgets: [60, 60]
+  capacity_per_train_and_direction: 1500
+  period_minutes: 60          # waiting time = 60 / (2 f) per boarding leg
+  unserved_penalty_M: 242     # ceil(3 * 80.4284615) minutes per unserved passenger
+  M_sensitivity: [161, 242, 403]   # factors 2, 3, 5
+  similarity_K: [0, 10, 1000]      # strict / intermediate (pre-fixed) / non-binding
+  time_limit_seconds: 600
+  mip_gap: 0.0
+
+demand:
+  seed: 20261013
+  distribution: "D1 = r * D with r ~ U[0.5, 0.9] per OD; D2 = D (synthetic monotone periods)"
+  robustness_periods: 3        # run only if time permits; budgets [60, 60, 60]

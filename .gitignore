@@ -330,3 +330,8 @@ gurobi.lic
 
 # Windows
 *Zone.Identifier
+
+# local transfer scratch
+_transfer/
+results/probe/
+results/logs/

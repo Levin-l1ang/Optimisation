@@ -1,0 +1,14 @@
+{
+ "binary_variables": 1872,
+ "continuous_flow_variables": 254148,
+ "continuous_unserved_variables": 832,
+ "continuous_delta_variables": 93,
+ "constraints": 662303,
+ "nonzeros": 8919263,
+ "activation_constraints": 657680,
+ "capacity_constraints": 1400,
+ "variables": 256945,
+ "periods": 2,
+ "formulation": "compact",
+ "reduced_instance": false
+}

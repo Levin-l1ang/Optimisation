@@ -2,7 +2,13 @@
   "network_source": "TimPassLib long-distance (LinTim Germany long-distance network)",
   "network_source_url": "https://timpasslib.aalto.fi/data/long-distance.zip",
   "od_source": "src/simulation/data/bahn-01/OD.giv",
-  "od_identity": "repository Bahn-01 matrix; statistics match TimPassLib/PESPlib R1L1",
+  "canonical_od_source_url": "https://gitlab.com/lintim/openlintim/-/raw/2026.08/src/simulation/data/bahn-01/OD.giv",
+  "od_identity": "public OpenLinTim Bahn-01 matrix identity; positive rows exactly match TimPassLib R1L1",
+  "source_files": {
+    "events_sha256": "7c70d61ca7bc1dea3037e568214b2c0b0af46a12352ef77cf2eb6ecf60866605",
+    "activities_sha256": "e897b58f799095c2eabb510d87db118af454186f6fc8ccdfb06729eac5b9a845",
+    "od_sha256": "386abed76f73059cfd7de829366a09107b8cbf8b4d30f306828419c36d3d7640"
+  },
   "stops": 250,
   "edges": 326,
   "official_seed_lines": 42,

@@ -16,6 +16,7 @@ from multi_period_line_planning import (
     solve_mp_w,
     solve_upper_bound,
 )
+from passenger_line_planning import load_lintim_dataset
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -114,6 +115,12 @@ class MultiPeriodLinePlanningTest(unittest.TestCase):
             )
             self.assertEqual((prepared.stops, prepared.edges, prepared.lines), (250, 326, 132))
             self.assertEqual(prepared.positive_od_pairs, 48842)
+            reconstructed = load_lintim_dataset(rebuilt)
+            self.assertFalse(reconstructed.directed)
+            self.assertEqual(
+                (len(reconstructed.stops), len(reconstructed.edges), len(reconstructed.lines)),
+                (250, 326, 132),
+            )
             self.assertEqual(
                 (rebuilt / "basis/Pool.giv").read_text(encoding="utf-8"),
                 (checked_in / "basis/Pool.giv").read_text(encoding="utf-8"),

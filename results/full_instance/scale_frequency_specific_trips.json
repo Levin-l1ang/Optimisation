@@ -1,0 +1,19 @@
+{
+ "od_pairs": 416,
+ "itineraries": 126158,
+ "trips_per_period": 72536604,
+ "service_requirements_per_period": 213014868,
+ "capacity_keys_per_period": 6884,
+ "periods": 2,
+ "binary_variables": 1872,
+ "continuous_flow_variables": 145073208,
+ "continuous_unserved_variables": 832,
+ "continuous_delta_variables": 93,
+ "constraints": 426044711,
+ "nonzeros": 1570341759,
+ "activation_constraints": 426029736,
+ "capacity_constraints": 13768,
+ "variables": 145076005,
+ "formulation": "trips",
+ "reduced_instance": false
+}

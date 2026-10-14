@@ -1,0 +1,22 @@
+{
+ "plan_file": "results/greedy_plan_top20.json",
+ "top_od": 20,
+ "budgets": [
+  16.8,
+  16.8
+ ],
+ "M": 242,
+ "status": 0,
+ "objective": 2691706.4057406173,
+ "service_rate_by_period": [
+  0.8564613961334798,
+  0.7674018629529672
+ ],
+ "overall_service_rate": 0.8029098717001426,
+ "lines_open": [
+  5,
+  5
+ ],
+ "lp_seconds": 0.025856971740722656,
+ "note": "z fixed to the plan; flows solved by LP (HiGHS)"
+}

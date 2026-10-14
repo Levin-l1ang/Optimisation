@@ -1,0 +1,478 @@
+{
+ "instance": "Randstad-IC, dense OD, small line generation, medium route generation, medium transfer penalty, medium fixed cost, medium budget",
+ "benchmark_commit": "5d0aae68588701285c42ba47e593fbeb600cbc5c",
+ "line_pool_sha256": "1c05e71a201e9fec0530573112fcb79b43571ac59498943b7e8c2c30ea121cdd",
+ "formulation": "compact",
+ "periods": 2,
+ "budgets": [
+  11.2,
+  11.2
+ ],
+ "od_seed": 20261013,
+ "demand_distribution": "D1 = r*D, r~U[0.5,0.9] i.i.d. per OD; D2 = D",
+ "demand_sha256": "2038702a87d8fb547f2fc7059dfd642f5392a1990172440b81c229fc2f92a344",
+ "reduced_instance": true,
+ "budget_is_primary_60": false,
+ "reduction": {
+  "frequencies": "1,2,3,4",
+  "top_od": 10
+ },
+ "frequency_waiting_time": "60/(2f) per boarding leg (extension of the benchmark objective)",
+ "penalty_basis": {
+  "factor": 3.0,
+  "max_min_travel_time": 80.4284615385,
+  "argmax_od": [
+   "Ddr",
+   "Lls"
+  ],
+  "M": 242,
+  "M_sensitivity": {
+   "factor_2": 161,
+   "factor_3": 242,
+   "factor_5": 403
+  }
+ },
+ "runs": [
+  {
+   "M": 161.0,
+   "K": 0.0,
+   "status": "optimal",
+   "objective": 1675613.514400322,
+   "travel_cost": 720947.8329611798,
+   "unserved_cost": 954665.6814391462,
+   "best_bound": 1675613.514400322,
+   "mip_gap": 0.0,
+   "runtime_seconds": 42.85227936999945,
+   "wall_seconds": 42.9065420627594,
+   "service_rate_by_period": [
+    0.6827724864620155,
+    0.6679352664611399
+   ],
+   "overall_service_rate": 0.673900479861351,
+   "unserved_total_by_period": [
+    2319.10050583321,
+    3610.5000000000014
+   ],
+   "selected_frequencies": [
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    },
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3,
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 732,
+    "continuous_flow_variables": 3824,
+    "continuous_unserved_variables": 20,
+    "continuous_delta_variables": 93,
+    "constraints": 8105,
+    "nonzeros": 60531,
+    "activation_constraints": 6596,
+    "capacity_constraints": 524
+   }
+  },
+  {
+   "M": 161.0,
+   "K": 10.0,
+   "status": "optimal",
+   "objective": 1675613.514400327,
+   "travel_cost": 720947.832961172,
+   "unserved_cost": 954665.6814391488,
+   "best_bound": 1675613.514400327,
+   "mip_gap": 0.0,
+   "runtime_seconds": 23.367244494999795,
+   "wall_seconds": 23.41736102104187,
+   "service_rate_by_period": [
+    0.6827724864620062,
+    0.6679352664611429
+   ],
+   "overall_service_rate": 0.6739004798613493,
+   "unserved_total_by_period": [
+    2319.1005058332776,
+    3610.499999999968
+   ],
+   "selected_frequencies": [
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    },
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3,
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 732,
+    "continuous_flow_variables": 3824,
+    "continuous_unserved_variables": 20,
+    "continuous_delta_variables": 93,
+    "constraints": 8105,
+    "nonzeros": 60531,
+    "activation_constraints": 6596,
+    "capacity_constraints": 524
+   }
+  },
+  {
+   "M": 161.0,
+   "K": 1000.0,
+   "status": "optimal",
+   "objective": 1675613.51440033,
+   "travel_cost": 720947.8329611758,
+   "unserved_cost": 954665.6814391501,
+   "best_bound": 1675613.5144003297,
+   "mip_gap": 0.0,
+   "runtime_seconds": 22.074766587999875,
+   "wall_seconds": 22.12059473991394,
+   "service_rate_by_period": [
+    0.6827724864620126,
+    0.6679352664611424
+   ],
+   "overall_service_rate": 0.6739004798613515,
+   "unserved_total_by_period": [
+    2319.100505833231,
+    3610.499999999974
+   ],
+   "selected_frequencies": [
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    },
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3,
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 732,
+    "continuous_flow_variables": 3824,
+    "continuous_unserved_variables": 20,
+    "continuous_delta_variables": 93,
+    "constraints": 8105,
+    "nonzeros": 60531,
+    "activation_constraints": 6596,
+    "capacity_constraints": 524
+   }
+  },
+  {
+   "M": 242.0,
+   "K": 0.0,
+   "status": "optimal",
+   "objective": 2155911.1553728194,
+   "travel_cost": 720947.8329611804,
+   "unserved_cost": 1434963.3224116361,
+   "best_bound": 2155911.1553728194,
+   "mip_gap": 0.0,
+   "runtime_seconds": 56.81079989099999,
+   "wall_seconds": 56.860395669937134,
+   "service_rate_by_period": [
+    0.682772486462011,
+    0.6679352664611415
+   ],
+   "overall_service_rate": 0.6739004798613504,
+   "unserved_total_by_period": [
+    2319.100505833242,
+    3610.4999999999823
+   ],
+   "selected_frequencies": [
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    },
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3,
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 732,
+    "continuous_flow_variables": 3824,
+    "continuous_unserved_variables": 20,
+    "continuous_delta_variables": 93,
+    "constraints": 8105,
+    "nonzeros": 60531,
+    "activation_constraints": 6596,
+    "capacity_constraints": 524
+   }
+  },
+  {
+   "M": 242.0,
+   "K": 10.0,
+   "status": "optimal",
+   "objective": 2154830.4408583133,
+   "travel_cost": 764026.5169933678,
+   "unserved_cost": 1390803.9238649472,
+   "best_bound": 2154830.4408583133,
+   "mip_gap": 0.0,
+   "runtime_seconds": 29.73746932799986,
+   "wall_seconds": 29.784196853637695,
+   "service_rate_by_period": [
+    0.7077333186329358,
+    0.6679352664611418
+   ],
+   "overall_service_rate": 0.6839358295115974,
+   "unserved_total_by_period": [
+    2136.6236523345997,
+    3610.4999999999814
+   ],
+   "selected_frequencies": [
+    {
+     "40": 1,
+     "46": 1,
+     "79": 1
+    },
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3,
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 732,
+    "continuous_flow_variables": 3824,
+    "continuous_unserved_variables": 20,
+    "continuous_delta_variables": 93,
+    "constraints": 8105,
+    "nonzeros": 60531,
+    "activation_constraints": 6596,
+    "capacity_constraints": 524
+   }
+  },
+  {
+   "M": 242.0,
+   "K": 1000.0,
+   "status": "optimal",
+   "objective": 2154830.4408583287,
+   "travel_cost": 764026.5169933597,
+   "unserved_cost": 1390803.9238649702,
+   "best_bound": 2154830.4408583287,
+   "mip_gap": 0.0,
+   "runtime_seconds": 27.196025938000275,
+   "wall_seconds": 27.479585886001587,
+   "service_rate_by_period": [
+    0.7077333186329358,
+    0.6679352664611415
+   ],
+   "overall_service_rate": 0.6839358295115974,
+   "unserved_total_by_period": [
+    2136.6236523346,
+    3610.4999999999836
+   ],
+   "selected_frequencies": [
+    {
+     "40": 1,
+     "46": 1,
+     "79": 1
+    },
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3,
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 732,
+    "continuous_flow_variables": 3824,
+    "continuous_unserved_variables": 20,
+    "continuous_delta_variables": 93,
+    "constraints": 8105,
+    "nonzeros": 60531,
+    "activation_constraints": 6596,
+    "capacity_constraints": 524
+   }
+  },
+  {
+   "M": 403.0,
+   "K": 0.0,
+   "status": "optimal",
+   "objective": 3081009.458455619,
+   "travel_cost": 819484.8265647836,
+   "unserved_cost": 2261524.6318908287,
+   "best_bound": 3081009.458455619,
+   "mip_gap": 0.0,
+   "runtime_seconds": 61.389288344000306,
+   "wall_seconds": 61.440078258514404,
+   "service_rate_by_period": [
+    0.7077333186329366,
+    0.6803882687935516
+   ],
+   "overall_service_rate": 0.6913821785503469,
+   "unserved_total_by_period": [
+    2136.6236523345938,
+    3475.0999999999676
+   ],
+   "selected_frequencies": [
+    {
+     "40": 1,
+     "46": 1,
+     "48": 1
+    },
+    {
+     "40": 1,
+     "46": 1,
+     "48": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3,
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 732,
+    "continuous_flow_variables": 3824,
+    "continuous_unserved_variables": 20,
+    "continuous_delta_variables": 93,
+    "constraints": 8105,
+    "nonzeros": 60531,
+    "activation_constraints": 6596,
+    "capacity_constraints": 524
+   }
+  },
+  {
+   "M": 403.0,
+   "K": 10.0,
+   "status": "optimal",
+   "objective": 3080117.348884214,
+   "travel_cost": 764026.516993354,
+   "unserved_cost": 2316090.8318908596,
+   "best_bound": 3080117.348884214,
+   "mip_gap": 0.0,
+   "runtime_seconds": 29.33573573600006,
+   "wall_seconds": 29.392813444137573,
+   "service_rate_by_period": [
+    0.7077333186329313,
+    0.6679352664611374
+   ],
+   "overall_service_rate": 0.6839358295115932,
+   "unserved_total_by_period": [
+    2136.623652334632,
+    3610.5000000000277
+   ],
+   "selected_frequencies": [
+    {
+     "9": 1,
+     "46": 1,
+     "79": 1
+    },
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3,
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 732,
+    "continuous_flow_variables": 3824,
+    "continuous_unserved_variables": 20,
+    "continuous_delta_variables": 93,
+    "constraints": 8105,
+    "nonzeros": 60531,
+    "activation_constraints": 6596,
+    "capacity_constraints": 524
+   }
+  },
+  {
+   "M": 403.0,
+   "K": 1000.0,
+   "status": "optimal",
+   "objective": 3080117.3488839963,
+   "travel_cost": 764026.5169933765,
+   "unserved_cost": 2316090.831890768,
+   "best_bound": 3080117.3488839963,
+   "mip_gap": 0.0,
+   "runtime_seconds": 26.79358232499999,
+   "wall_seconds": 26.84609627723694,
+   "service_rate_by_period": [
+    0.7077333186329349,
+    0.6679352664610585
+   ],
+   "overall_service_rate": 0.6839358295115473,
+   "unserved_total_by_period": [
+    2136.623652334606,
+    3610.5000000008868
+   ],
+   "selected_frequencies": [
+    {
+     "37": 1,
+     "48": 1,
+     "71": 1
+    },
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3,
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 732,
+    "continuous_flow_variables": 3824,
+    "continuous_unserved_variables": 20,
+    "continuous_delta_variables": 93,
+    "constraints": 8105,
+    "nonzeros": 60531,
+    "activation_constraints": 6596,
+    "capacity_constraints": 524
+   }
+  }
+ ]
+}

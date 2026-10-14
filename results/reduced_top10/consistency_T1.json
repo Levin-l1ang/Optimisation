@@ -1,0 +1,77 @@
+{
+ "instance": "Randstad-IC, dense OD, small line generation, medium route generation, medium transfer penalty, medium fixed cost, medium budget",
+ "benchmark_commit": "5d0aae68588701285c42ba47e593fbeb600cbc5c",
+ "line_pool_sha256": "1c05e71a201e9fec0530573112fcb79b43571ac59498943b7e8c2c30ea121cdd",
+ "formulation": "compact",
+ "periods": 1,
+ "budgets": [
+  11.2
+ ],
+ "od_seed": null,
+ "demand_distribution": "D^t = D for all t (consistency check)",
+ "demand_sha256": "6cd361b805a77d27f6f51c1477a10b135a839885b24812087bad3d2204b56745",
+ "reduced_instance": true,
+ "budget_is_primary_60": false,
+ "reduction": {
+  "frequencies": "1,2,3,4",
+  "top_od": 10
+ },
+ "frequency_waiting_time": "60/(2f) per boarding leg (extension of the benchmark objective)",
+ "penalty_basis": {
+  "factor": 3.0,
+  "max_min_travel_time": 80.4284615385,
+  "argmax_od": [
+   "Ddr",
+   "Lls"
+  ],
+  "M": 242,
+  "M_sensitivity": {
+   "factor_2": 161,
+   "factor_3": 242,
+   "factor_5": 403
+  }
+ },
+ "runs": [
+  {
+   "M": 242.0,
+   "K": 0.0,
+   "status": "optimal",
+   "objective": 1299416.4394153855,
+   "travel_cost": 425675.4394153841,
+   "unserved_cost": 873741.0000000009,
+   "best_bound": 1299416.4394153855,
+   "mip_gap": 0.0,
+   "runtime_seconds": 12.811800439000763,
+   "wall_seconds": 12.8388090133667,
+   "service_rate_by_period": [
+    0.6679352664611397
+   ],
+   "overall_service_rate": 0.6679352664611397,
+   "unserved_total_by_period": [
+    3610.5000000000036
+   ],
+   "selected_frequencies": [
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 366,
+    "continuous_flow_variables": 1912,
+    "continuous_unserved_variables": 10,
+    "continuous_delta_variables": 0,
+    "constraints": 3959,
+    "nonzeros": 29394,
+    "activation_constraints": 3298,
+    "capacity_constraints": 262
+   }
+  }
+ ]
+}

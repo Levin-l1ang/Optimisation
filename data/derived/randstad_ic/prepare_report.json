@@ -1,0 +1,80 @@
+{
+ "benchmark_commit": "5d0aae68588701285c42ba47e593fbeb600cbc5c",
+ "connections": 80,
+ "frozen_file_sha256": {
+  "dptn_routes.jsonl": "f8c4cd39453e00afe758b539cfbc2fcd363abcd86c9d1b22d392ffe197b9183d",
+  "line_pool.json": "313acc6e9cf05810d2f44031d70802c42e929f39875d77c2524e2c27c6ffd7a9",
+  "od_bounds.jsonl": "2647080cb9d605f1227d0be5971cf82d2e417449446b7ac1631435a2112d28c8"
+ },
+ "line_pool": {
+  "extra_in_pool": 0,
+  "lines": 93,
+  "missing_from_pool": 0,
+  "oracle_lines": 93,
+  "pool_sha256": "1c05e71a201e9fec0530573112fcb79b43571ac59498943b7e8c2c30ea121cdd",
+  "rule_problems": 0
+ },
+ "min_travel_time_mismatches": 0,
+ "od_pairs": 416,
+ "od_without_route": [],
+ "parameters": {
+  "budget": 60.0,
+  "fixed_cost": 1.0,
+  "has_ics": true,
+  "has_sprs": false,
+  "line_detour_ratio": 1.1,
+  "line_max_duration": 60.0,
+  "route_max_detour": 15,
+  "transfer_penalty": 15
+ },
+ "penalty": {
+  "M": 242,
+  "M_sensitivity": {
+   "factor_2": 161,
+   "factor_3": 242,
+   "factor_5": 403
+  },
+  "argmax_od": [
+   "Ddr",
+   "Lls"
+  ],
+  "factor": 3.0,
+  "max_min_travel_time": 80.4284615385
+ },
+ "provenance": {
+  "benchmark_commit": "5d0aae68588701285c42ba47e593fbeb600cbc5c",
+  "benchmark_manifest_sha256": "b002079d12c6ea595b1ed13ff211fecb78f7bcc524b396cc2f011f4dede2cb43",
+  "benchmark_repository": "https://github.com/rn-van-lieshout/line-planning-benchmark",
+  "exporter_sha256": "d5db96e4e9bc0f59efe198a49d4bc6473e55d32e99b506907c1f83f58395d38a",
+  "generator": "official linePlanning.lineGeneration.LinePoolGenerator via tools/java/ExportBenchmark.java",
+  "generator_sources_sha256": {
+   "ActivationFunction.java": "ce8462e1fa27861d68609eef54ad75b0ccf15fc740925b12c873556adbe4302a",
+   "AllPaths.java": "d64c93eb54547a3907c2b99f81bcc051738a971b84184397ec8599eee0202940",
+   "DistanceWeightFunction.java": "3c04d79083f0db1be2a2d8ce28e9122357625d953bd0916ed6a7dc4421ec8af3",
+   "Line.java": "6e1d4f47a4d612bf0cc6cd971b4088e0107d42f552a061e7b189e727ac162552",
+   "LineActivationFunction.java": "bd877f0308bd861732109d688b15eab513fc3905dd8bfe5b31d9a7e8c19f474d",
+   "LinePoolGenerator.java": "68803060b0d1657fa827a7899a32dfaff37d474bcc1c1a8abed2224fc476ce6d"
+  },
+  "generator_status": "official reference output (not a reimplementation)",
+  "jdk": "Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=44507 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=",
+  "line_generation_setting": "small",
+  "route_generation_export_window_minutes": 45,
+  "route_generator_sha256": "b72cb571f37be7b203f7b1d2b6a06c62a95aad415d1fb947135850148fa70502"
+ },
+ "route_pool": {
+  "duplicates_removed": 0,
+  "itineraries": 126158,
+  "itineraries_before_pruning": 131402,
+  "max_realizable_gap": 17.629999999999995,
+  "od_pairs": 416,
+  "od_shortest_realizable_above_infrastructure": 50,
+  "official_routes": 5744,
+  "pruned_same_line_transfer": 5244,
+  "realizable_routes": 3370,
+  "ride_time_mismatches": 0
+ },
+ "stations_active": 29,
+ "stations_total": 110,
+ "total_base_demand": 58397.78,
+ "window_insufficient": []
+}

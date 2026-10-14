@@ -1,0 +1,86 @@
+{
+ "instance": "Randstad-IC, dense OD, small line generation, medium route generation, medium transfer penalty, medium fixed cost, medium budget",
+ "benchmark_commit": "5d0aae68588701285c42ba47e593fbeb600cbc5c",
+ "line_pool_sha256": "1c05e71a201e9fec0530573112fcb79b43571ac59498943b7e8c2c30ea121cdd",
+ "formulation": "trips",
+ "periods": 2,
+ "budgets": [
+  11.2,
+  11.2
+ ],
+ "od_seed": 20261013,
+ "demand_distribution": "D1 = r*D, r~U[0.5,0.9] i.i.d. per OD; D2 = D",
+ "demand_sha256": "2038702a87d8fb547f2fc7059dfd642f5392a1990172440b81c229fc2f92a344",
+ "reduced_instance": true,
+ "budget_is_primary_60": false,
+ "reduction": {
+  "frequencies": "1,2,3,4",
+  "top_od": 10
+ },
+ "frequency_waiting_time": "60/(2f) per boarding leg (extension of the benchmark objective)",
+ "penalty_basis": {
+  "factor": 3.0,
+  "max_min_travel_time": 80.4284615385,
+  "argmax_od": [
+   "Ddr",
+   "Lls"
+  ],
+  "M": 242,
+  "M_sensitivity": {
+   "factor_2": 161,
+   "factor_3": 242,
+   "factor_5": 403
+  }
+ },
+ "runs": [
+  {
+   "M": 242.0,
+   "K": 10.0,
+   "status": "optimal",
+   "objective": 2154830.440858292,
+   "travel_cost": 764026.5169933477,
+   "unserved_cost": 1390803.923864988,
+   "best_bound": 2154830.440858292,
+   "mip_gap": 0.0,
+   "runtime_seconds": 237.54329688400048,
+   "wall_seconds": 238.39714670181274,
+   "service_rate_by_period": [
+    0.7077333186329291,
+    0.667935266461146
+   ],
+   "overall_service_rate": 0.6839358295115974,
+   "unserved_total_by_period": [
+    2136.623652334649,
+    3610.4999999999345
+   ],
+   "selected_frequencies": [
+    {
+     "37": 1,
+     "48": 1,
+     "71": 1
+    },
+    {
+     "46": 1,
+     "48": 2,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    3,
+    3
+   ],
+   "max_trip_cost": 113.76285714285714,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 732,
+    "continuous_flow_variables": 52336,
+    "continuous_unserved_variables": 20,
+    "continuous_delta_variables": 93,
+    "constraints": 106731,
+    "nonzeros": 436027,
+    "activation_constraints": 104240,
+    "capacity_constraints": 2096
+   }
+  }
+ ]
+}

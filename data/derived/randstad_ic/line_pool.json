@@ -1,0 +1,2691 @@
+{
+ "description": "Frozen candidate line pool (official LinePoolGenerator output). Backward service = reverse connections in reverse order.",
+ "provenance": {
+  "benchmark_repository": "https://github.com/rn-van-lieshout/line-planning-benchmark",
+  "benchmark_commit": "5d0aae68588701285c42ba47e593fbeb600cbc5c",
+  "generator": "official linePlanning.lineGeneration.LinePoolGenerator via tools/java/ExportBenchmark.java",
+  "generator_status": "official reference output (not a reimplementation)",
+  "line_generation_setting": "small",
+  "route_generation_export_window_minutes": 45,
+  "jdk": "Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=44507 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=",
+  "generator_sources_sha256": {
+   "ActivationFunction.java": "ce8462e1fa27861d68609eef54ad75b0ccf15fc740925b12c873556adbe4302a",
+   "AllPaths.java": "d64c93eb54547a3907c2b99f81bcc051738a971b84184397ec8599eee0202940",
+   "DistanceWeightFunction.java": "3c04d79083f0db1be2a2d8ce28e9122357625d953bd0916ed6a7dc4421ec8af3",
+   "Line.java": "6e1d4f47a4d612bf0cc6cd971b4088e0107d42f552a061e7b189e727ac162552",
+   "LineActivationFunction.java": "bd877f0308bd861732109d688b15eab513fc3905dd8bfe5b31d9a7e8c19f474d",
+   "LinePoolGenerator.java": "68803060b0d1657fa827a7899a32dfaff37d474bcc1c1a8abed2224fc476ce6d"
+  },
+  "route_generator_sha256": "b72cb571f37be7b203f7b1d2b6a06c62a95aad415d1fb947135850148fa70502",
+  "exporter_sha256": "d5db96e4e9bc0f59efe198a49d4bc6473e55d32e99b506907c1f83f58395d38a",
+  "benchmark_manifest_sha256": "b002079d12c6ea595b1ed13ff211fecb78f7bcc524b396cc2f011f4dede2cb43"
+ },
+ "pool_sha256": "1c05e71a201e9fec0530573112fcb79b43571ac59498943b7e8c2c30ea121cdd",
+ "line_count": 93,
+ "lines": [
+  {
+   "line_id": 0,
+   "origin": "Alm",
+   "destination": "Amf",
+   "type": 2,
+   "duration": 27.44,
+   "cost_per_frequency": 1.9146666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Hvs",
+    "Amf"
+   ],
+   "connections_forward": [
+    2,
+    5
+   ],
+   "connections_backward": [
+    4,
+    3
+   ]
+  },
+  {
+   "line_id": 1,
+   "origin": "Alm",
+   "destination": "Amfs",
+   "type": 2,
+   "duration": 31.42,
+   "cost_per_frequency": 2.0473333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Hvs",
+    "Amf",
+    "Amfs"
+   ],
+   "connections_forward": [
+    2,
+    5,
+    75
+   ],
+   "connections_backward": [
+    74,
+    4,
+    3
+   ]
+  },
+  {
+   "line_id": 2,
+   "origin": "Alm",
+   "destination": "Asd",
+   "type": 2,
+   "duration": 17.925,
+   "cost_per_frequency": 1.5975,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asd"
+   ],
+   "connections_forward": [
+    10
+   ],
+   "connections_backward": [
+    11
+   ]
+  },
+  {
+   "line_id": 3,
+   "origin": "Alm",
+   "destination": "Ddr",
+   "type": 2,
+   "duration": 65.3584615385,
+   "cost_per_frequency": 3.1786153846,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asdz",
+    "Shl",
+    "Rtd",
+    "Ddr"
+   ],
+   "connections_forward": [
+    12,
+    22,
+    29,
+    47
+   ],
+   "connections_backward": [
+    46,
+    28,
+    23,
+    13
+   ]
+  },
+  {
+   "line_id": 4,
+   "origin": "Alm",
+   "destination": "Ddr",
+   "type": 2,
+   "duration": 74.3634615385,
+   "cost_per_frequency": 3.4787820513,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asd",
+    "Ass",
+    "Shl",
+    "Rtd",
+    "Ddr"
+   ],
+   "connections_forward": [
+    10,
+    14,
+    20,
+    29,
+    47
+   ],
+   "connections_backward": [
+    46,
+    28,
+    21,
+    15,
+    11
+   ]
+  },
+  {
+   "line_id": 5,
+   "origin": "Alm",
+   "destination": "Ddr",
+   "type": 2,
+   "duration": 80.13,
+   "cost_per_frequency": 3.671,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Hvs",
+    "Ut",
+    "Gd",
+    "Rta",
+    "Rtd",
+    "Ddr"
+   ],
+   "connections_forward": [
+    2,
+    8,
+    51,
+    48,
+    58,
+    47
+   ],
+   "connections_backward": [
+    46,
+    59,
+    49,
+    50,
+    9,
+    3
+   ]
+  },
+  {
+   "line_id": 6,
+   "origin": "Alm",
+   "destination": "Gv",
+   "type": 2,
+   "duration": 53.28,
+   "cost_per_frequency": 2.776,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asdz",
+    "Shl",
+    "Ledn",
+    "Laa",
+    "Gv"
+   ],
+   "connections_forward": [
+    12,
+    22,
+    27,
+    35,
+    33
+   ],
+   "connections_backward": [
+    32,
+    34,
+    26,
+    23,
+    13
+   ]
+  },
+  {
+   "line_id": 7,
+   "origin": "Alm",
+   "destination": "Gv",
+   "type": 2,
+   "duration": 62.285,
+   "cost_per_frequency": 3.0761666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asd",
+    "Ass",
+    "Shl",
+    "Ledn",
+    "Laa",
+    "Gv"
+   ],
+   "connections_forward": [
+    10,
+    14,
+    20,
+    27,
+    35,
+    33
+   ],
+   "connections_backward": [
+    32,
+    34,
+    26,
+    21,
+    15,
+    11
+   ]
+  },
+  {
+   "line_id": 8,
+   "origin": "Alm",
+   "destination": "Gvc",
+   "type": 2,
+   "duration": 51.6828571429,
+   "cost_per_frequency": 2.7227619048,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asdz",
+    "Shl",
+    "Ledn",
+    "Gvc"
+   ],
+   "connections_forward": [
+    12,
+    22,
+    27,
+    31
+   ],
+   "connections_backward": [
+    30,
+    26,
+    23,
+    13
+   ]
+  },
+  {
+   "line_id": 9,
+   "origin": "Alm",
+   "destination": "Gvc",
+   "type": 2,
+   "duration": 60.6878571429,
+   "cost_per_frequency": 3.0229285714,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asd",
+    "Ass",
+    "Shl",
+    "Ledn",
+    "Gvc"
+   ],
+   "connections_forward": [
+    10,
+    14,
+    20,
+    27,
+    31
+   ],
+   "connections_backward": [
+    30,
+    26,
+    21,
+    15,
+    11
+   ]
+  },
+  {
+   "line_id": 10,
+   "origin": "Alm",
+   "destination": "Hlm",
+   "type": 2,
+   "duration": 33.715,
+   "cost_per_frequency": 2.1238333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asd",
+    "Ass",
+    "Hlm"
+   ],
+   "connections_forward": [
+    10,
+    14,
+    16
+   ],
+   "connections_backward": [
+    17,
+    15,
+    11
+   ]
+  },
+  {
+   "line_id": 11,
+   "origin": "Alm",
+   "destination": "Ledn",
+   "type": 2,
+   "duration": 41.24,
+   "cost_per_frequency": 2.3746666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asdz",
+    "Shl",
+    "Ledn"
+   ],
+   "connections_forward": [
+    12,
+    22,
+    27
+   ],
+   "connections_backward": [
+    26,
+    23,
+    13
+   ]
+  },
+  {
+   "line_id": 12,
+   "origin": "Alm",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 13.07,
+   "cost_per_frequency": 1.4356666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    0
+   ],
+   "connections_backward": [
+    1
+   ]
+  },
+  {
+   "line_id": 13,
+   "origin": "Alm",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 51.3584615385,
+   "cost_per_frequency": 2.7119487179,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asdz",
+    "Shl",
+    "Rtd"
+   ],
+   "connections_forward": [
+    12,
+    22,
+    29
+   ],
+   "connections_backward": [
+    28,
+    23,
+    13
+   ]
+  },
+  {
+   "line_id": 14,
+   "origin": "Alm",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 60.3634615385,
+   "cost_per_frequency": 3.0121153846,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asd",
+    "Ass",
+    "Shl",
+    "Rtd"
+   ],
+   "connections_forward": [
+    10,
+    14,
+    20,
+    29
+   ],
+   "connections_backward": [
+    28,
+    21,
+    15,
+    11
+   ]
+  },
+  {
+   "line_id": 15,
+   "origin": "Alm",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 66.13,
+   "cost_per_frequency": 3.2043333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Hvs",
+    "Ut",
+    "Gd",
+    "Rta",
+    "Rtd"
+   ],
+   "connections_forward": [
+    2,
+    8,
+    51,
+    48,
+    58
+   ],
+   "connections_backward": [
+    59,
+    49,
+    50,
+    9,
+    3
+   ]
+  },
+  {
+   "line_id": 16,
+   "origin": "Alm",
+   "destination": "Shl",
+   "type": 2,
+   "duration": 25.22,
+   "cost_per_frequency": 1.8406666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Asdz",
+    "Shl"
+   ],
+   "connections_forward": [
+    12,
+    22
+   ],
+   "connections_backward": [
+    23,
+    13
+   ]
+  },
+  {
+   "line_id": 17,
+   "origin": "Alm",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 28.16,
+   "cost_per_frequency": 1.9386666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Alm",
+    "Hvs",
+    "Ut"
+   ],
+   "connections_forward": [
+    2,
+    8
+   ],
+   "connections_backward": [
+    9,
+    3
+   ]
+  },
+  {
+   "line_id": 18,
+   "origin": "Amf",
+   "destination": "Amfs",
+   "type": 2,
+   "duration": 1.98,
+   "cost_per_frequency": 1.066,
+   "max_frequency": 20,
+   "capacity": 1500,
+   "stations": [
+    "Amf",
+    "Amfs"
+   ],
+   "connections_forward": [
+    75
+   ],
+   "connections_backward": [
+    74
+   ]
+  },
+  {
+   "line_id": 19,
+   "origin": "Amf",
+   "destination": "Asd",
+   "type": 2,
+   "duration": 29.225,
+   "cost_per_frequency": 1.9741666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amf",
+    "Hvs",
+    "Asd"
+   ],
+   "connections_forward": [
+    4,
+    71
+   ],
+   "connections_backward": [
+    70,
+    5
+   ]
+  },
+  {
+   "line_id": 20,
+   "origin": "Amf",
+   "destination": "Ddr",
+   "type": 2,
+   "duration": 64.51,
+   "cost_per_frequency": 3.1503333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amf",
+    "Ut",
+    "Gd",
+    "Rta",
+    "Rtd",
+    "Ddr"
+   ],
+   "connections_forward": [
+    6,
+    51,
+    48,
+    58,
+    47
+   ],
+   "connections_backward": [
+    46,
+    59,
+    49,
+    50,
+    7
+   ]
+  },
+  {
+   "line_id": 21,
+   "origin": "Amf",
+   "destination": "Gvc",
+   "type": 2,
+   "duration": 49.83,
+   "cost_per_frequency": 2.661,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amf",
+    "Ut",
+    "Gd",
+    "Gvc"
+   ],
+   "connections_forward": [
+    6,
+    51,
+    38
+   ],
+   "connections_backward": [
+    39,
+    50,
+    7
+   ]
+  },
+  {
+   "line_id": 22,
+   "origin": "Amf",
+   "destination": "Hlm",
+   "type": 2,
+   "duration": 45.015,
+   "cost_per_frequency": 2.5005,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amf",
+    "Hvs",
+    "Asd",
+    "Ass",
+    "Hlm"
+   ],
+   "connections_forward": [
+    4,
+    71,
+    14,
+    16
+   ],
+   "connections_backward": [
+    17,
+    15,
+    70,
+    5
+   ]
+  },
+  {
+   "line_id": 23,
+   "origin": "Amf",
+   "destination": "Ledn",
+   "type": 2,
+   "duration": 53.385,
+   "cost_per_frequency": 2.7795,
+   "max_frequency": 2,
+   "capacity": 1500,
+   "stations": [
+    "Amf",
+    "Ut",
+    "Wd",
+    "Apn",
+    "Ledn"
+   ],
+   "connections_forward": [
+    6,
+    55,
+    53,
+    72
+   ],
+   "connections_backward": [
+    73,
+    52,
+    54,
+    7
+   ]
+  },
+  {
+   "line_id": 24,
+   "origin": "Amf",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 42.51,
+   "cost_per_frequency": 2.417,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amf",
+    "Hvs",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    4,
+    3,
+    0
+   ],
+   "connections_backward": [
+    1,
+    2,
+    5
+   ]
+  },
+  {
+   "line_id": 25,
+   "origin": "Amf",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 50.51,
+   "cost_per_frequency": 2.6836666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amf",
+    "Ut",
+    "Gd",
+    "Rta",
+    "Rtd"
+   ],
+   "connections_forward": [
+    6,
+    51,
+    48,
+    58
+   ],
+   "connections_backward": [
+    59,
+    49,
+    50,
+    7
+   ]
+  },
+  {
+   "line_id": 26,
+   "origin": "Amf",
+   "destination": "Shl",
+   "type": 2,
+   "duration": 38.52,
+   "cost_per_frequency": 2.284,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amf",
+    "Hvs",
+    "Dvd",
+    "Asdz",
+    "Shl"
+   ],
+   "connections_forward": [
+    4,
+    65,
+    63,
+    22
+   ],
+   "connections_backward": [
+    23,
+    62,
+    64,
+    5
+   ]
+  },
+  {
+   "line_id": 27,
+   "origin": "Amf",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 12.54,
+   "cost_per_frequency": 1.418,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amf",
+    "Ut"
+   ],
+   "connections_forward": [
+    6
+   ],
+   "connections_backward": [
+    7
+   ]
+  },
+  {
+   "line_id": 28,
+   "origin": "Amfs",
+   "destination": "Asd",
+   "type": 2,
+   "duration": 33.205,
+   "cost_per_frequency": 2.1068333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amfs",
+    "Amf",
+    "Hvs",
+    "Asd"
+   ],
+   "connections_forward": [
+    74,
+    4,
+    71
+   ],
+   "connections_backward": [
+    70,
+    5,
+    75
+   ]
+  },
+  {
+   "line_id": 29,
+   "origin": "Amfs",
+   "destination": "Ddr",
+   "type": 2,
+   "duration": 68.49,
+   "cost_per_frequency": 3.283,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amfs",
+    "Amf",
+    "Ut",
+    "Gd",
+    "Rta",
+    "Rtd",
+    "Ddr"
+   ],
+   "connections_forward": [
+    74,
+    6,
+    51,
+    48,
+    58,
+    47
+   ],
+   "connections_backward": [
+    46,
+    59,
+    49,
+    50,
+    7,
+    75
+   ]
+  },
+  {
+   "line_id": 30,
+   "origin": "Amfs",
+   "destination": "Gvc",
+   "type": 2,
+   "duration": 53.81,
+   "cost_per_frequency": 2.7936666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amfs",
+    "Amf",
+    "Ut",
+    "Gd",
+    "Gvc"
+   ],
+   "connections_forward": [
+    74,
+    6,
+    51,
+    38
+   ],
+   "connections_backward": [
+    39,
+    50,
+    7,
+    75
+   ]
+  },
+  {
+   "line_id": 31,
+   "origin": "Amfs",
+   "destination": "Hlm",
+   "type": 2,
+   "duration": 48.995,
+   "cost_per_frequency": 2.6331666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amfs",
+    "Amf",
+    "Hvs",
+    "Asd",
+    "Ass",
+    "Hlm"
+   ],
+   "connections_forward": [
+    74,
+    4,
+    71,
+    14,
+    16
+   ],
+   "connections_backward": [
+    17,
+    15,
+    70,
+    5,
+    75
+   ]
+  },
+  {
+   "line_id": 32,
+   "origin": "Amfs",
+   "destination": "Ledn",
+   "type": 2,
+   "duration": 57.365,
+   "cost_per_frequency": 2.9121666667,
+   "max_frequency": 2,
+   "capacity": 1500,
+   "stations": [
+    "Amfs",
+    "Amf",
+    "Ut",
+    "Wd",
+    "Apn",
+    "Ledn"
+   ],
+   "connections_forward": [
+    74,
+    6,
+    55,
+    53,
+    72
+   ],
+   "connections_backward": [
+    73,
+    52,
+    54,
+    7,
+    75
+   ]
+  },
+  {
+   "line_id": 33,
+   "origin": "Amfs",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 46.49,
+   "cost_per_frequency": 2.5496666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amfs",
+    "Amf",
+    "Hvs",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    74,
+    4,
+    3,
+    0
+   ],
+   "connections_backward": [
+    1,
+    2,
+    5,
+    75
+   ]
+  },
+  {
+   "line_id": 34,
+   "origin": "Amfs",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 54.49,
+   "cost_per_frequency": 2.8163333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amfs",
+    "Amf",
+    "Ut",
+    "Gd",
+    "Rta",
+    "Rtd"
+   ],
+   "connections_forward": [
+    74,
+    6,
+    51,
+    48,
+    58
+   ],
+   "connections_backward": [
+    59,
+    49,
+    50,
+    7,
+    75
+   ]
+  },
+  {
+   "line_id": 35,
+   "origin": "Amfs",
+   "destination": "Shl",
+   "type": 2,
+   "duration": 42.5,
+   "cost_per_frequency": 2.4166666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amfs",
+    "Amf",
+    "Hvs",
+    "Dvd",
+    "Asdz",
+    "Shl"
+   ],
+   "connections_forward": [
+    74,
+    4,
+    65,
+    63,
+    22
+   ],
+   "connections_backward": [
+    23,
+    62,
+    64,
+    5,
+    75
+   ]
+  },
+  {
+   "line_id": 36,
+   "origin": "Amfs",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 16.52,
+   "cost_per_frequency": 1.5506666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Amfs",
+    "Amf",
+    "Ut"
+   ],
+   "connections_forward": [
+    74,
+    6
+   ],
+   "connections_backward": [
+    7,
+    75
+   ]
+  },
+  {
+   "line_id": 37,
+   "origin": "Asd",
+   "destination": "Ddr",
+   "type": 2,
+   "duration": 54.4384615385,
+   "cost_per_frequency": 2.8146153846,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Ass",
+    "Shl",
+    "Rtd",
+    "Ddr"
+   ],
+   "connections_forward": [
+    14,
+    20,
+    29,
+    47
+   ],
+   "connections_backward": [
+    46,
+    28,
+    21,
+    15
+   ]
+  },
+  {
+   "line_id": 38,
+   "origin": "Asd",
+   "destination": "Gv",
+   "type": 2,
+   "duration": 42.36,
+   "cost_per_frequency": 2.412,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Ass",
+    "Shl",
+    "Ledn",
+    "Laa",
+    "Gv"
+   ],
+   "connections_forward": [
+    14,
+    20,
+    27,
+    35,
+    33
+   ],
+   "connections_backward": [
+    32,
+    34,
+    26,
+    21,
+    15
+   ]
+  },
+  {
+   "line_id": 39,
+   "origin": "Asd",
+   "destination": "Gv",
+   "type": 2,
+   "duration": 46.99,
+   "cost_per_frequency": 2.5663333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Ass",
+    "Hlm",
+    "Had",
+    "Ledn",
+    "Laa",
+    "Gv"
+   ],
+   "connections_forward": [
+    14,
+    16,
+    19,
+    24,
+    35,
+    33
+   ],
+   "connections_backward": [
+    32,
+    34,
+    25,
+    18,
+    17,
+    15
+   ]
+  },
+  {
+   "line_id": 40,
+   "origin": "Asd",
+   "destination": "Gvc",
+   "type": 2,
+   "duration": 40.7628571429,
+   "cost_per_frequency": 2.3587619048,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Ass",
+    "Shl",
+    "Ledn",
+    "Gvc"
+   ],
+   "connections_forward": [
+    14,
+    20,
+    27,
+    31
+   ],
+   "connections_backward": [
+    30,
+    26,
+    21,
+    15
+   ]
+  },
+  {
+   "line_id": 41,
+   "origin": "Asd",
+   "destination": "Gvc",
+   "type": 2,
+   "duration": 45.3928571429,
+   "cost_per_frequency": 2.5130952381,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Ass",
+    "Hlm",
+    "Had",
+    "Ledn",
+    "Gvc"
+   ],
+   "connections_forward": [
+    14,
+    16,
+    19,
+    24,
+    31
+   ],
+   "connections_backward": [
+    30,
+    25,
+    18,
+    17,
+    15
+   ]
+  },
+  {
+   "line_id": 42,
+   "origin": "Asd",
+   "destination": "Hlm",
+   "type": 2,
+   "duration": 13.79,
+   "cost_per_frequency": 1.4596666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Ass",
+    "Hlm"
+   ],
+   "connections_forward": [
+    14,
+    16
+   ],
+   "connections_backward": [
+    17,
+    15
+   ]
+  },
+  {
+   "line_id": 43,
+   "origin": "Asd",
+   "destination": "Ledn",
+   "type": 2,
+   "duration": 30.32,
+   "cost_per_frequency": 2.0106666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Ass",
+    "Shl",
+    "Ledn"
+   ],
+   "connections_forward": [
+    14,
+    20,
+    27
+   ],
+   "connections_backward": [
+    26,
+    21,
+    15
+   ]
+  },
+  {
+   "line_id": 44,
+   "origin": "Asd",
+   "destination": "Ledn",
+   "type": 2,
+   "duration": 34.95,
+   "cost_per_frequency": 2.165,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Ass",
+    "Hlm",
+    "Had",
+    "Ledn"
+   ],
+   "connections_forward": [
+    14,
+    16,
+    19,
+    24
+   ],
+   "connections_backward": [
+    25,
+    18,
+    17,
+    15
+   ]
+  },
+  {
+   "line_id": 45,
+   "origin": "Asd",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 32.995,
+   "cost_per_frequency": 2.0998333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    11,
+    0
+   ],
+   "connections_backward": [
+    1,
+    10
+   ]
+  },
+  {
+   "line_id": 46,
+   "origin": "Asd",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 40.4384615385,
+   "cost_per_frequency": 2.3479487179,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Ass",
+    "Shl",
+    "Rtd"
+   ],
+   "connections_forward": [
+    14,
+    20,
+    29
+   ],
+   "connections_backward": [
+    28,
+    21,
+    15
+   ]
+  },
+  {
+   "line_id": 47,
+   "origin": "Asd",
+   "destination": "Shl",
+   "type": 2,
+   "duration": 14.3,
+   "cost_per_frequency": 1.4766666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Ass",
+    "Shl"
+   ],
+   "connections_forward": [
+    14,
+    20
+   ],
+   "connections_backward": [
+    21,
+    15
+   ]
+  },
+  {
+   "line_id": 48,
+   "origin": "Asd",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 24.165,
+   "cost_per_frequency": 1.8055,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Asd",
+    "Asa",
+    "Ut"
+   ],
+   "connections_forward": [
+    57,
+    60
+   ],
+   "connections_backward": [
+    61,
+    56
+   ]
+  },
+  {
+   "line_id": 49,
+   "origin": "Ddr",
+   "destination": "Gv",
+   "type": 2,
+   "duration": 31.14,
+   "cost_per_frequency": 2.038,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd",
+    "Sdm",
+    "Dt",
+    "Gv"
+   ],
+   "connections_forward": [
+    46,
+    45,
+    43,
+    40
+   ],
+   "connections_backward": [
+    41,
+    42,
+    44,
+    47
+   ]
+  },
+  {
+   "line_id": 50,
+   "origin": "Ddr",
+   "destination": "Gvc",
+   "type": 2,
+   "duration": 34.2542857143,
+   "cost_per_frequency": 2.1418095238,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd",
+    "Sdm",
+    "Dt",
+    "Gv",
+    "Gvc"
+   ],
+   "connections_forward": [
+    46,
+    45,
+    43,
+    40,
+    36
+   ],
+   "connections_backward": [
+    37,
+    41,
+    42,
+    44,
+    47
+   ]
+  },
+  {
+   "line_id": 51,
+   "origin": "Ddr",
+   "destination": "Hlm",
+   "type": 2,
+   "duration": 64.34,
+   "cost_per_frequency": 3.1446666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd",
+    "Sdm",
+    "Dt",
+    "Gv",
+    "Laa",
+    "Ledn",
+    "Had",
+    "Hlm"
+   ],
+   "connections_forward": [
+    46,
+    45,
+    43,
+    40,
+    32,
+    34,
+    25,
+    18
+   ],
+   "connections_backward": [
+    19,
+    24,
+    35,
+    33,
+    41,
+    42,
+    44,
+    47
+   ]
+  },
+  {
+   "line_id": 52,
+   "origin": "Ddr",
+   "destination": "Ledn",
+   "type": 2,
+   "duration": 43.18,
+   "cost_per_frequency": 2.4393333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd",
+    "Sdm",
+    "Dt",
+    "Gv",
+    "Laa",
+    "Ledn"
+   ],
+   "connections_forward": [
+    46,
+    45,
+    43,
+    40,
+    32,
+    34
+   ],
+   "connections_backward": [
+    35,
+    33,
+    41,
+    42,
+    44,
+    47
+   ]
+  },
+  {
+   "line_id": 53,
+   "origin": "Ddr",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 80.4284615385,
+   "cost_per_frequency": 3.6809487179,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd",
+    "Shl",
+    "Asdz",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    46,
+    28,
+    23,
+    13,
+    0
+   ],
+   "connections_backward": [
+    1,
+    12,
+    22,
+    29,
+    47
+   ]
+  },
+  {
+   "line_id": 54,
+   "origin": "Ddr",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 89.4334615385,
+   "cost_per_frequency": 3.9811153846,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd",
+    "Shl",
+    "Ass",
+    "Asd",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    46,
+    28,
+    21,
+    15,
+    11,
+    0
+   ],
+   "connections_backward": [
+    1,
+    10,
+    14,
+    20,
+    29,
+    47
+   ]
+  },
+  {
+   "line_id": 55,
+   "origin": "Ddr",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 95.2,
+   "cost_per_frequency": 4.1733333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd",
+    "Rta",
+    "Gd",
+    "Ut",
+    "Hvs",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    46,
+    59,
+    49,
+    50,
+    9,
+    3,
+    0
+   ],
+   "connections_backward": [
+    1,
+    2,
+    8,
+    51,
+    48,
+    58,
+    47
+   ]
+  },
+  {
+   "line_id": 56,
+   "origin": "Ddr",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 101.49,
+   "cost_per_frequency": 4.383,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd",
+    "Sdm",
+    "Dt",
+    "Gv",
+    "Laa",
+    "Ledn",
+    "Shl",
+    "Asdz",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    46,
+    45,
+    43,
+    40,
+    32,
+    34,
+    26,
+    23,
+    13,
+    0
+   ],
+   "connections_backward": [
+    1,
+    12,
+    22,
+    27,
+    35,
+    33,
+    41,
+    42,
+    44,
+    47
+   ]
+  },
+  {
+   "line_id": 57,
+   "origin": "Ddr",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 12.0,
+   "cost_per_frequency": 1.4,
+   "max_frequency": 20,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd"
+   ],
+   "connections_forward": [
+    46
+   ],
+   "connections_backward": [
+    47
+   ]
+  },
+  {
+   "line_id": 58,
+   "origin": "Ddr",
+   "destination": "Shl",
+   "type": 2,
+   "duration": 38.1384615385,
+   "cost_per_frequency": 2.2712820513,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd",
+    "Shl"
+   ],
+   "connections_forward": [
+    46,
+    28
+   ],
+   "connections_backward": [
+    29,
+    47
+   ]
+  },
+  {
+   "line_id": 59,
+   "origin": "Ddr",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 49.97,
+   "cost_per_frequency": 2.6656666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ddr",
+    "Rtd",
+    "Rta",
+    "Gd",
+    "Ut"
+   ],
+   "connections_forward": [
+    46,
+    59,
+    49,
+    50
+   ],
+   "connections_backward": [
+    51,
+    48,
+    58,
+    47
+   ]
+  },
+  {
+   "line_id": 60,
+   "origin": "Gv",
+   "destination": "Gvc",
+   "type": 2,
+   "duration": 1.1142857143,
+   "cost_per_frequency": 1.0371428571,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gv",
+    "Gvc"
+   ],
+   "connections_forward": [
+    36
+   ],
+   "connections_backward": [
+    37
+   ]
+  },
+  {
+   "line_id": 61,
+   "origin": "Gv",
+   "destination": "Hlm",
+   "type": 2,
+   "duration": 31.2,
+   "cost_per_frequency": 2.04,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gv",
+    "Laa",
+    "Ledn",
+    "Had",
+    "Hlm"
+   ],
+   "connections_forward": [
+    32,
+    34,
+    25,
+    18
+   ],
+   "connections_backward": [
+    19,
+    24,
+    35,
+    33
+   ]
+  },
+  {
+   "line_id": 62,
+   "origin": "Gv",
+   "destination": "Ledn",
+   "type": 2,
+   "duration": 10.04,
+   "cost_per_frequency": 1.3346666667,
+   "max_frequency": 20,
+   "capacity": 1500,
+   "stations": [
+    "Gv",
+    "Laa",
+    "Ledn"
+   ],
+   "connections_forward": [
+    32,
+    34
+   ],
+   "connections_backward": [
+    35,
+    33
+   ]
+  },
+  {
+   "line_id": 63,
+   "origin": "Gv",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 68.35,
+   "cost_per_frequency": 3.2783333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gv",
+    "Laa",
+    "Ledn",
+    "Shl",
+    "Asdz",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    32,
+    34,
+    26,
+    23,
+    13,
+    0
+   ],
+   "connections_backward": [
+    1,
+    12,
+    22,
+    27,
+    35,
+    33
+   ]
+  },
+  {
+   "line_id": 64,
+   "origin": "Gv",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 77.355,
+   "cost_per_frequency": 3.5785,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gv",
+    "Laa",
+    "Ledn",
+    "Shl",
+    "Ass",
+    "Asd",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    32,
+    34,
+    26,
+    21,
+    15,
+    11,
+    0
+   ],
+   "connections_backward": [
+    1,
+    10,
+    14,
+    20,
+    27,
+    35,
+    33
+   ]
+  },
+  {
+   "line_id": 65,
+   "origin": "Gv",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 81.985,
+   "cost_per_frequency": 3.7328333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gv",
+    "Laa",
+    "Ledn",
+    "Had",
+    "Hlm",
+    "Ass",
+    "Asd",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    32,
+    34,
+    25,
+    18,
+    17,
+    15,
+    11,
+    0
+   ],
+   "connections_backward": [
+    1,
+    10,
+    14,
+    16,
+    19,
+    24,
+    35,
+    33
+   ]
+  },
+  {
+   "line_id": 66,
+   "origin": "Gv",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 17.14,
+   "cost_per_frequency": 1.5713333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gv",
+    "Dt",
+    "Sdm",
+    "Rtd"
+   ],
+   "connections_forward": [
+    41,
+    42,
+    44
+   ],
+   "connections_backward": [
+    45,
+    43,
+    40
+   ]
+  },
+  {
+   "line_id": 67,
+   "origin": "Gv",
+   "destination": "Shl",
+   "type": 2,
+   "duration": 26.06,
+   "cost_per_frequency": 1.8686666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gv",
+    "Laa",
+    "Ledn",
+    "Shl"
+   ],
+   "connections_forward": [
+    32,
+    34,
+    26
+   ],
+   "connections_backward": [
+    27,
+    35,
+    33
+   ]
+  },
+  {
+   "line_id": 68,
+   "origin": "Gvc",
+   "destination": "Hlm",
+   "type": 2,
+   "duration": 29.6028571429,
+   "cost_per_frequency": 1.9867619048,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gvc",
+    "Ledn",
+    "Had",
+    "Hlm"
+   ],
+   "connections_forward": [
+    30,
+    25,
+    18
+   ],
+   "connections_backward": [
+    19,
+    24,
+    31
+   ]
+  },
+  {
+   "line_id": 69,
+   "origin": "Gvc",
+   "destination": "Ledn",
+   "type": 2,
+   "duration": 8.4428571429,
+   "cost_per_frequency": 1.2814285714,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gvc",
+    "Ledn"
+   ],
+   "connections_forward": [
+    30
+   ],
+   "connections_backward": [
+    31
+   ]
+  },
+  {
+   "line_id": 70,
+   "origin": "Gvc",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 66.7528571429,
+   "cost_per_frequency": 3.2250952381,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gvc",
+    "Ledn",
+    "Shl",
+    "Asdz",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    30,
+    26,
+    23,
+    13,
+    0
+   ],
+   "connections_backward": [
+    1,
+    12,
+    22,
+    27,
+    31
+   ]
+  },
+  {
+   "line_id": 71,
+   "origin": "Gvc",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 75.7578571429,
+   "cost_per_frequency": 3.5252619048,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gvc",
+    "Ledn",
+    "Shl",
+    "Ass",
+    "Asd",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    30,
+    26,
+    21,
+    15,
+    11,
+    0
+   ],
+   "connections_backward": [
+    1,
+    10,
+    14,
+    20,
+    27,
+    31
+   ]
+  },
+  {
+   "line_id": 72,
+   "origin": "Gvc",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 80.3878571429,
+   "cost_per_frequency": 3.6795952381,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gvc",
+    "Ledn",
+    "Had",
+    "Hlm",
+    "Ass",
+    "Asd",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    30,
+    25,
+    18,
+    17,
+    15,
+    11,
+    0
+   ],
+   "connections_backward": [
+    1,
+    10,
+    14,
+    16,
+    19,
+    24,
+    31
+   ]
+  },
+  {
+   "line_id": 73,
+   "origin": "Gvc",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 20.2542857143,
+   "cost_per_frequency": 1.6751428571,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gvc",
+    "Gv",
+    "Dt",
+    "Sdm",
+    "Rtd"
+   ],
+   "connections_forward": [
+    37,
+    41,
+    42,
+    44
+   ],
+   "connections_backward": [
+    45,
+    43,
+    40,
+    36
+   ]
+  },
+  {
+   "line_id": 74,
+   "origin": "Gvc",
+   "destination": "Shl",
+   "type": 2,
+   "duration": 24.4628571429,
+   "cost_per_frequency": 1.8154285714,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gvc",
+    "Ledn",
+    "Shl"
+   ],
+   "connections_forward": [
+    30,
+    26
+   ],
+   "connections_backward": [
+    27,
+    31
+   ]
+  },
+  {
+   "line_id": 75,
+   "origin": "Gvc",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 35.29,
+   "cost_per_frequency": 2.1763333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Gvc",
+    "Gd",
+    "Ut"
+   ],
+   "connections_forward": [
+    39,
+    50
+   ],
+   "connections_backward": [
+    51,
+    38
+   ]
+  },
+  {
+   "line_id": 76,
+   "origin": "Hlm",
+   "destination": "Ledn",
+   "type": 2,
+   "duration": 19.16,
+   "cost_per_frequency": 1.6386666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Hlm",
+    "Had",
+    "Ledn"
+   ],
+   "connections_forward": [
+    19,
+    24
+   ],
+   "connections_backward": [
+    25,
+    18
+   ]
+  },
+  {
+   "line_id": 77,
+   "origin": "Hlm",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 48.785,
+   "cost_per_frequency": 2.6261666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Hlm",
+    "Ass",
+    "Asd",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    17,
+    15,
+    11,
+    0
+   ],
+   "connections_backward": [
+    1,
+    10,
+    14,
+    16
+   ]
+  },
+  {
+   "line_id": 78,
+   "origin": "Hlm",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 50.34,
+   "cost_per_frequency": 2.678,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Hlm",
+    "Had",
+    "Ledn",
+    "Laa",
+    "Gv",
+    "Dt",
+    "Sdm",
+    "Rtd"
+   ],
+   "connections_forward": [
+    19,
+    24,
+    35,
+    33,
+    41,
+    42,
+    44
+   ],
+   "connections_backward": [
+    45,
+    43,
+    40,
+    32,
+    34,
+    25,
+    18
+   ]
+  },
+  {
+   "line_id": 79,
+   "origin": "Hlm",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 39.955,
+   "cost_per_frequency": 2.3318333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Hlm",
+    "Ass",
+    "Asd",
+    "Asa",
+    "Ut"
+   ],
+   "connections_forward": [
+    17,
+    15,
+    57,
+    60
+   ],
+   "connections_backward": [
+    61,
+    56,
+    14,
+    16
+   ]
+  },
+  {
+   "line_id": 80,
+   "origin": "Ledn",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 56.31,
+   "cost_per_frequency": 2.877,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ledn",
+    "Shl",
+    "Asdz",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    26,
+    23,
+    13,
+    0
+   ],
+   "connections_backward": [
+    1,
+    12,
+    22,
+    27
+   ]
+  },
+  {
+   "line_id": 81,
+   "origin": "Ledn",
+   "destination": "Lls",
+   "type": 2,
+   "duration": 65.315,
+   "cost_per_frequency": 3.1771666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ledn",
+    "Shl",
+    "Ass",
+    "Asd",
+    "Alm",
+    "Lls"
+   ],
+   "connections_forward": [
+    26,
+    21,
+    15,
+    11,
+    0
+   ],
+   "connections_backward": [
+    1,
+    10,
+    14,
+    20,
+    27
+   ]
+  },
+  {
+   "line_id": 82,
+   "origin": "Ledn",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 29.18,
+   "cost_per_frequency": 1.9726666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ledn",
+    "Laa",
+    "Gv",
+    "Dt",
+    "Sdm",
+    "Rtd"
+   ],
+   "connections_forward": [
+    35,
+    33,
+    41,
+    42,
+    44
+   ],
+   "connections_backward": [
+    45,
+    43,
+    40,
+    32,
+    34
+   ]
+  },
+  {
+   "line_id": 83,
+   "origin": "Ledn",
+   "destination": "Shl",
+   "type": 2,
+   "duration": 14.02,
+   "cost_per_frequency": 1.4673333333,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Ledn",
+    "Shl"
+   ],
+   "connections_forward": [
+    26
+   ],
+   "connections_backward": [
+    27
+   ]
+  },
+  {
+   "line_id": 84,
+   "origin": "Ledn",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 38.845,
+   "cost_per_frequency": 2.2948333333,
+   "max_frequency": 2,
+   "capacity": 1500,
+   "stations": [
+    "Ledn",
+    "Apn",
+    "Wd",
+    "Ut"
+   ],
+   "connections_forward": [
+    73,
+    52,
+    54
+   ],
+   "connections_backward": [
+    55,
+    53,
+    72
+   ]
+  },
+  {
+   "line_id": 85,
+   "origin": "Lls",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 66.4284615385,
+   "cost_per_frequency": 3.2142820513,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Lls",
+    "Alm",
+    "Asdz",
+    "Shl",
+    "Rtd"
+   ],
+   "connections_forward": [
+    1,
+    12,
+    22,
+    29
+   ],
+   "connections_backward": [
+    28,
+    23,
+    13,
+    0
+   ]
+  },
+  {
+   "line_id": 86,
+   "origin": "Lls",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 75.4334615385,
+   "cost_per_frequency": 3.5144487179,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Lls",
+    "Alm",
+    "Asd",
+    "Ass",
+    "Shl",
+    "Rtd"
+   ],
+   "connections_forward": [
+    1,
+    10,
+    14,
+    20,
+    29
+   ],
+   "connections_backward": [
+    28,
+    21,
+    15,
+    11,
+    0
+   ]
+  },
+  {
+   "line_id": 87,
+   "origin": "Lls",
+   "destination": "Rtd",
+   "type": 2,
+   "duration": 81.2,
+   "cost_per_frequency": 3.7066666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Lls",
+    "Alm",
+    "Hvs",
+    "Ut",
+    "Gd",
+    "Rta",
+    "Rtd"
+   ],
+   "connections_forward": [
+    1,
+    2,
+    8,
+    51,
+    48,
+    58
+   ],
+   "connections_backward": [
+    59,
+    49,
+    50,
+    9,
+    3,
+    0
+   ]
+  },
+  {
+   "line_id": 88,
+   "origin": "Lls",
+   "destination": "Shl",
+   "type": 2,
+   "duration": 40.29,
+   "cost_per_frequency": 2.343,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Lls",
+    "Alm",
+    "Asdz",
+    "Shl"
+   ],
+   "connections_forward": [
+    1,
+    12,
+    22
+   ],
+   "connections_backward": [
+    23,
+    13,
+    0
+   ]
+  },
+  {
+   "line_id": 89,
+   "origin": "Lls",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 43.23,
+   "cost_per_frequency": 2.441,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Lls",
+    "Alm",
+    "Hvs",
+    "Ut"
+   ],
+   "connections_forward": [
+    1,
+    2,
+    8
+   ],
+   "connections_backward": [
+    9,
+    3,
+    0
+   ]
+  },
+  {
+   "line_id": 90,
+   "origin": "Rtd",
+   "destination": "Shl",
+   "type": 2,
+   "duration": 24.1384615385,
+   "cost_per_frequency": 1.8046153846,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Rtd",
+    "Shl"
+   ],
+   "connections_forward": [
+    28
+   ],
+   "connections_backward": [
+    29
+   ]
+  },
+  {
+   "line_id": 91,
+   "origin": "Rtd",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 35.97,
+   "cost_per_frequency": 2.199,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Rtd",
+    "Rta",
+    "Gd",
+    "Ut"
+   ],
+   "connections_forward": [
+    59,
+    49,
+    50
+   ],
+   "connections_backward": [
+    51,
+    48,
+    58
+   ]
+  },
+  {
+   "line_id": 92,
+   "origin": "Shl",
+   "destination": "Ut",
+   "type": 2,
+   "duration": 27.92,
+   "cost_per_frequency": 1.9306666667,
+   "max_frequency": 10,
+   "capacity": 1500,
+   "stations": [
+    "Shl",
+    "Asdz",
+    "Asb",
+    "Ut"
+   ],
+   "connections_forward": [
+    23,
+    66,
+    68
+   ],
+   "connections_backward": [
+    69,
+    67,
+    22
+   ]
+  }
+ ]
+}

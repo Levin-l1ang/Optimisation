@@ -1,0 +1,30 @@
+{
+  "dataset": "datasets/toy",
+  "periods": 2,
+  "seed": 2023,
+  "penalty": 1.0,
+  "edges": 8,
+  "lines": 8,
+  "demand": "Deterministic monotone demand generated with seed 2023; final period equals datasets/toy/basis/Load.giv.",
+  "lower_bound_objective": 81.0,
+  "upper_bound_objective": 102.39999999999999,
+  "plateau": {
+    "MP-F": {
+      "best_objective": 82.2,
+      "first_best_K": 6.0
+    },
+    "MP-B": {
+      "best_objective": 81.0,
+      "first_best_K": 1.0
+    },
+    "MP-B_ext": {
+      "best_objective": 81.0,
+      "first_best_K": 1.0
+    },
+    "MP-W": {
+      "best_objective": 80.99999999999999,
+      "first_best_K": 6.0
+    }
+  },
+  "paper_reproduction_limit": "The original implementation is no longer available from the authors. The paper's exact random demand vectors and Germany-rail dataset were not published; this independent implementation verifies the formulations and qualitative trends on public LinTim toy data."
+}

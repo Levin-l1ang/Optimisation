@@ -1,0 +1,4 @@
+setting-name; setting-value
+ptn_is_undirected; true
+period_length; 60
+ean_model_weight_drive; "AVERAGE_DRIVING_TIME"

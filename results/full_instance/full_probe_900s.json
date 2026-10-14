@@ -1,0 +1,22 @@
+{
+ "description": "Full Randstad-IC (416 OD, 93 lines, frequencies 1..max, B1=B2=60, M=242, K=10), line-level formulation, HiGHS via SciPy milp, single probe run",
+ "formulation": "compact",
+ "periods": 2,
+ "M": 242,
+ "K": 10,
+ "budgets": [
+  60,
+  60
+ ],
+ "od_seed": 20261013,
+ "time_limit_seconds": 900,
+ "hardware": "2 CPU cores, 8 GB RAM (cloud container)",
+ "status": "limit_reached",
+ "objective": 23852403.517687112,
+ "best_bound": 12672.261252321972,
+ "mip_gap": 0.9994687218316207,
+ "overall_service_rate": 0.0,
+ "runtime_seconds": 905.689,
+ "interpretation": "No feasible plan better than the trivial all-unserved solution (objective = 242 * total demand) was found within 15 minutes; the reported bound is the solver's, the instance is NOT solved.",
+ "source_log": "results/logs/full_compact_probe.log (not versioned)"
+}

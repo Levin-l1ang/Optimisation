@@ -1,0 +1,78 @@
+{
+  "best_bound": 372.0,
+  "experiment_assumptions": {
+    "budget_cost": "b_lf = Pool-Cost_l * f",
+    "demand_scales": [
+      0.5,
+      1.0
+    ],
+    "direction": "undirected PTN duplicated into two service directions",
+    "vehicle_capacity": 5.0,
+    "waiting_time": "period_length / (2*f) at every boarding"
+  },
+  "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+  "metadata": {
+    "capacity_directional": true,
+    "finite_candidate_pool": true,
+    "similarity_scope": "adjacent periods"
+  },
+  "mip_gap": 0.0,
+  "model_size": {
+    "activation_constraints": 8,
+    "binary_variables": 20,
+    "capacity_constraints": 12,
+    "constraints": 47,
+    "continuous_delta_variables": 5,
+    "continuous_flow_variables": 8,
+    "nonzeros": 151
+  },
+  "objective": 372.0,
+  "passenger_flows": [
+    [
+      {
+        "destination": 3,
+        "flow": 1.0,
+        "origin": 1,
+        "trip_id": "97d3f042120b6bb4"
+      },
+      {
+        "destination": 4,
+        "flow": 3.0,
+        "origin": 1,
+        "trip_id": "e73a2b4ab718c952"
+      }
+    ],
+    [
+      {
+        "destination": 3,
+        "flow": 2.0,
+        "origin": 1,
+        "trip_id": "0768b92d3e7e96b8"
+      },
+      {
+        "destination": 4,
+        "flow": 6.0,
+        "origin": 1,
+        "trip_id": "8359a559502c893d"
+      }
+    ]
+  ],
+  "runtime_seconds": 0.0023084579999999855,
+  "selected_frequencies": [
+    {
+      "1": 1,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0
+    },
+    {
+      "1": 2,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0
+    }
+  ],
+  "status": "optimal"
+}

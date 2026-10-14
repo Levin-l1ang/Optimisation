@@ -1,0 +1,92 @@
+{
+ "instance": "Randstad-IC, dense OD, small line generation, medium route generation, medium transfer penalty, medium fixed cost, medium budget",
+ "benchmark_commit": "5d0aae68588701285c42ba47e593fbeb600cbc5c",
+ "line_pool_sha256": "1c05e71a201e9fec0530573112fcb79b43571ac59498943b7e8c2c30ea121cdd",
+ "formulation": "compact",
+ "periods": 2,
+ "budgets": [
+  16.8,
+  16.8
+ ],
+ "od_seed": 20261013,
+ "demand_distribution": "D1 = r*D, r~U[0.5,0.9] i.i.d. per OD; D2 = D",
+ "demand_sha256": "2038702a87d8fb547f2fc7059dfd642f5392a1990172440b81c229fc2f92a344",
+ "reduced_instance": true,
+ "budget_is_primary_60": false,
+ "reduction": {
+  "frequencies": null,
+  "top_od": 20
+ },
+ "frequency_waiting_time": "60/(2f) per boarding leg (extension of the benchmark objective)",
+ "penalty_basis": {
+  "factor": 3.0,
+  "max_min_travel_time": 80.4284615385,
+  "argmax_od": [
+   "Ddr",
+   "Lls"
+  ],
+  "M": 242,
+  "M_sensitivity": {
+   "factor_2": 161,
+   "factor_3": 242,
+   "factor_5": 403
+  }
+ },
+ "runs": [
+  {
+   "M": 242.0,
+   "K": 10.0,
+   "solver": "gurobi",
+   "gurobi_params": {},
+   "status": "limit_reached",
+   "objective": 2691706.405732965,
+   "travel_cost": 1392050.5481287672,
+   "unserved_cost": 1299655.8576047155,
+   "best_bound": 2461064.879248159,
+   "mip_gap": 0.08568598937594803,
+   "runtime_seconds": 1.1323620840000002,
+   "wall_seconds": 1.1915490627288818,
+   "service_rate_by_period": [
+    0.8564613961334798,
+    0.767401862954368
+   ],
+   "overall_service_rate": 0.8029098717009848,
+   "unserved_total_by_period": [
+    1559.41875045566,
+    3811.0599999770493
+   ],
+   "selected_frequencies": [
+    {
+     "9": 1,
+     "46": 1,
+     "73": 1,
+     "79": 1,
+     "91": 1
+    },
+    {
+     "4": 1,
+     "40": 1,
+     "48": 1,
+     "73": 1,
+     "91": 1
+    }
+   ],
+   "lines_operated_by_period": [
+    5,
+    5
+   ],
+   "max_trip_cost": 116.87714285714286,
+   "max_trip_cost_below_M": true,
+   "model_size": {
+    "binary_variables": 1872,
+    "continuous_flow_variables": 8704,
+    "continuous_unserved_variables": 40,
+    "continuous_delta_variables": 93,
+    "constraints": 17021,
+    "nonzeros": 221515,
+    "activation_constraints": 13948,
+    "capacity_constraints": 900
+   }
+  }
+ ]
+}
