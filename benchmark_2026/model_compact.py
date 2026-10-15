@@ -10,7 +10,7 @@ optimum is obtained without that expansion:
     w[t,l,f]    boarding flow on line l while frequency f is active
     min  sum_I (ride_I + tau*transfers_I) x_I + sum_{l,f} P/(2f) w[l,f] + M sum u
     s.t. sum_p...: sum_I x[t,I] + u = D                                   (per OD)
-         x[t,I] <= D * sum_f z[t,l,f]                      for every leg of I
+         sum_{I using l} x[t,I] <= D * sum_f z[t,l,f]       per OD and line
          sum_f w[t,l,f] = sum_{I, leg j on l} x[t,I]       (every boarding waits)
          w[t,l,f] <= Wmax_l * z[t,l,f]
          sum_{I uses (l,c)} x[t,I] <= sum_f C_l f z[t,l,f]  per directed connection c
@@ -23,6 +23,7 @@ frequencies match the active ones) is checked numerically in the test-suite.
 from __future__ import annotations
 
 import math
+from collections import Counter
 from dataclasses import dataclass
 from typing import Dict, Tuple
 
@@ -82,16 +83,21 @@ def _construct(data: CompactData, config: ModelConfig):
     for t, demand in enumerate(data.demands):
         for pair in sorted(demand):
             u[(t, pair)] = b.variable(cost=M, upper=demand[pair])
+            max_boardings_by_line = {}
             for i, it in enumerate(data.itineraries_of(pair)):
                 var = b.variable(cost=it.ride_time + tau * it.transfers, upper=demand[pair])
                 x[(t, pair, i)] = var
+                # Flow may split across itineraries, but total OD flow <= demand.
+                for l, n in Counter(leg.line_id for leg in it.legs).items():
+                    max_boardings_by_line[l] = max(max_boardings_by_line.get(l, 0), n)
                 for leg in it.legs:
                     terms = boarding.setdefault((t, leg.line_id), {})
                     terms[var] = terms.get(var, 0.0) + 1.0
-                    wmax[(t, leg.line_id)] = wmax.get((t, leg.line_id), 0.0) + demand[pair]
                     for cid, _a, _b in leg.arcs:
                         cap = capacity.setdefault((t, leg.line_id, cid), {})
                         cap[var] = cap.get(var, 0.0) + 1.0
+            for l, n in max_boardings_by_line.items():
+                wmax[(t, l)] = wmax.get((t, l), 0.0) + demand[pair] * n
     w = {(t, l, f): b.variable(cost=P / (2.0 * f)) for (t, l) in boarding for f in config.frequencies[l]}
     max_f = {l: max(config.frequencies[l]) for l in line_ids}
     delta = {(t, l): b.variable(upper=2.0 * max_f[l]) for t in range(periods - 1) for l in line_ids}
@@ -99,18 +105,24 @@ def _construct(data: CompactData, config: ModelConfig):
     for t in range(periods):
         for l in line_ids:
             b.constraint({z[(t, l, f)]: 1.0 for f in config.frequencies[l]}, upper=1.0)
+    activation_rows = 0
     for t, demand in enumerate(data.demands):
         for pair in sorted(demand):
             its = data.itineraries_of(pair)
             row = {x[(t, pair, i)]: 1.0 for i in range(len(its))}
             row[u[(t, pair)]] = 1.0
             b.constraint(row, lower=demand[pair], upper=demand[pair])
+            # One activation row per OD/line, instead of per itinerary leg.
+            by_line = {}
             for i, it in enumerate(its):
-                for leg in it.legs:
-                    row = {x[(t, pair, i)]: 1.0}
-                    for f in config.frequencies[leg.line_id]:
-                        row[z[(t, leg.line_id, f)]] = -demand[pair]
-                    b.constraint(row, upper=0.0)
+                for line_id in {leg.line_id for leg in it.legs}:
+                    by_line.setdefault(line_id, {})[x[(t, pair, i)]] = 1.0
+            for line_id in sorted(by_line):
+                row = dict(by_line[line_id])
+                for f in config.frequencies[line_id]:
+                    row[z[(t, line_id, f)]] = -demand[pair]
+                b.constraint(row, upper=0.0)
+                activation_rows += 1
     for (t, l), terms in sorted(boarding.items()):
         row = dict(terms)
         for f in config.frequencies[l]:
@@ -139,7 +151,7 @@ def _construct(data: CompactData, config: ModelConfig):
         binary_variables=sum(b.integrality), continuous_flow_variables=len(x) + len(w),
         continuous_unserved_variables=len(u), continuous_delta_variables=len(delta),
         constraints=len(b.rows), nonzeros=sum(len(r) for r in b.rows),
-        activation_constraints=periods * sum(len(it.legs) for p in data.demands[0] for it in data.itineraries_of(p)),
+        activation_constraints=activation_rows,
         capacity_constraints=len(capacity))
     return b, z, x, u, size, worst
 
@@ -189,6 +201,7 @@ def solve_compact(data: CompactData, config: ModelConfig) -> SolveResult:
         mip_gap=float(gap) if gap is not None else None, best_bound=float(bound) if bound is not None else None,
         message=str(result.message), model_size=size,
         metadata={"formulation": "line-level (equivalent to frequency-specific trips)",
+                  "strengthened_compact": True,
                   "unserved_penalty_M": M, "similarity_limit_K": config.similarity_limit,
                   "budgets": list(config.budgets), "periods": periods, "max_trip_cost": worst,
                   "max_trip_cost_below_M": worst < M})
