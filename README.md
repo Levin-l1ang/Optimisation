@@ -74,7 +74,6 @@ An `optimal` result is optimal only for the restricted MILP defined by the froze
 | [MIGRATION_STATUS_2026_EN.md](docs/MIGRATION_STATUS_2026_EN.md) | What was done, results, deviations and known limitations |
 | [HEURISTIC_GREEDY_EN.md](docs/HEURISTIC_GREEDY_EN.md) | Greedy frequency heuristic (warm start), the top-N reduced instances and the comparison with Gurobi |
 | [changes.md](docs/changes.md) | The four changes relative to the original formulation |
-| [LOCAL_SESSION_START_EN.md](docs/LOCAL_SESSION_START_EN.md) | Current state and next steps |
 
 ## License
 

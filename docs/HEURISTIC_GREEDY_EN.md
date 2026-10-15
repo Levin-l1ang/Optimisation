@@ -4,7 +4,7 @@
 
 Code: `scripts/greedy_plan.py`. Output: `results/greedy_plan.json` (one `{line id: frequency}` per period, identical for both periods).
 This is a heuristic, used only to give Gurobi an initial solution; it **does not change the problem formulation**.
-Document date: 2026-10-14. Note: the "greedy plan (10 lines, f=2, objective 15,780,946)" mentioned in `docs/LOCAL_SESSION_START.md` is an earlier, different plan whose algorithm and file were not saved; it is not the same algorithm as the one in this document.
+Document date: 2026-10-14.
 
 ## 1. Idea
 
