@@ -1,0 +1,352 @@
+{
+  "method": "tabu frequency search (project adaptation of Martinez et al. 2014)",
+  "adaptation_note": "Adds single-line open/close/frequency-change moves; paper uses a compound increase/decrease move.",
+  "top_od": 20,
+  "budgets": [
+    16.8,
+    16.8
+  ],
+  "M": 242.0,
+  "K": 10.0,
+  "iterations_requested": 20,
+  "tenure": 5,
+  "max_neighbours": 40,
+  "initial_objective": 2691706.405740618,
+  "best_objective": 2691706.405740618,
+  "best_plan": [
+    {
+      "14": 1,
+      "48": 1,
+      "40": 1,
+      "73": 1,
+      "91": 1
+    },
+    {
+      "14": 1,
+      "48": 1,
+      "40": 1,
+      "73": 1,
+      "91": 1
+    }
+  ],
+  "lines_open": [
+    5,
+    5
+  ],
+  "budget_spent": [
+    16.0505201465,
+    16.0505201465
+  ],
+  "similarity": 0,
+  "runtime_seconds": 55.54538941383362,
+  "history": [
+    {
+      "iteration": 0,
+      "objective": 2691706.405740618,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 1,
+      "objective": 2901291.3301458005,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 91,
+      "from_frequency": 1,
+      "to_frequency": 0,
+      "sampled_neighbours": 10,
+      "evaluated_neighbours": 10,
+      "lines_open": [
+        4,
+        5
+      ]
+    },
+    {
+      "iteration": 2,
+      "objective": 2728385.6016833503,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 22,
+      "from_frequency": 0,
+      "to_frequency": 1,
+      "sampled_neighbours": 40,
+      "evaluated_neighbours": 40,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 3,
+      "objective": 2969632.3895690655,
+      "best_objective": 2691706.405740618,
+      "changed_period": 1,
+      "changed_line": 73,
+      "from_frequency": 1,
+      "to_frequency": 0,
+      "sampled_neighbours": 10,
+      "evaluated_neighbours": 9,
+      "lines_open": [
+        5,
+        4
+      ]
+    },
+    {
+      "iteration": 4,
+      "objective": 2721584.7815690655,
+      "best_objective": 2691706.405740618,
+      "changed_period": 1,
+      "changed_line": 28,
+      "from_frequency": 0,
+      "to_frequency": 1,
+      "sampled_neighbours": 40,
+      "evaluated_neighbours": 39,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 5,
+      "objective": 2973310.302887611,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 73,
+      "from_frequency": 1,
+      "to_frequency": 0,
+      "sampled_neighbours": 10,
+      "evaluated_neighbours": 8,
+      "lines_open": [
+        4,
+        5
+      ]
+    },
+    {
+      "iteration": 6,
+      "objective": 2878979.5273263888,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 60,
+      "from_frequency": 0,
+      "to_frequency": 2,
+      "sampled_neighbours": 40,
+      "evaluated_neighbours": 37,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 7,
+      "objective": 3185271.1249267156,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 48,
+      "from_frequency": 1,
+      "to_frequency": 0,
+      "sampled_neighbours": 11,
+      "evaluated_neighbours": 7,
+      "lines_open": [
+        4,
+        5
+      ]
+    },
+    {
+      "iteration": 8,
+      "objective": 3042236.7912094835,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 66,
+      "from_frequency": 0,
+      "to_frequency": 1,
+      "sampled_neighbours": 30,
+      "evaluated_neighbours": 25,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 9,
+      "objective": 3215142.5196719337,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 22,
+      "from_frequency": 1,
+      "to_frequency": 0,
+      "sampled_neighbours": 11,
+      "evaluated_neighbours": 7,
+      "lines_open": [
+        4,
+        5
+      ]
+    },
+    {
+      "iteration": 10,
+      "objective": 2908850.922071606,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 79,
+      "from_frequency": 0,
+      "to_frequency": 1,
+      "sampled_neighbours": 40,
+      "evaluated_neighbours": 39,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 11,
+      "objective": 3156898.5300716055,
+      "best_objective": 2691706.405740618,
+      "changed_period": 1,
+      "changed_line": 28,
+      "from_frequency": 1,
+      "to_frequency": 0,
+      "sampled_neighbours": 11,
+      "evaluated_neighbours": 7,
+      "lines_open": [
+        5,
+        4
+      ]
+    },
+    {
+      "iteration": 12,
+      "objective": 2908850.922071606,
+      "best_objective": 2691706.405740618,
+      "changed_period": 1,
+      "changed_line": 19,
+      "from_frequency": 0,
+      "to_frequency": 1,
+      "sampled_neighbours": 40,
+      "evaluated_neighbours": 37,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 13,
+      "objective": 2932051.654008141,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 60,
+      "from_frequency": 2,
+      "to_frequency": 1,
+      "sampled_neighbours": 11,
+      "evaluated_neighbours": 8,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 14,
+      "objective": 3061983.263082365,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 66,
+      "from_frequency": 1,
+      "to_frequency": 0,
+      "sampled_neighbours": 11,
+      "evaluated_neighbours": 7,
+      "lines_open": [
+        4,
+        5
+      ]
+    },
+    {
+      "iteration": 15,
+      "objective": 2852398.3386771814,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 34,
+      "from_frequency": 0,
+      "to_frequency": 1,
+      "sampled_neighbours": 40,
+      "evaluated_neighbours": 37,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 16,
+      "objective": 3158689.9362775087,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 79,
+      "from_frequency": 1,
+      "to_frequency": 0,
+      "sampled_neighbours": 10,
+      "evaluated_neighbours": 7,
+      "lines_open": [
+        4,
+        5
+      ]
+    },
+    {
+      "iteration": 17,
+      "objective": 2985784.2078150585,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 22,
+      "from_frequency": 0,
+      "to_frequency": 1,
+      "sampled_neighbours": 40,
+      "evaluated_neighbours": 36,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 18,
+      "objective": 3233831.8158150585,
+      "best_objective": 2691706.405740618,
+      "changed_period": 1,
+      "changed_line": 19,
+      "from_frequency": 1,
+      "to_frequency": 0,
+      "sampled_neighbours": 10,
+      "evaluated_neighbours": 7,
+      "lines_open": [
+        5,
+        4
+      ]
+    },
+    {
+      "iteration": 19,
+      "objective": 2992585.0279293437,
+      "best_objective": 2691706.405740618,
+      "changed_period": 1,
+      "changed_line": 73,
+      "from_frequency": 0,
+      "to_frequency": 1,
+      "sampled_neighbours": 40,
+      "evaluated_neighbours": 38,
+      "lines_open": [
+        5,
+        5
+      ]
+    },
+    {
+      "iteration": 20,
+      "objective": 3076817.79619704,
+      "best_objective": 2691706.405740618,
+      "changed_period": 0,
+      "changed_line": 60,
+      "from_frequency": 1,
+      "to_frequency": 0,
+      "sampled_neighbours": 10,
+      "evaluated_neighbours": 7,
+      "lines_open": [
+        4,
+        5
+      ]
+    }
+  ]
+}

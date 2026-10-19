@@ -55,7 +55,16 @@ class TabuFrequencyPlanTest(unittest.TestCase):
         )
         plan = [{0: 1}, {0: 4}]
         self.assertFalse(feasible(plan, cfg))
+    
+    def test_similarity_limit_applies_per_transition(self):
+        cfg = toy_config(
+            operating_costs={(0, 1): 1.0, (0, 3): 1.0},
+            budgets=(5.0, 5.0, 5.0),
+            K=2,
+        )
+        plan = [{0: 1}, {0: 3}, {0: 1}]
 
-
+        self.assertEqual(similarity(plan), 2)
+        self.assertTrue(feasible(plan, cfg))
 if __name__ == "__main__":
     unittest.main()

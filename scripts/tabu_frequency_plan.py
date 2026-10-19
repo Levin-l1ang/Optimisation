@@ -30,11 +30,24 @@ def plan_cost(plan, cfg):
     return [sum(cfg.operating_costs[(l, f)] for l, f in period.items()) for period in plan]
 
 
+
 def similarity(plan):
     if len(plan) < 2:
         return 0
+
     lines = set().union(*(set(p) for p in plan))
-    return sum(abs(plan[t].get(l, 0) - plan[t + 1].get(l, 0)) for t in range(len(plan) - 1) for l in lines)
+
+    return max(
+        sum(
+            abs(
+                plan[t].get(line, 0)
+                - plan[t + 1].get(line, 0)
+            )
+            for line in lines
+        )
+        for t in range(len(plan) - 1)
+    )
+
 
 
 def feasible(plan, cfg):
@@ -47,7 +60,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('initial_plan', type=Path)
     ap.add_argument('output', type=Path)
-    ap.add_argument('--top-od', type=int, default=20, help='reduced experiment; omit only for full instance')
+    ap.add_argument(
+        '--top-od',
+        type=int,
+        default=None,
+        help='keep the top N OD pairs; omit for the full instance'
+    )
+    ap.add_argument(
+        '--frequencies',
+        default=None,
+        help='comma-separated allowed frequencies, e.g. 1,2'
+    )
     ap.add_argument('--iterations', type=int, default=10)
     ap.add_argument('--tenure', type=int, default=5)
     ap.add_argument('--max-neighbours', type=int, default=40,
@@ -65,9 +88,23 @@ def main():
     demand = generate(primary.instance.od_pairs, periods, 20261013)
     subset = top_od_subset(primary, args.top_od) if args.top_od else None
     data = build_compact_data(primary, demand, subset)
-    freqs = frequency_options(primary.lines)
+    allowed = (
+        [int(f) for f in args.frequencies.split(',')]
+        if args.frequencies
+        else None
+    )
+    freqs = frequency_options(primary.lines, allowed)
     cfg = build_config(primary, freqs, periods, args.M, args.K, budgets)
     current = _load_plan(args.initial_plan, periods)
+    
+    for t, period in enumerate(current):
+        for line, f in period.items():
+            if f not in freqs.get(line, ()):
+                raise SystemExit(
+                    f'Initial plan uses invalid frequency '
+                    f'{f} for line {line} in period {t + 1}.'
+                )
+
     if not feasible(current, cfg):
         raise SystemExit('Initial plan violates a budget or inter-period similarity limit.')
 
